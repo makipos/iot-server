@@ -1,0 +1,32 @@
+version: '3.4'
+services:
+  redis:
+    image: 'redis:alpine'
+    container_name: makiposiot-redis-server
+    # command: redis-server --requirepass "MKP123456a@" --appendonly yes
+    command: --appendonly yes
+    restart: always
+    networks:
+      - vpc
+        # ipv4_address: 10.200.0.4
+    expose:
+      - "6379"
+    labels:
+      - "traefik.enable=false"
+    #   - "traefik.frontend.rule=PathPrefixStrip:/redis-server"
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=false"
+      #   - "traefik.frontend.rule=PathPrefixStrip:/redis-server"
+      # placement:
+      #   constraints:
+      #     - node.hostname == ${STORE_NODE}
+    volumes:
+      - /media/Programs/Programs_data/makiposiot/redis:/data
+      - /etc/localtime:/etc/localtime:ro
+
+networks:
+  vpc:
+    external:
+      name: makiposiot-internal

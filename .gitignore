@@ -1,0 +1,7 @@
+Data_bak/
+*/.git/*
+nodeEnv
+
+develop*.yml
+production*.yml
+test*.yml

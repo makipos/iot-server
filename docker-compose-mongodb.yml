@@ -1,0 +1,37 @@
+version: '3.4'
+services:
+
+  mongodb:
+    image: mongo:4.0
+    container_name: makiposiot-mongodb-server
+    restart: always
+    networks:
+      - vpc
+        # ipv4_address: 10.200.0.16
+    expose:
+      - "27017"
+    labels:
+      - "traefik.enable=false"
+    #   - "traefik.frontend.rule=PathPrefixStrip:/mongodb-server"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 800M
+      labels:
+        - "traefik.enable=false"
+      #   - "traefik.frontend.rule=PathPrefixStrip:/mongodb-server"
+      # placement:
+      #   constraints:
+      #     - node.hostname == ${STORE_NODE}
+    volumes:
+      - /media/Programs/Programs_data/makiposiot/mongodb:/data/db
+      - /etc/localtime:/etc/localtime:ro
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: service
+    #   MONGO_INITDB_ROOT_PASSWORD: MKP123456a@
+
+networks:
+  vpc:
+    external:
+      name: makiposiot-internal

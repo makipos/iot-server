@@ -1,0 +1,234 @@
+version: '3.4'
+services:
+
+  users-service:
+    image: makipos/users-service:${USER_VERSION}
+    container_name: makiposiot-users-service
+    restart: always
+    networks:
+      - vpc
+    expose:
+      - "3030"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/machine-id:/etc/machine-id
+      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
+      - /media/Programs/Programs_data/makiposiot/users_service/logs:/media/data/logs
+    environment:
+      - NODE_ENV=productionpkg
+    healthcheck:
+      test: curl -f http://localhost:3030/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    labels:
+      - "traefik.port=3030"
+      - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation"
+      - "traefik.backend.healthcheck.path=/health"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 500M
+      labels:
+        - "traefik.port=3030"
+        - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation"
+        - "traefik.backend.healthcheck.path=/health"
+    # depends_on:
+    #   - redis
+    #   - mongodb
+    #   - emqtt
+
+  devices-service:
+    image: makipos/devices-service:${DEVICE_VERSION}
+    container_name: makiposiot-devices-service
+    restart: always
+    networks:
+      - vpc
+    expose:
+      - "3030"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /media/Programs/Programs_data/makiposiot/devices_service:/media/data
+      - /media/Programs/Programs_data/makiposiot/devices_service/logs:/media/data/logs
+    environment:
+      - NODE_ENV=productionpkg
+    healthcheck:
+      test: curl -f http://localhost:3030/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    labels:
+      - "traefik.port=3030"
+      - "traefik.device.frontend.rule=PathPrefix:/devices"
+      - "traefik.backend.healthcheck.path=/health"
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 1024M
+      labels:
+        - "traefik.port=3030"
+        - "traefik.device.frontend.rule=PathPrefix:/devices"
+        - "traefik.backend.healthcheck.path=/health"
+      # placement:
+      #   constraints:
+      #     - node.hostname == ${STORE_NODE}
+    # depends_on:
+    #   - users-service
+    #   - redis
+    #   - mongodb
+    #   - emqtt
+
+  relations-service:
+    image: makipos/relations-service:${RELATION_VERSION}
+    container_name: makiposiot-relations-service
+    restart: always
+    networks:
+      - vpc
+    expose:
+      - "3030"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /media/Programs/Programs_data/makiposiot/relations_service/logs:/media/data/logs
+    environment:
+      - NODE_ENV=productionpkg
+    healthcheck:
+      test: curl -f http://localhost:3030/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    labels:
+      - "traefik.port=3030"
+      - "traefik.relation.frontend.rule=PathPrefix:/relations"
+      - "traefik.backend.healthcheck.path=/health"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 600M
+      labels:
+        - "traefik.port=3030"
+        - "traefik.relation.frontend.rule=PathPrefix:/relations"
+        - "traefik.backend.healthcheck.path=/health"
+    # depends_on:
+    #   - users-service
+    #   - devices-service
+      # - redis
+      # - mongodb
+
+  automatic-service:
+    image: makipos/automatic-service:${AUTOMATIC_VERSION}
+    container_name: makiposiot-automatic-service
+    restart: always
+    networks:
+      - vpc
+    expose:
+      - "3030"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /media/Programs/Programs_data/makiposiot/automatic_service/logs:/media/data/logs
+    environment:
+      - NODE_ENV=productionpkg
+    healthcheck:
+      test: curl -f http://localhost:3030/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    labels:
+      - "traefik.port=3030"
+      - "traefik.automatic.frontend.rule=PathPrefix:/automatic"
+      - "traefik.backend.healthcheck.path=/health"
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 1024M
+      labels:
+        - "traefik.port=3030"
+        - "traefik.automatic.frontend.rule=PathPrefix:/automatic"
+        - "traefik.backend.healthcheck.path=/health"
+    # depends_on:
+    #   - users-service
+    #   - devices-service
+      # - emqtt
+      # - redis
+      # - mongodb
+
+  update-service:
+    image: makipos/update-service:${UPDATE_VERSION}
+    container_name: makiposiot-update-service
+    restart: always
+    networks:
+      - vpc
+    expose:
+      - "3030"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /media/Programs/Programs_data/makiposiot/update_service:/media/data
+      - /media/Programs/Programs_data/makiposiot/update_service/logs:/media/data/logs
+    environment:
+      - NODE_ENV=productionpkg
+    healthcheck:
+      test: curl -f http://localhost:3030/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+    labels:
+      - "traefik.port=3030"
+      - "traefik.update.frontend.rule=PathPrefix:/update"
+      - "traefik.backend.healthcheck.path=/health"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 200M
+      labels:
+        - "traefik.port=3030"
+        - "traefik.update.frontend.rule=PathPrefix:/update"
+        - "traefik.backend.healthcheck.path=/health"
+      # placement:
+      #   constraints:
+      #     - node.hostname == ${STORE_NODE}
+    # depends_on:
+    #   - users-service
+    #   - devices-service
+      # - redis
+      # - mongodb
+
+  admin:
+    image: makipos/admin:${ADMIN_VERSION}
+    container_name: makiposiot-admin-server
+    restart: always
+    networks:
+      - vpc
+    expose:
+      - "3030"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    labels:
+      - "traefik.port=3030"
+      - "traefik.root.frontend.rule=PathPrefixStrip:/admin"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 200M
+      labels:
+        - "traefik.port=3030"
+        - "traefik.root.frontend.rule=PathPrefixStrip:/admin"
+
+networks:
+  vpc:
+    external:
+      name: makiposiot-internal

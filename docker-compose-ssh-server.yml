@@ -1,0 +1,25 @@
+version: '3.4'
+services:
+
+  ssh-server:
+    image: makipos/ssh-server:${SSHSERVER_VERSION}
+    container_name: makiposiot-ubuntu-server
+    restart: always
+    networks:
+      - vpc
+    ports:
+      - "2222:22"
+    labels:
+      - "traefik.enable=false"
+    deploy:
+      labels:
+        - "traefik.enable=false"
+      replicas: 1
+    #   placement:
+    #     constraints:
+    #       - node.hostname == ${STORE_NODE}
+
+networks:
+  vpc:
+    external:
+      name: makiposiot-internal

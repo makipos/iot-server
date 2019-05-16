@@ -1,0 +1,73 @@
+version: '3.4'
+services:
+
+  emqtt:
+    image: makipos/emqtt:${EMQTT_VERSION}
+    container_name: makiposiot-emqtt-server
+    restart: always
+    networks:
+      - vpc
+        # ipv4_address: 10.200.0.25
+    expose:
+      - "1883"
+      - "8083"
+      - "8883"
+      - "8084"
+      - "18083"
+    ports:
+      - published: 1883
+        target: 1883
+        protocol: tcp
+        mode: host
+      - published: 8083
+        target: 8083
+        protocol: tcp
+        mode: host
+      - published: 8084
+        target: 8084
+        protocol: tcp
+        mode: host
+      - published: 8883
+        target: 8883
+        protocol: tcp
+        mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /media/Programs/Programs_data/makiposiot/emqtt/certs:/opt/emqttd/etc/certs
+    environment:
+      - EMQ_MQTT__ALLOW_ANONYMOUS=false
+      - EMQ_MQTT__CACHE_ACL=false
+      # - EMQ_LISTENER__SSL__EXTERNAL__CACERTFILE=etc/certs/cacert.pem
+      - EMQ_LISTENER__WSS__EXTERNAL__ACCEPTORS=16
+      - EMQ_LISTENER__WSS__EXTERNAL__MAX_CLIENTS=250000
+      # - EMQ_LISTENER__WSS__EXTERNAL__CACERTFILE=etc/certs/cacert.pem
+      - EMQ_NODE__PROCESS_LIMIT=2097152
+      - EMQ_NODE__MAX_PORTS=1048576
+
+      - EMQX_ALLOW_ANONYMOUS=false
+      - EMQX_ACL_NOMATCH=deny
+      - EMQX_LOADED_PLUGINS="emqx_management,emqx_auth_username,emqx_auth_redis,emqx_recon,emqx_retainer,emqx_dashboard"
+      - EMQX_ENABLE_ACL_CACHE=off
+      - EMQX_LISTENER__WSS__EXTERNAL__ACCEPTORS=16
+      - EMQX_LISTENER__WSS__EXTERNAL__MAX_CONNECTIONS=500000
+      # - EMQX_ZONE__EXTERNAL__PUBLISH_LIMIT=1200,1m
+
+    labels:
+      - "traefik.enable=false"
+    #   - "traefik.frontend.rule=PathPrefixStrip:/emqtt-server"
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=false"
+      #   - "traefik.frontend.rule=PathPrefixStrip:/emqtt-server"
+      # placement:
+      #   constraints:
+      #     - node.hostname == ${MQTT_NODE}
+    # depends_on:
+    #   - redis
+    #   - mongodb
+
+networks:
+  vpc:
+    external:
+      name: makiposiot-internal
