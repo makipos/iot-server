@@ -11,7 +11,9 @@ else
   sh get-docker.sh
 
   docker swarm init --advertise-addr $argv
-
-  curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-(uname -s)-(uname -m)" -o /usr/local/bin/docker-compose
+  set unames (uname -s)
+  set unamem (uname -m)
+  # echo "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$unames-$unamem"
+  curl curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$unames-$unamem" -o /usr/local/bin/docker-compose
   chmod +x /usr/local/bin/docker-compose
 end
