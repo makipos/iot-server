@@ -28,7 +28,7 @@ services:
       - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation"
       - "traefik.backend.healthcheck.path=/health"
     deploy:
-      replicas: 1
+      replicas: 2
       resources:
         limits:
           memory: 500M
