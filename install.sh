@@ -11,4 +11,6 @@ else
 
   ./scriptdeploy/deploy.sh
   ./script/prepairdb.sh
+
+  ./scriptdeploy/deployFrontend.sh
 end
