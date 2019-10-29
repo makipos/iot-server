@@ -1,0 +1,61 @@
+version: '3.4'
+
+services:
+  traefik-frontend:
+    image: makipos/traefik-frontend:${TRAEFIK_FRONTEND_VERSION}
+    container_name: makiposiot-traefik-frontend-server
+    # command: --logLevel=INFO
+    restart: always
+    expose:
+      - "80"
+      - "8080"
+    networks:
+      - makiposiot-frontend
+    ports:
+      - published: 80
+        target: 80
+        protocol: tcp
+        mode: host
+      - published: 443
+        target: 443
+        protocol: tcp
+        mode: host
+    volumes:
+      # - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == ${FRONT_NODE}
+          - node.role == manager
+
+  admin-makiposiot:
+    image: makipos/admin-smarthome:${ADMIN_SMARTHOME_VERSION}
+    container_name: makiposiot-admin-smarthome-server
+    restart: always
+    networks:
+      - makiposiot-frontend
+    expose:
+      - "80"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    # labels:
+    #   - "traefik.port=80"
+    #   - "traefik.root.frontend.rule=Host:vijalight-admin.ddns.net"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 400M
+      # labels:
+      #   - "traefik.port=80"
+      #   - "traefik.root.frontend.rule=Host:vijalight-admin.ddns.net"
+
+
+networks:
+  makiposiot-frontend:
+    driver: overlay
+    ipam:
+     config:
+       - subnet: 10.201.0.0/16
+  # smarthome-frontend-back:
