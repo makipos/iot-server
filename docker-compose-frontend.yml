@@ -2,9 +2,9 @@ version: '3.4'
 
 services:
   traefik-frontend:
-    image: makipos/traefik-frontend:${TRAEFIK_FRONTEND_VERSION}
+    image: traefik:1.7
     container_name: makiposiot-traefik-frontend-server
-    # command: --logLevel=INFO
+    # command: --web --api --docker --docker.swarmmode
     restart: always
     expose:
       - "80"
@@ -21,6 +21,7 @@ services:
         protocol: tcp
         mode: host
     volumes:
+      - /opt/makiposiot/iot-server/config/traefik-frontend:/etc/traefik:ro
       # - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
     deploy:
