@@ -1,0 +1,9 @@
+{
+  "log2Console":false,
+  "mongodb": {
+    "addr":"mongodb://mongodb:27017/makiposiot"
+  },
+  "commercial_manager_server":{
+    "addr": "https://smarthome.makipos.net:3029"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "image_device_folder":"/media/data/image-device",
+  "paginate": {
+    "default": 200,
+    "max": 1000
+  },
+  "log2Console":true,
+  "logLevel":"debug",
+  "logPath":"/media/data/",
+  "net_interface":"eth0",
+  "private_network":{
+    "addr":"10.200.0.0"
+  },
+  "nokeep_status":86400000,
+  "traefik_gateway": {
+    "addr": "http://traefik:80"
+  },
+  "emqtt_server":{
+    "httpApi":"http://emqtt:8080/api/v2",
+    "httpClientApi":"http://emqtt:8080/api/v2/clients",
+    "httpAuth":"admin:public",
+    "addr": "mqtt://emqtt",
+    "username":"devices-service",
+    "password" :"mkp123456a@",
+    "shareGroup":"devices-service"
+  },
+  "sms_server":{
+    "addr": "",
+    "Authorization":"",
+    "keyWebHook":""
+  },
+  "mongodb": {
+    "addr":"mongodb://mongodb:27017/test"
+  },
+  "redis":{
+    "url" : "redis://redis:6379"
+  },
+  "redisCache" : {
+    "url" : "redis://redis-cache:6379",
+     "defaultDuration": 86400,
+     "parseNestedRoutes": false,
+     "removePathFromCacheKey": true
+   },
+   "limit":{
+     "scheduleGroup":10
+   },
+   "googleApi":{
+     "serviceAccountKey":""
+   },
+  "authentication": {
+    "secret": "f80db374f6ed71e925b3a93a6244c0a54258a796dc2e73688a2a1b312aa2a2c0d729dc7d6e3fdf2943556a11528bcc032005e7c015ef7da5b51f543224ed44c8f2c0f5470c20df7467afcb4606f99c32a57316dcb64337d799be22e3f131f05536d8ff22628ed48e9f2c039b367a575400c905f57a9aa8173f763e7a337f5f8ac519f486ed83fbb1a04a26ae672f210f1c56d22558263a4895b64513344ccd4838a9af6bf7d13254d0c894d478ba8138773128c1d58e0ebd2b3f70ab03bfc4400c9d1cbd9315383024abfa60cad68f8a7d71b853f40bf5669f7cac517015c79ebd9ce79f21dee8ae85c57d49f3316dfcac1a79d7e3c091fd599f0ea12a3c9a0b",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/devices/authentication",
+    "service": "devices",
+    "jwt": {
+      "audience": "",
+      "subject": "",
+      "issuer": "",
+      "algorithm": "HS256",
+      "expiresIn": "100000d",
+      "serviceByType":{
+        "user":{
+          "entity": "user",
+          "service":"users"
+        },
+        "device":{
+          "entity": "device",
+          "service":"devices"
+        }
+      }
+    },
+    "local": {
+      "entity": "device",
+      "usernameField": "productId",
+      "passwordField": "password"
+    }
+  }
+}

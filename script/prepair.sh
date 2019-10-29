@@ -2,6 +2,7 @@
 
 mkdir -p /media/Programs/Programs_data/makiposiot/mongodb
 mkdir -p /media/Programs/Programs_data/makiposiot/redis
+mkdir -p /media/Programs/Programs_data/makiposiot/redis_cache
 
 mkdir -p /media/Programs/Programs_data/makiposiot/emqtt/certs
 mkdir -p /media/Programs/Programs_data/makiposiot/update_service/logs
