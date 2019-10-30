@@ -4,19 +4,19 @@
 
 Quá trình cài đặt sử dụng quyền root của hệ thống
 
-1. Cài đặt công cụ
+**1. Cài đặt công cụ**
 
 ```shell
 apt-get update
 apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common sshpass fish sh bash git curl watch
 ```
 
-3. Các lệnh này sử dụng fish shell, active fish shell bằng lệnh
+Các lệnh này sử dụng fish shell, active fish shell bằng lệnh
 ```shell
 fish
 ```
 
-2. Tạo thư mục chứa bộ cài đặt và cấu hình
+**2. Tạo thư mục chứa bộ cài đặt và cấu hình**
 
 ```shell
 cd /opt
@@ -24,7 +24,7 @@ mkdir makiposiot
 cd makiposiot
 ```
 
-3. clone bộ cài đặt từ github
+**3. clone bộ cài đặt từ github**
 ```shell
 git clone https://github.com/makipos/iot-server.git
 cd iot-server
@@ -33,20 +33,20 @@ chmod -R +x scriptdeploy
 chmod +x install.sh
 ```
 
-4. Cài đặt docker
+**4. Cài đặt docker**
 ```shell
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 ```
 
-5. Khởi tạo docker swarm
+**5. Khởi tạo docker swarm**
 
 Thay thế `localhost` bằng ip của net interface bạn sử dụng cho mạng nội bộ giữa các máy chủ
 ```shell
 docker swarm init --advertise-addr localhost
 ```
 
-6. Cài đặt `docker-compose`
+**6. Cài đặt `docker-compose`**
 
 ```shell
 set unames (uname -s)
@@ -56,17 +56,17 @@ curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compo
 chmod +x /usr/local/bin/docker-compose
 ```
 
-7. Khởi tạo thư mục chứa dữ liệu cho server
+**7. Khởi tạo thư mục chứa dữ liệu cho server**
 ```shell
 ./script/prepair.sh
 ```
 
-8.Kiểm tra quá trình cài đặt các service (chạy lệnh này ở 1 cửa sổ terminal khác)
+**8.Kiểm tra quá trình cài đặt các service (chạy lệnh này ở 1 cửa sổ terminal khác)**
 ```shell
 watch -n 1 docker service ls
 ```
 
-9. Deploy các service
+**9. Deploy các service**
 ```shell
 ./scriptdeploy/deploy.sh
 ```
@@ -87,7 +87,7 @@ o4z35tzjby9g        makiposiot-traefik_traefik              replicated          
 
 ```
 
-10. Nhập dữ liệu khởi tạo cho db
+**10. Nhập dữ liệu khởi tạo cho db**
 
 Bạn có thể thay đổi mật khẩu khởi tạo của admin trong file `script/mongoshellcommand.js`
 `password` là mã hóa SHA256 của `plainPassword`
@@ -96,7 +96,7 @@ Bạn có thể thay đổi mật khẩu khởi tạo của admin trong file `sc
 ./script/prepairdb.sh
 ```
 
-11. Deploy trang web quản trị
+**11. Deploy trang web quản trị**
 
 Mặc định cấu hình truy cập web quản trị là `localhost`
 
@@ -123,13 +123,13 @@ Cuối cùng chạy lệnh deploy
 
 # Nhập licensekey
 
-1. Đăng nhập
+**1. Đăng nhập**
 
 Sau khi cài đặt bạn đã có thể truy cập vào trang web quản trị
 
 Đăng nhập vào bằng tài khoản admin đã được khởi tạo trong db
 
-2. Nhập licenseKey
+**2. Nhập licenseKey**
 
 Click vào tên tài khoản ở góc trên bên phải trang quản trị. Chọn `Change lincense key`
 
