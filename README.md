@@ -1,4 +1,6 @@
+# IOT SERVER
 
+Iot platform được phát triển bởi Công ty Makipos
 
 # Hướng dẫn cài đặt
 
@@ -122,6 +124,10 @@ Cuối cùng chạy lệnh deploy
 ```
 
 # Nhập licensekey
+
+Liên hệ với chúng tôi : http://makihome.vn/
+
+Hoặc trực tiếp qua email : phuongtq@makipos.com
 
 **1. Đăng nhập**
 
