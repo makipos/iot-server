@@ -1272,4 +1272,4 @@ address = ":8080"
     passHostHeader = true
     backend = "admin-makiposiot"
       [frontends.admin-makiposiot.routes.route_1]
-      rule = "Host: url to admin site"
+      rule = "Host:localhost"

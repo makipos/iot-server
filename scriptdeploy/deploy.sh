@@ -7,5 +7,5 @@
 ./scriptdeploy/deploySSH.sh
 ./scriptdeploy/deployServices.sh
 ./scriptdeploy/deployTraefik.sh
-sleep 60
+sleep 90
 ./scriptdeploy/deployEmqtt.sh

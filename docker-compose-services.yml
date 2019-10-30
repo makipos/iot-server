@@ -109,7 +109,7 @@ services:
       - "traefik.relation.frontend.rule=PathPrefix:/relations"
       - "traefik.backend.healthcheck.path=/health"
     deploy:
-      replicas: 1
+      replicas: 2
       resources:
         limits:
           memory: 600M
@@ -205,28 +205,6 @@ services:
     #   - devices-service
       # - redis
       # - mongodb
-
-  admin:
-    image: makipos/admin:${ADMIN_VERSION}
-    container_name: makiposiot-admin-server
-    restart: always
-    networks:
-      - vpc
-    expose:
-      - "3030"
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-    labels:
-      - "traefik.port=3030"
-      - "traefik.root.frontend.rule=PathPrefixStrip:/admin"
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          memory: 200M
-      labels:
-        - "traefik.port=3030"
-        - "traefik.root.frontend.rule=PathPrefixStrip:/admin"
 
 networks:
   vpc:
