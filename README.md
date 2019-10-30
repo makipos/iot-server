@@ -120,3 +120,17 @@ Cuối cùng chạy lệnh deploy
 ```shell
 ./script/prepairdb.sh
 ```
+
+# Nhập licensekey
+
+1. Đăng nhập
+
+Sau khi cài đặt bạn đã có thể truy cập vào trang web quản trị
+
+Đăng nhập vào bằng tài khoản admin đã được khởi tạo trong db
+
+2. Nhập licenseKey
+
+Click vào tên tài khoản ở góc trên bên phải trang quản trị. Chọn `Change lincense key`
+
+Tại đây bạn nhập license key được chúng tôi cung cấp để mở khóa sử dụng hệ thống.
