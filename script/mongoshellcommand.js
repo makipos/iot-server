@@ -283,7 +283,7 @@ db.usersroles.insert({
                     }
                 ],
                 "restrict" : [],
-                "whiteList" : [
+                "whiteList" : [ 
                     {
                         "idValue" : [
                             "5ca310342afab500063c7c72"
