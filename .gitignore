@@ -2,6 +2,9 @@ Data_bak/
 */.git/*
 nodeEnv
 
+*/node_modules
+*.log
+
 develop*.yml
 production*.yml
 test*.yml
