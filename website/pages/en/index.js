@@ -95,17 +95,23 @@ class Index extends React.Component {
       <Block layout="fourColumn">
         {[
           {
-            content: 'This is the content of my feature',
+            content: 'Mô hình microservice module hóa cao, cung cấp khả năng mở rộng linh hoạt',
             image: `${baseUrl}img/undraw_react.svg`,
             imageAlign: 'top',
             title: 'Microservice',
           },
           {
-            content: 'The content of my second feature',
+            content: '',
             image: `${baseUrl}img/undraw_operating_system.svg`,
             imageAlign: 'top',
-            title: 'Feature Two',
+            title: 'Luật tự động',
           },
+          {
+            content: 'API người dùng và thiết bị được phân quyền chặt chẽ',
+            image: `${baseUrl}img/undraw_operating_system.svg`,
+            imageAlign: 'top',
+            title: 'Bảo mật',
+          }
         ]}
       </Block>
     );
@@ -117,6 +123,20 @@ class Index extends React.Component {
         <h2>Feature Callout</h2>
         <MarkdownBlock>These are features of this project</MarkdownBlock>
       </div>
+    );
+
+    const LearnHow = () => (
+      <Block background="light">
+        {[
+          {
+            content:
+              'Each new Docusaurus project has **randomly-generated** theme colors.',
+            image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
+            imageAlign: 'right',
+            title: 'Randomly Generated Theme Colors',
+          },
+        ]}
+      </Block>
     );
 
     const TryOut = () => (
@@ -144,20 +164,6 @@ class Index extends React.Component {
             image: `${baseUrl}img/undraw_note_list.svg`,
             imageAlign: 'right',
             title: 'Description',
-          },
-        ]}
-      </Block>
-    );
-
-    const LearnHow = () => (
-      <Block background="light">
-        {[
-          {
-            content:
-              'Each new Docusaurus project has **randomly-generated** theme colors.',
-            image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
-            imageAlign: 'right',
-            title: 'Randomly Generated Theme Colors',
           },
         ]}
       </Block>
@@ -198,10 +204,10 @@ class Index extends React.Component {
         <div className="mainContainer">
           <Features />
           {/*<FeatureCallout />*/}
-          <LearnHow />
-          <TryOut />
-          <Description />
-          <Showcase />
+          {/*<LearnHow />*/}
+          {/*<TryOut />*/}
+          {/*<Description />*/}
+          {/*<Showcase />*/}
         </div>
       </div>
     );

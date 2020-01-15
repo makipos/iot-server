@@ -6,13 +6,13 @@
  */
 
 const languages = [
+  // {
+  //   enabled: true,
+  //   name: 'Tiếng Việt',
+  //   tag: 'vi',
+  // },
   {
     enabled: true,
-    name: 'Tiếng Việt',
-    tag: 'vi',
-  },
-  {
-    enabled: false,
     name: 'English',
     tag: 'en',
   }

@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'Makipos', // Title for your website.
-  tagline: 'Makipos iot platform',
+  tagline: 'Nền tảng iot Makipos',
   url: 'https://your-docusaurus-test-site.com', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -40,8 +40,8 @@ const siteConfig = {
   headerLinks: [
     {doc: 'doc1', label: 'Tài liệu'},
     // {doc: 'doc4', label: 'API'},
-    {page: 'help', label: 'Trợ giúp'},
-    {blog: true, label: 'Bài viết'},
+    // {page: 'help', label: 'Trợ giúp'},
+    {blog: true, label: 'Bài viết'}
   ],
 
   // If you have users set above, you add it here:
