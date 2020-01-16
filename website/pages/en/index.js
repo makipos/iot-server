@@ -64,7 +64,7 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} />
           <PromoSection>
-            <Button href="https://github.com/makipos/iot-server">Thử ngay</Button>
+            <Button href="https://github.com/makipos/iot-server">Github</Button>
             {/*<Button href={docUrl('doc1.html')}>Example Link</Button>*/}
           </PromoSection>
         </div>

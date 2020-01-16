@@ -1,8 +1,8 @@
-# IOT SERVER
+---
+title: Cài đặt
+---
 
-Iot platform được phát triển bởi Công ty Makipos
-
-# Hướng dẫn cài đặt
+## Deploy service
 
 Quá trình cài đặt sử dụng quyền root của hệ thống
 
@@ -63,7 +63,7 @@ chmod +x /usr/local/bin/docker-compose
 ./script/prepair.sh
 ```
 
-#### 8.Kiểm tra quá trình cài đặt các service (chạy lệnh này ở 1 cửa sổ terminal khác)
+#### 8. Kiểm tra quá trình cài đặt các service (chạy lệnh này ở 1 cửa sổ terminal khác)
 ```shell
 watch -n 1 docker service ls
 ```
@@ -138,7 +138,7 @@ Cuối cùng chạy lệnh deploy
 ./scriptdeploy/deployFrontend.sh
 ```
 
-# Nhập licensekey
+## Nhập licensekey
 
 Liên hệ với chúng tôi : http://makihome.vn/
 

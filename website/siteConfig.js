@@ -38,8 +38,8 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc1', label: 'Tài liệu'},
-    // {doc: 'doc4', label: 'API'},
+    {doc: 'architecture', label: 'Kiến trúc'},
+    {doc: 'installation', label: 'Hướng dẫn'},
     // {page: 'help', label: 'Trợ giúp'},
     {blog: true, label: 'Bài viết'}
   ],

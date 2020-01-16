@@ -1,10 +1,11 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
+    "Kiến trúc": ["architecture"],
+    "Service": ["database","gateway","users_service","devices_service","relations_service","automatic_service","update_service","webmanager"],
+    "Bảo mật": ["network","mqtt","http"]
   },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+  "docs-tutorial": {
+    "Cài đặt": ["installation","verify"],
+    "Vận hành": []
   }
 }
