@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Cài đặt · Makipos</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Deploy service"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Cài đặt · Makipos"/><meta property="og:type" content="website"/><meta property="og:url" content="https://makipos.github.io/iot-serverindex"/><meta property="og:description" content="## Deploy service"/><meta property="og:image" content="https://makipos.github.io/iot-server/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://makipos.github.io/iot-server/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/iot-serverimg/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://makipos.github.io/iot-server/blog/atom.xml" title="Makipos Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://makipos.github.io/iot-server/blog/feed.xml" title="Makipos Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/iot-serverjs/scrollSpy.js"></script><link rel="stylesheet" href="/iot-servercss/main.css"/><script src="/iot-serverjs/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/iot-server"><img class="logo" src="/iot-serverimg/favicon.ico" alt="Makipos"/><h2 class="headerTitleWithLogo">Makipos</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/iot-serverdocs/architecture" target="_self">Kiến trúc</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/iot-serverdocs/installation" target="_self">Hướng dẫn</a></li><li class=""><a href="/iot-serverblog/" target="_self">Bài viết</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Cài đặt</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Cài đặt</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/iot-serverdocs/installation">Cài đặt</a></li><li class="navListItem"><a class="navItem" href="/iot-serverdocs/verify">Kiểm tra</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Cài đặt</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="deploy-service"></a><a href="#deploy-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy service</h2>
+<p>Quá trình cài đặt sử dụng quyền root của hệ thống</p>
+<h4><a class="anchor" aria-hidden="true" id="1-cài-đặt-công-cụ"></a><a href="#1-cài-đặt-công-cụ" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Cài đặt công cụ</h4>
+<pre><code class="hljs css language-shell">apt-get update
+apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common sshpass fish sh bash git curl watch
+</code></pre>
+<p>Các lệnh này sử dụng fish shell, active fish shell bằng lệnh</p>
+<pre><code class="hljs css language-shell">fish
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình"></a><a href="#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Tạo thư mục chứa bộ cài đặt và cấu hình</h4>
+<pre><code class="hljs css language-shell">cd /opt
+mkdir makiposiot
+cd makiposiot
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="3-clone-bộ-cài-đặt-từ-github"></a><a href="#3-clone-bộ-cài-đặt-từ-github" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. clone bộ cài đặt từ github</h4>
+<pre><code class="hljs css language-shell">git clone https://github.com/makipos/iot-server.git
+cd iot-server
+chmod -R +x script
+chmod -R +x scriptdeploy
+chmod +x install.sh
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="4-cài-đặt-docker"></a><a href="#4-cài-đặt-docker" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. Cài đặt docker####</h4>
+<pre><code class="hljs css language-shell">curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="5-khởi-tạo-docker-swarm"></a><a href="#5-khởi-tạo-docker-swarm" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. Khởi tạo docker swarm</h4>
+<p>Thay thế <code>localhost</code> bằng ip của net interface bạn sử dụng cho mạng nội bộ giữa các máy chủ</p>
+<pre><code class="hljs css language-shell">docker swarm init --advertise-addr localhost
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="6-cài-đặt-docker-compose"></a><a href="#6-cài-đặt-docker-compose" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6. Cài đặt <code>docker-compose</code></h4>
+<pre><code class="hljs css language-shell">set unames (uname -s)
+set unamem (uname -m)
+<span class="hljs-meta">#</span><span class="bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">"https://github.com/docker/compose/releases/download/1.24.0/docker-compose-<span class="hljs-variable">$unames</span>-<span class="hljs-variable">$unamem</span>"</span></span>
+curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$unames-$unamem" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="7-khởi-tạo-thư-mục-chứa-dữ-liệu-cho-server"></a><a href="#7-khởi-tạo-thư-mục-chứa-dữ-liệu-cho-server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7. Khởi tạo thư mục chứa dữ liệu cho server</h4>
+<pre><code class="hljs css language-shell">./script/prepair.sh
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="8-kiểm-tra-quá-trình-cài-đặt-các-service-chạy-lệnh-này-ở-1-cửa-sổ-terminal-khác"></a><a href="#8-kiểm-tra-quá-trình-cài-đặt-các-service-chạy-lệnh-này-ở-1-cửa-sổ-terminal-khác" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>8. Kiểm tra quá trình cài đặt các service (chạy lệnh này ở 1 cửa sổ terminal khác)</h4>
+<pre><code class="hljs css language-shell">watch -n 1 docker service ls
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="9-deploy-các-service"></a><a href="#9-deploy-các-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>9. Deploy các service####</h4>
+<pre><code class="hljs css language-shell">./scriptdeploy/deploy.sh
+</code></pre>
+<pre><code class="hljs css language-shell">ID                  NAME                                    MODE                REPLICAS            IMAGE                             PORTS
+dl26wa8pdfo4        makiposiot-emqtt_emqtt                  replicated          1/1                 makipos/emqtt:1.2.3
+wegouhqjicbo        makiposiot-mongodb_mongodb              replicated          1/1                 mongo:4.0
+adtsmho42p8c        makiposiot-redis_redis                  replicated          1/1                 redis:alpine
+qlecvm774d0w        makiposiot-redis_redis-cache            replicated          1/1                 redis:alpine
+i8wmjwltymdm        makiposiot-services_automatic-service   replicated          2/2                 makipos/automatic-service:1.9.0
+dms83rntop4b        makiposiot-services_devices-service     replicated          2/2                 makipos/devices-service:1.14.1
+tv55cooabbd3        makiposiot-services_relations-service   replicated          1/1                 makipos/relations-service:1.8.2
+6zwpq2kjuclq        makiposiot-services_update-service      replicated          1/1                 makipos/update-service:1.7.0
+wx3vi7qup1ty        makiposiot-services_users-service       replicated          2/2                 makipos/users-service:1.15.2
+hz4dmfxvwej4        makiposiot-ssh-server_ssh-server        replicated          1/1                 makipos/ssh-server:1.2.1          *:2222-&gt;22/tcp
+o4z35tzjby9g        makiposiot-traefik_traefik              replicated          1/1                 traefik:1.7
+
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="10-nhập-dữ-liệu-khởi-tạo-cho-db"></a><a href="#10-nhập-dữ-liệu-khởi-tạo-cho-db" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>10. Nhập dữ liệu khởi tạo cho db</h4>
+<p>Bạn có thể thay đổi mật khẩu khởi tạo của admin trong file <code>script/mongoshellcommand.js</code>
+<code>password</code> là mã hóa SHA256 của <code>plainPassword</code></p>
+<pre><code class="hljs">db.users.<span class="hljs-built_in">insert</span>({
+   <span class="hljs-string">"username"</span> : <span class="hljs-string">"admin"</span>,
+   <span class="hljs-string">"password"</span> : <span class="hljs-string">"3961160ecd2395473e3bda395b1f1329b98f08676a1a6ce1006d00b6ce838828"</span>,
+   <span class="hljs-string">"plainPassword"</span>:<span class="hljs-string">"MKP123456a@"</span>,
+   <span class="hljs-string">"name"</span> : <span class="hljs-string">"admin"</span>,
+   <span class="hljs-string">"roles"</span> : [
+       <span class="hljs-string">"admin"</span>
+   ],
+   <span class="hljs-string">"userSetting"</span> : {},
+   <span class="hljs-string">"googleAssistant"</span> : <span class="hljs-literal">false</span>
+ });
+</code></pre>
+<p>Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào database</p>
+<pre><code class="hljs css language-shell">./script/prepairdb.sh
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="11-deploy-trang-web-quản-trị"></a><a href="#11-deploy-trang-web-quản-trị" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>11. Deploy trang web quản trị</h4>
+<p>Mặc định cấu hình truy cập web quản trị là <code>localhost</code></p>
+<p>Sửa lại domain từ <code>localhost</code> thành domain bạn mong muốn trong file <code>config/traefik-frontend/traefik.toml</code> dòng</p>
+<pre><code class="hljs css language-toml"><span class="hljs-section">[frontends.admin-makiposiot.routes.route_1]</span>
+<span class="hljs-attr">rule</span> = <span class="hljs-string">"Host:localhost"</span>
+</code></pre>
+<p>Và file <code>docker-compose-frontend.yml</code></p>
+<pre><code class="hljs css language-yml"><span class="hljs-bullet">-</span> <span class="hljs-string">REACT_APP_SERVER_ADDR=http://localhost:3028</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">REACT_APP_MQTT_SERVER_ADDR=ws://localhost:8083/mqtt</span>
+</code></pre>
+<p>Sửa đường dẫn mount thư mục cho docker nếu bạn thay đổi đường dẫn trong <a href="#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình">bước 2</a></p>
+<pre><code class="hljs css language-yml"><span class="hljs-attr">volumes:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">/opt/makiposiot/config/traefik-frontend:/etc/traefik:ro</span>
+</code></pre>
+<p>Cuối cùng chạy lệnh deploy</p>
+<pre><code class="hljs css language-shell">./scriptdeploy/deployFrontend.sh
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="nhập-licensekey"></a><a href="#nhập-licensekey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nhập licensekey</h2>
+<p>Liên hệ với chúng tôi : <a href="http://makihome.vn/">http://makihome.vn/</a></p>
+<p>Hoặc trực tiếp qua email : <a href="mailto:phuongtq@makipos.com">phuongtq@makipos.com</a></p>
+<h4><a class="anchor" aria-hidden="true" id="1-đăng-nhập"></a><a href="#1-đăng-nhập" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. Đăng nhập</h4>
+<p>Sau khi cài đặt bạn đã có thể truy cập vào trang web quản trị</p>
+<p>Đăng nhập vào bằng tài khoản admin đã được khởi tạo trong db</p>
+<h4><a class="anchor" aria-hidden="true" id="2-nhập-licensekey"></a><a href="#2-nhập-licensekey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Nhập licenseKey</h4>
+<p>Click vào tên tài khoản ở góc trên bên phải trang quản trị. Chọn <code>Change lincense key</code></p>
+<p>Tại đây bạn nhập license key được chúng tôi cung cấp để mở khóa sử dụng hệ thống.</p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 10/30/2019</em></div><div class="docs-prevnext"><a class="docs-next button" href="/iot-serverdocs/verify"><span>Kiểm tra</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#deploy-service">Deploy service</a></li><li><a href="#nhập-licensekey">Nhập licensekey</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/iot-server" class="nav-home"><img src="/iot-serverimg/favicon.ico" alt="Makipos" width="66" height="58"/></a><div><h5>Docs</h5><a href="/iot-serverdocs/en/doc1.html">Getting Started (or other categories)</a><a href="/iot-serverdocs/en/doc2.html">Guides (or other categories)</a><a href="/iot-serverdocs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="https://www.facebook.com/makihomevn/" target="_blank" rel="noreferrer noopener">Facebook</a></div><div><h5>More</h5><a href="/iot-serverblog">Blog</a><a href="https://github.com/makipos/iot-server">GitHub</a></div></section><section class="copyright">Copyright © 2020 Makipos</section></footer></div></body></html>
