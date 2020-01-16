@@ -41,7 +41,7 @@ const siteConfig = {
     {doc: 'architecture', label: 'Kiến trúc'},
     {doc: 'installation', label: 'Hướng dẫn'},
     // {page: 'help', label: 'Trợ giúp'},
-    {blog: true, label: 'Bài viết'}
+    // {blog: true, label: 'Bài viết'}
   ],
 
   // If you have users set above, you add it here:
