@@ -2,6 +2,7 @@ Data_bak/
 */.git/*
 nodeEnv
 
+*/build
 */node_modules
 *.log
 
