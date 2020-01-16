@@ -102,13 +102,13 @@ class Index extends React.Component {
           },
           {
             content: '',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_chat_bot_kli5.svg`,
             imageAlign: 'top',
             title: 'Luật tự động',
           },
           {
             content: 'API người dùng và thiết bị được phân quyền chặt chẽ',
-            image: `${baseUrl}img/undraw_operating_system.svg`,
+            image: `${baseUrl}img/undraw_security_o890.svg`,
             imageAlign: 'top',
             title: 'Bảo mật',
           }
