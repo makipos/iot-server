@@ -1,5 +1,6 @@
 {
   "host": "localhost",
+  "serviceName":"update-service",
   "port": 3030,
   "public": "../public/",
   "release_folder": "/media/data/release",

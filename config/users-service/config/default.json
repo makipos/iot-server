@@ -1,5 +1,6 @@
 {
   "host": "localhost",
+  "serviceName":"users-service",
   "port": 3030,
   "public": "../public/",
   "image_icon_folder": "/media/data/image-icon",
@@ -79,7 +80,7 @@
       "subject": "",
       "issuer": "",
       "algorithm": "HS256",
-      "expiresIn": "100000d",
+      "expiresIn": "30m",
       "serviceByType": {
         "user": {
           "entity": "user",
