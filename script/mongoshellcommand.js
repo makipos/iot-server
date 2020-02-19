@@ -127,225 +127,257 @@ db.usersroles.insert({
 db.usersroles.deleteOne({"name" : "device"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c79a7a8334c194b1a6648"),
-    "updatedAt" : ISODate("2019-10-15T03:40:39.862Z"),
+    "updatedAt" : ISODate("2020-01-14T07:28:00.514Z"),
     "createdAt" : ISODate("2019-01-02T03:15:28.317Z"),
     "name" : "device",
     "permissions" : [
         {
-            "forbidden" : true,
-            "_id" : ObjectId("5c7353c47e770800063bb64c"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : true,
+            "_id" : ObjectId("5c7353c47e770800063bb64c"),
             "method" : "create",
             "url" : "devices"
         },
         {
-            "forbidden" : true,
-            "_id" : ObjectId("5c7353c47e770800063bb64b"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : true,
+            "_id" : ObjectId("5c7353c47e770800063bb64b"),
             "method" : "remove",
             "url" : "devices"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c7353c47e770800063bb64a"),
             "limit" : {
-                "custom" : [],
+                "skipPostRestrict" : false,
+                "custom" : [
+                    {
+                        "range" : [
+                            "device"
+                        ],
+                        "_id" : ObjectId("5dc142d5f73f8084974c099a"),
+                        "field" : "roles"
+                    },
+                    {
+                        "range" : [],
+                        "_id" : ObjectId("5dc142d5f73f8066014c0999"),
+                        "force" : {
+                            "clear" : true
+                        },
+                        "field" : "manufacturerId"
+                    }
+                ],
                 "restrict" : [
                     {
                         "_id" : ObjectId("5c73ed080702f20006d8498d"),
-                        "entity" : "payload",
-                        "idField" : "deviceId",
+                        "entity" : "user",
+                        "idField" : "_id",
                         "ownerField" : "_id"
                     }
                 ],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c7353c47e770800063bb64a"),
             "method" : "all",
             "url" : "devices"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5d808a513013f200083b36fd"),
-            "url" : "devices-virtuals",
-            "method" : "all",
             "limit" : {
+                "skipPostRestrict" : false,
                 "whiteList" : [],
                 "blackList" : [],
                 "restrict" : [],
                 "custom" : []
-            }
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5d808a513013f200083b36fd"),
+            "url" : "devices-virtuals",
+            "method" : "all"
         },
         {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "custom" : [],
+                "restrict" : [],
+                "whiteList" : [],
+                "blackList" : []
+            },
             "forbidden" : false,
             "_id" : ObjectId("5c7353c47e770800063bb649"),
+            "method" : "find",
+            "url" : "devices-types"
+        },
+        {
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
-            "method" : "find",
-            "url" : "devices-types"
-        },
-        {
             "forbidden" : false,
             "_id" : ObjectId("5c7353c47e770800063bb648"),
-            "limit" : {
-                "custom" : [],
-                "restrict" : [],
-                "whiteList" : [],
-                "blackList" : []
-            },
             "method" : "get",
             "url" : "devices-types"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c7353c47e770800063bb647"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c7353c47e770800063bb647"),
             "method" : "find",
             "url" : "devices-properties"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c7353c47e770800063bb646"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c7353c47e770800063bb646"),
             "method" : "get",
             "url" : "devices-properties"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c7353c47e770800063bb645"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c7353c47e770800063bb645"),
             "method" : "create",
             "url" : "relations"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c7353c47e770800063bb644"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c7353c47e770800063bb644"),
             "method" : "remove",
             "url" : "relations"
         },
         {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "custom" : [],
+                "restrict" : [],
+                "whiteList" : [],
+                "blackList" : []
+            },
             "forbidden" : false,
             "_id" : ObjectId("5c7353c47e770800063bb643"),
+            "method" : "find",
+            "url" : "relations-getchilds"
+        },
+        {
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
-            "method" : "find",
-            "url" : "relations-getchilds"
-        },
-        {
             "forbidden" : false,
             "_id" : ObjectId("5c7353c47e770800063bb642"),
-            "limit" : {
-                "custom" : [],
-                "restrict" : [],
-                "whiteList" : [],
-                "blackList" : []
-            },
             "method" : "get",
             "url" : "relations-getchilds"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c7353c47e770800063bb641"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c7353c47e770800063bb641"),
             "method" : "find",
             "url" : "relations-getparents"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c7353c47e770800063bb640"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c7353c47e770800063bb640"),
             "method" : "get",
             "url" : "relations-getparents"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c9dd4162116130006d8949f"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "restrict" : [],
                 "custom" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c9dd4162116130006d8949f"),
             "url" : "devices-schedule",
             "method" : "get"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5c9dd4162116130006d8949e"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "restrict" : [],
                 "custom" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5c9dd4162116130006d8949e"),
             "url" : "devices-schedule",
             "method" : "find"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5cf725842bd1d70006548582"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "restrict" : [],
                 "custom" : [],
                 "whiteList" : [],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5cf725842bd1d70006548582"),
             "url" : "automatic-rules",
             "method" : "find"
         },
         {
-            "forbidden" : false,
-            "_id" : ObjectId("5ca31ef8ed05f60006ae5c13"),
             "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [
                     {
                         "range" : [],
@@ -389,32 +421,49 @@ db.usersroles.insert({
                 ],
                 "blackList" : []
             },
+            "forbidden" : false,
+            "_id" : ObjectId("5ca31ef8ed05f60006ae5c13"),
             "url" : "devices-qc",
             "method" : "create"
         },
         {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d37a5d3176e8542d87abd"),
+            "url" : "update-device",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
             "forbidden" : false,
             "_id" : ObjectId("5da53f6e80189a423fe32288"),
             "url" : "update-sln",
-            "method" : "find",
+            "method" : "find"
+        },
+        {
             "limit" : {
+                "skipPostRestrict" : false,
                 "whiteList" : [],
                 "blackList" : [],
                 "restrict" : [],
                 "custom" : []
-            }
-        },
-        {
+            },
             "forbidden" : false,
             "_id" : ObjectId("5da53f6e80189a647be32287"),
             "url" : "update-sln-properties",
-            "method" : "find",
-            "limit" : {
-                "whiteList" : [],
-                "blackList" : [],
-                "restrict" : [],
-                "custom" : []
-            }
+            "method" : "find"
         }
     ],
     "__v" : 0
@@ -422,7 +471,7 @@ db.usersroles.insert({
 db.usersroles.deleteOne({"name" : "user"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c7982a8334c194b1a65fb"),
-    "updatedAt" : ISODate("2019-10-31T09:12:54.947Z"),
+    "updatedAt" : ISODate("2020-01-14T07:41:39.351Z"),
     "createdAt" : ISODate("2019-01-02T03:11:49.652Z"),
     "name" : "user",
     "permissions" : [
@@ -451,6 +500,19 @@ db.usersroles.insert({
             "_id" : ObjectId("5d91d182f703010006390537"),
             "url" : "devices-get-type",
             "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e0f037a15b88a359ee274ae"),
+            "url" : "devices-types-override",
+            "method" : "find"
         },
         {
             "limit" : {
@@ -526,6 +588,19 @@ db.usersroles.insert({
                 "custom" : []
             },
             "forbidden" : false,
+            "_id" : ObjectId("5e16fd4b05c08500e96b68b4"),
+            "url" : "devices-override",
+            "method" : "patch"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
             "_id" : ObjectId("5dba9f3145bf8d001465b285"),
             "url" : "devices",
             "method" : "find"
@@ -550,8 +625,8 @@ db.usersroles.insert({
                 "restrict" : [
                     {
                         "_id" : ObjectId("5c73eb260702f20006d847c6"),
-                        "entity" : "payload",
-                        "idField" : "userId",
+                        "entity" : "user",
+                        "idField" : "_id",
                         "ownerField" : "relationsInfo.parentId"
                     },
                     {
@@ -608,9 +683,6 @@ db.usersroles.insert({
                             "user"
                         ],
                         "_id" : ObjectId("5c735419e3a1190006e0772c"),
-                        "default" : [
-                            "user"
-                        ],
                         "field" : "roles"
                     },
                     {
@@ -814,6 +886,84 @@ db.usersroles.insert({
         {
             "limit" : {
                 "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d3501d3176e3f3ed87a46"),
+            "url" : "automatic-plugins",
+            "method" : "get"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d3501d3176edf28d87a45"),
+            "url" : "automatic-plugins",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d3501d3176e4ee0d87a44"),
+            "url" : "automatic-actions",
+            "method" : "get"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d3501d3176e0579d87a43"),
+            "url" : "automatic-actions",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d3501d3176e2e93d87a42"),
+            "url" : "automatic-conditions",
+            "method" : "get"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d3501d3176efd35d87a41"),
+            "url" : "automatic-conditions",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [
                     {
@@ -882,12 +1032,71 @@ db.usersroles.insert({
                 "skipPostRestrict" : false,
                 "whiteList" : [],
                 "blackList" : [],
+                "restrict" : [
+                    {
+                        "_id" : ObjectId("5e1d39d7d3176e09ddd87af4"),
+                        "entity" : "user",
+                        "idField" : "_id",
+                        "ownerField" : "userId"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d39d7d3176efbdcd87af3"),
+            "url" : "users-notifies",
+            "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
                 "restrict" : [],
                 "custom" : []
             },
             "forbidden" : false,
             "_id" : ObjectId("5dbaa596727776180ae701d0"),
             "url" : "commercial-validation",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d3880865f198dd6d56f9c"),
+            "url" : "update-release",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d390b865f197cd8d56fd3"),
+            "url" : "users-actions-on-google",
+            "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5e1d686cd28e0357c636d108"),
+            "url" : "update-native-force",
             "method" : "find"
         }
     ],
