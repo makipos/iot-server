@@ -21,7 +21,7 @@ services:
         protocol: tcp
         mode: host
     volumes:
-      - /opt/makiposiot/config/traefik-frontend:/etc/traefik:ro
+      - /opt/makiposiot/iot-server/config/traefik-frontend:/etc/traefik:ro
       # - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
     deploy:
