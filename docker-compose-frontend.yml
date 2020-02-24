@@ -31,7 +31,7 @@ services:
           - node.role == manager
 
   admin-makiposiot:
-    image: makipos/admin-smarthome:${ADMIN_SMARTHOME_VERSION}-p
+    image: makipos/admin-smarthome:${ADMIN_SMARTHOME_VERSION}
     container_name: makiposiot-admin-smarthome-server
     restart: always
     networks:
