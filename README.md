@@ -10,7 +10,7 @@ Quá trình cài đặt sử dụng quyền root của hệ thống
 
 ```shell
 apt-get update
-apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common sshpass fish sh bash git curl watch
+apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common sshpass fish bash git curl watch
 ```
 
 Các lệnh này sử dụng fish shell, active fish shell bằng lệnh
@@ -131,7 +131,7 @@ Và file `docker-compose-frontend.yml`
 Sửa đường dẫn mount thư mục cho docker nếu bạn thay đổi đường dẫn trong [bước 2](#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình)
 ```yml
 volumes:
-  - /opt/makiposiot/config/traefik-frontend:/etc/traefik:ro
+  - /opt/makiposiot/iot-server/config/traefik-frontend:/etc/traefik:ro
 ```
 Cuối cùng chạy lệnh deploy
 ```shell
