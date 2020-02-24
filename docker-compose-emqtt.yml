@@ -37,10 +37,10 @@ services:
     environment:
       - EMQ_MQTT__ALLOW_ANONYMOUS=false
       - EMQ_MQTT__CACHE_ACL=false
-      # - EMQ_LISTENER__SSL__EXTERNAL__CACERTFILE=etc/certs/cacert.pem
+      - EMQ_LISTENER__SSL__EXTERNAL__CACERTFILE=/opt/emqttd/etc/certs/cacert.pem
       - EMQ_LISTENER__WSS__EXTERNAL__ACCEPTORS=16
       - EMQ_LISTENER__WSS__EXTERNAL__MAX_CLIENTS=250000
-      # - EMQ_LISTENER__WSS__EXTERNAL__CACERTFILE=etc/certs/cacert.pem
+      - EMQ_LISTENER__WSS__EXTERNAL__CACERTFILE=/opt/emqttd/etc/certs/cacert.pem
       - EMQ_NODE__PROCESS_LIMIT=2097152
       - EMQ_NODE__MAX_PORTS=1048576
 
