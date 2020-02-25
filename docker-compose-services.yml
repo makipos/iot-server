@@ -15,6 +15,7 @@ services:
       - /etc/machine-id:/etc/machine-id
       - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
       - /media/Programs/Programs_data/makiposiot/users_service/logs:/media/data/logs
+      - ${CONFIG_PATH}/users-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
     healthcheck:
@@ -54,6 +55,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /media/Programs/Programs_data/makiposiot/devices_service:/media/data
       - /media/Programs/Programs_data/makiposiot/devices_service/logs:/media/data/logs
+      - ${CONFIG_PATH}/devices-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
     healthcheck:
@@ -96,6 +98,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
       - /media/Programs/Programs_data/makiposiot/relations_service/logs:/media/data/logs
+      - ${CONFIG_PATH}/relations-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
     healthcheck:
@@ -135,6 +138,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
       - /media/Programs/Programs_data/makiposiot/automatic_service/logs:/media/data/logs
+      - ${CONFIG_PATH}/automatic-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
     healthcheck:
@@ -176,6 +180,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /media/Programs/Programs_data/makiposiot/update_service:/media/data
       - /media/Programs/Programs_data/makiposiot/update_service/logs:/media/data/logs
+      - ${CONFIG_PATH}/update-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
     healthcheck:

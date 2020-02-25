@@ -1,3 +1,4 @@
+CONFIG_PATH=/opt/makiposiot/iot-server/config
 EMQTT_VERSION=1.2.3
 SSHSERVER_VERSION=1.2.1
 AUTOMATIC_VERSION=latest
