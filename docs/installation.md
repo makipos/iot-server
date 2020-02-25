@@ -26,6 +26,11 @@ mkdir makiposiot
 cd makiposiot
 ```
 
+Sửa đường dẫn mount thư mục cho docker trong 2 file `.envDeploy` và `.envFrontendDeploy` nếu bạn thay đổi đường dẫn trong [bước 2](#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình)
+```shell
+CONFIG_PATH=/opt/makiposiot/iot-server/config
+```
+
 #### 3. clone bộ cài đặt từ github
 ```shell
 git clone https://github.com/makipos/iot-server.git
@@ -128,11 +133,6 @@ Và file `docker-compose-frontend.yml`
 - REACT_APP_MQTT_SERVER_ADDR=ws://localhost:8083/mqtt
 ```
 
-Sửa đường dẫn mount thư mục cho docker nếu bạn thay đổi đường dẫn trong [bước 2](#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình)
-```yml
-volumes:
-  - /opt/makiposiot/iot-server/config/traefik-frontend:/etc/traefik:ro
-```
 Cuối cùng chạy lệnh deploy
 ```shell
 ./scriptdeploy/deployFrontend.sh
