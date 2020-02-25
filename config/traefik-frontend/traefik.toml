@@ -89,7 +89,7 @@
 # Optional
 # Default: ["http"]
 #
-defaultEntryPoints = ["http","https"]
+defaultEntryPoints = ["http"]
 
 # Constraints definition
 #
@@ -262,12 +262,12 @@ defaultEntryPoints = ["http","https"]
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-  [entryPoints.https]
-  address = ":443"
-    [entryPoints.https.tls]
-      [[entryPoints.https.tls.certificates]]
-      CertFile = "/etc/traefik/cert/server.crt"
-      KeyFile = "/etc/traefik/cert/server.key"
+  # [entryPoints.https]
+  # address = ":443"
+  #   [entryPoints.https.tls]
+  #     [[entryPoints.https.tls.certificates]]
+  #     CertFile = "/etc/traefik/cert/server.crt"
+  #     KeyFile = "/etc/traefik/cert/server.key"
 
 #
 # To redirect an entrypoint rewriting the URL:
