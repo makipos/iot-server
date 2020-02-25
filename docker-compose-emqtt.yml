@@ -33,7 +33,7 @@ services:
         mode: host
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /media/Programs/Programs_data/makiposiot/emqtt/certs:/opt/emqttd/etc/certs
+      - ${CONFIG_PATH}/emqtt/certs:/opt/emqttd/etc/certs
     environment:
       - EMQ_MQTT__ALLOW_ANONYMOUS=false
       - EMQ_MQTT__CACHE_ACL=false
