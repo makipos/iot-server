@@ -68,6 +68,9 @@ apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software
 mkdir makiposiot
 cd makiposiot
 </code></pre>
+<p>Sửa đường dẫn mount thư mục cho docker trong 2 file <code>.envDeploy</code> và <code>.envFrontendDeploy</code> nếu bạn thay đổi đường dẫn trong <a href="#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình">bước 2</a></p>
+<pre><code class="hljs css language-shell">CONFIG_PATH=/opt/makiposiot/iot-server/config
+</code></pre>
 <h4><a class="anchor" aria-hidden="true" id="3-clone-bộ-cài-đặt-từ-github"></a><a href="#3-clone-bộ-cài-đặt-từ-github" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. clone bộ cài đặt từ github</h4>
 <pre><code class="hljs css language-shell">git clone https://github.com/makipos/iot-server.git
 cd iot-server
@@ -141,10 +144,6 @@ o4z35tzjby9g        makiposiot-traefik_traefik              replicated          
 <pre><code class="hljs css language-yml"><span class="hljs-bullet">-</span> <span class="hljs-string">REACT_APP_SERVER_ADDR=http://localhost:3028</span>
 <span class="hljs-bullet">-</span> <span class="hljs-string">REACT_APP_MQTT_SERVER_ADDR=ws://localhost:8083/mqtt</span>
 </code></pre>
-<p>Sửa đường dẫn mount thư mục cho docker nếu bạn thay đổi đường dẫn trong <a href="#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình">bước 2</a></p>
-<pre><code class="hljs css language-yml"><span class="hljs-attr">volumes:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">/opt/makiposiot/iot-server/config/traefik-frontend:/etc/traefik:ro</span>
-</code></pre>
 <p>Cuối cùng chạy lệnh deploy</p>
 <pre><code class="hljs css language-shell">./scriptdeploy/deployFrontend.sh
 </code></pre>
@@ -157,4 +156,4 @@ o4z35tzjby9g        makiposiot-traefik_traefik              replicated          
 <h4><a class="anchor" aria-hidden="true" id="2-nhập-licensekey"></a><a href="#2-nhập-licensekey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. Nhập licenseKey</h4>
 <p>Click vào tên tài khoản ở góc trên bên phải trang quản trị. Chọn <code>Change lincense key</code></p>
 <p>Tại đây bạn nhập license key được chúng tôi cung cấp để mở khóa sử dụng hệ thống.</p>
-</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2/24/2020</em></div><div class="docs-prevnext"><a class="docs-next button" href="/iot-server/docs/verify"><span>Kiểm tra</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#deploy-service">Deploy service</a></li><li><a href="#nhập-licensekey">Nhập licensekey</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/iot-server/" class="nav-home"><img src="/iot-server/img/favicon.ico" alt="Makipos" width="66" height="58"/></a><div><h5>Docs</h5></div><div><h5>Community</h5><a href="https://www.facebook.com/makihomevn/" target="_blank" rel="noreferrer noopener">Facebook</a></div><div><h5>More</h5><a href="/iot-server/blog">Blog</a><a href="https://github.com/makipos/iot-server">GitHub</a></div></section><section class="copyright">Copyright © 2020 Makipos</section></footer></div></body></html>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2/25/2020</em></div><div class="docs-prevnext"><a class="docs-next button" href="/iot-server/docs/verify"><span>Kiểm tra</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#deploy-service">Deploy service</a></li><li><a href="#nhập-licensekey">Nhập licensekey</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/iot-server/" class="nav-home"><img src="/iot-server/img/favicon.ico" alt="Makipos" width="66" height="58"/></a><div><h5>Docs</h5></div><div><h5>Community</h5><a href="https://www.facebook.com/makihomevn/" target="_blank" rel="noreferrer noopener">Facebook</a></div><div><h5>More</h5><a href="/iot-server/blog">Blog</a><a href="https://github.com/makipos/iot-server">GitHub</a></div></section><section class="copyright">Copyright © 2020 Makipos</section></footer></div></body></html>
