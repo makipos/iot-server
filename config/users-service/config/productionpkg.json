@@ -5,5 +5,11 @@
   },
   "commercial_manager_server":{
     "addr": "https://smarthome.makipos.net:3029"
+  },
+  "authentication":{
+    "google-token":{
+      "clientID":"",
+      "clientSecret":""
+    }
   }
 }

@@ -96,6 +96,18 @@
       "entity": "user",
       "usernameField": "username",
       "passwordField": "password"
+    },
+    "facebook-token":{
+      "clientID":"",
+      "clientSecret":""
+    },
+    "google-token":{
+      "clientID":"",
+      "clientSecret":""
+    },
+    "accountkit-token":{
+      "clientID":"",
+      "clientSecret":""
     }
   }
 }
