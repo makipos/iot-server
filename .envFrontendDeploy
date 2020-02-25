@@ -1,1 +1,2 @@
+CONFIG_PATH=/opt/makiposiot/iot-server/config
 ADMIN_SMARTHOME_VERSION=latest
