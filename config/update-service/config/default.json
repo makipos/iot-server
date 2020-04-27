@@ -14,7 +14,8 @@
   "logPath":"/media/data/",
   "net_interface":"eth0",
   "private_network": {
-    "addr": "10.200.0.0"
+    "addr": "10.200.0.0",
+    "whiteList":[]
   },
   "traefik_gateway": {
     "addr": "http://traefik:80"
