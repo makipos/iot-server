@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   redis:
-    image: 'redis:alpine'
+    image: 'redis:5-alpine'
     container_name: makiposiot-redis-server
     # command: redis-server --requirepass "MKP123456a@" --appendonly yes
     command: --appendonly yes
@@ -27,7 +27,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
   redis-cache:
-    image: 'redis:alpine'
+    image: 'redis:5-alpine'
     container_name: makiposiot-redis-cache-server
     # command: redis-server --requirepass "MKP123456a@" --appendonly yes
     command: --appendonly no
