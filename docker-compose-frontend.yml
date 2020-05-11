@@ -6,6 +6,8 @@ services:
     container_name: makiposiot-traefik-frontend-server
     # command: --web --api --docker --docker.swarmmode
     restart: always
+    sysctls:
+      - net.core.somaxconn=32768
     expose:
       - "80"
       - "8080"

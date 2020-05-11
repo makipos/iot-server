@@ -5,6 +5,8 @@ services:
     image: makipos/emqtt:${EMQTT_VERSION}
     container_name: makiposiot-emqtt-server
     restart: always
+    sysctls:
+      - net.core.somaxconn=32768
     networks:
       - vpc
         # ipv4_address: 10.200.0.25

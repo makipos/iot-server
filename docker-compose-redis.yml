@@ -6,6 +6,8 @@ services:
     # command: redis-server --requirepass "MKP123456a@" --appendonly yes
     command: --appendonly yes
     restart: always
+    sysctls:
+      - net.core.somaxconn=32768
     networks:
       - vpc
         # ipv4_address: 10.200.0.4
@@ -32,6 +34,8 @@ services:
     # command: redis-server --requirepass "MKP123456a@" --appendonly yes
     command: --appendonly no
     restart: always
+    sysctls:
+      - net.core.somaxconn=32768
     networks:
       - vpc
         # ipv4_address: 10.200.0.4

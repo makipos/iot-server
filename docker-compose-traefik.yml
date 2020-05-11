@@ -6,6 +6,8 @@ services:
     container_name: makiposiot-traefik-server
     command: --web --api --docker --docker.swarmmode
     restart: always
+    sysctls:
+      - net.core.somaxconn=32768
     networks:
       - vpc
     expose:
