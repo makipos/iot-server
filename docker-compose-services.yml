@@ -21,8 +21,8 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 10s
-      retries: 5
+      timeout: 5s
+      retries: 2
       start_period: 5s
     labels:
       - "traefik.port=3030"
@@ -61,8 +61,8 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 10s
-      retries: 5
+      timeout: 5s
+      retries: 2
       start_period: 5s
     labels:
       - "traefik.port=3030"
@@ -104,8 +104,8 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 10s
-      retries: 5
+      timeout: 5s
+      retries: 2
       start_period: 5s
     labels:
       - "traefik.port=3030"
@@ -144,8 +144,8 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 10s
-      retries: 5
+      timeout: 5s
+      retries: 2
       start_period: 5s
     labels:
       - "traefik.port=3030"
@@ -186,8 +186,8 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 10s
-      retries: 5
+      timeout: 5s
+      retries: 2
       start_period: 5s
     labels:
       - "traefik.port=3030"
