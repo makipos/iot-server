@@ -95,7 +95,7 @@ class Index extends React.Component {
       <Block layout="fourColumn" background='light'>
         {[
           {
-            image: `${baseUrl}img/undraw_react.svg`,
+            image: `${baseUrl}img/undraw_server_q2pb.svg`,
             imageAlign: 'top',
             title: 'Microservice',
             content: 'Mô hình microservice module hóa cao, cung cấp khả năng mở rộng linh hoạt',
