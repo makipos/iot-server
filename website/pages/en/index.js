@@ -8,7 +8,6 @@
 const React = require('react');
 
 const CompLibrary = require('../../core/CompLibrary.js');
-
 const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
@@ -81,7 +80,7 @@ class Index extends React.Component {
 
     const Block = (props) => (
       <Container
-        padding={['bottom', 'top']}
+        padding={['top', 'bottom']}
         id={props.id}
         background={props.background}>
         <GridBlock
@@ -93,28 +92,72 @@ class Index extends React.Component {
     );
 
     const Features = () => (
-      <Block layout="fourColumn">
+      <Block layout="fourColumn" background='light'>
         {[
           {
-            content: 'Mô hình microservice module hóa cao, cung cấp khả năng mở rộng linh hoạt',
             image: `${baseUrl}img/undraw_react.svg`,
             imageAlign: 'top',
             title: 'Microservice',
-          },
-          {
-            content: '',
-            image: `${baseUrl}img/undraw_chat_bot_kli5.svg`,
-            imageAlign: 'top',
-            title: 'Luật tự động',
+            content: 'Mô hình microservice module hóa cao, cung cấp khả năng mở rộng linh hoạt',
           },
           {
             content: 'API người dùng và thiết bị được phân quyền chặt chẽ',
             image: `${baseUrl}img/undraw_security_o890.svg`,
             imageAlign: 'top',
             title: 'Bảo mật',
+          },
+          {
+            image: `${baseUrl}img/undraw_mobile_development_8gyo.svg`,
+            imageAlign: 'top',
+            title: 'Mobile app',
+            content: 'Mobile app đa nền tảng',
+          },
+          {
+            image: `${baseUrl}img/undraw_advanced_customization_58j6.svg`,
+            imageAlign: 'top',
+            title: 'Tùy chỉnh',
+            content: 'Xây dựng và kiểm soát hoàn toàn bởi Makipos',
           }
         ]}
       </Block>
+    );
+
+    const Tools = () => (
+      <div
+        className="productShowcaseSection paddingTop"
+        style={{textAlign: 'center'}}>
+        <GridBlock
+          align="center"
+          layout={'fourColumn'}
+          contents={[
+            {
+              image: `${baseUrl}img/docker.png`,
+              imageAlign: 'top',
+            }, {
+              image: `${baseUrl}img/traefik.png`,
+              imageAlign: 'top',
+            }, {
+              image: `${baseUrl}img/emq.png`,
+              imageAlign: 'top',
+            }, {
+              image: `${baseUrl}img/redis.svg`,
+              imageAlign: 'top',
+            }, {
+              image: `${baseUrl}img/mongodb.png`,
+              imageAlign: 'top',
+            }, {
+              image: `${baseUrl}img/nodejs.png`,
+              imageAlign: 'top',
+            }, {
+              image: `${baseUrl}img/coreui.png`,
+              imageAlign: 'top',
+            }, {
+              image: `${baseUrl}img/react-native.png`,
+              imageAlign: 'top',
+            }
+          ]}
+        />
+      </div>
     );
 
     const FeatureCallout = () => (
@@ -126,45 +169,67 @@ class Index extends React.Component {
       </div>
     );
 
-    const LearnHow = () => (
-      <Block background="light">
+    const EasyInstall = () => (
+      <Block background='light'>
         {[
           {
             content:
-              'Each new Docusaurus project has **randomly-generated** theme colors.',
-            image: `${baseUrl}img/undraw_youtube_tutorial.svg`,
-            imageAlign: 'right',
-            title: 'Randomly Generated Theme Colors',
-          },
-        ]}
-      </Block>
-    );
-
-    const TryOut = () => (
-      <Block id="try">
-        {[
-          {
-            content:
-              'To make your landing page more attractive, use illustrations! Check out ' +
-              '[**unDraw**](https://undraw.co/) which provides you with customizable illustrations which are free to use. ' +
-              'The illustrations you see on this page are from unDraw.',
-            image: `${baseUrl}img/undraw_code_review.svg`,
+              'Quá trình cài đặt lên máy chủ được đơn giản hóa bằng các script được cung cấp sẵn, bao gồm cả thao tác khởi tạo database  \n\
+              Cấu hình dễ dàng bằng docker compose và config file cho từng service  \n\
+              [Hướng dẫn từng bước](/iot-server/docs/installation) ',
+            image: `${baseUrl}img/undraw_setup_wizard_r6mr.svg`,
             imageAlign: 'left',
-            title: 'Wonderful SVG Illustrations',
+            title: 'Dễ dàng cài đặt',
           },
         ]}
       </Block>
     );
 
-    const Description = () => (
-      <Block background="dark">
+    const Flexible = () => (
+      <Block>
         {[
           {
             content:
-              'This is another description of how this project is useful',
-            image: `${baseUrl}img/undraw_note_list.svg`,
+              '[Kiến trúc](/docs/architecture) microservice cùng với docker swarm cho phép hệ thống dễ dàng mở rộng đáp ứng chịu tải cao  \n\
+              Phát triển chức năng mới trong hệ thống dễ dàng  \n',
+            image: `${baseUrl}img/scalable.jpg`,
             imageAlign: 'right',
-            title: 'Description',
+            title: 'Linh động',
+          },
+        ]}
+      </Block>
+    );
+
+    const Dashboard = () => (
+      <Block background='light'>
+        {[
+          {
+            content:
+              'Web quản trị xây dựng dựa trên coreui reactjs trực quan và tùy chỉnh dễ dàng, giao tiếp dữ liệu với server thông qua API bảo mật chặt chẽ',
+            image: `${baseUrl}img/dashboard.png`,
+            imageAlign: 'left',
+            title: 'Dashboard',
+          },
+        ]}
+      </Block>
+    );
+
+    const MobileApp = () => (
+      <Block background='dark'>
+        {[
+          {
+            content:
+              'Ứng dụng xây dựng trên framework React Native đa nền tảng cho [android](https://play.google.com/store/apps/details?id=com.mkpsmarthome.pro) và [ios](https://www.apple.com/ios/app-store/). Giao diện thân thiện người dùng, tùy chỉnh dễ dàng  \n\
+              - Điều khiển quản lý thiết bị  \n\
+              - Chia sẻ quyền sử dụng  \n\
+              - Theo dõi lịch sử thiết bị  \n\
+              - Thông báo người dùng  \n\
+              - Hẹn giờ điều khiển thiết bị  \n\
+              - Kịch bản  \n\
+              - Luật thông minh  \n',
+            image: `${baseUrl}img/mobileapp.png`,
+            imageAlign: 'right',
+            title: 'Mobile app',
           },
         ]}
       </Block>
@@ -205,9 +270,11 @@ class Index extends React.Component {
         <div className="mainContainer">
           <Features />
           {/*<FeatureCallout />*/}
-          {/*<LearnHow />*/}
-          {/*<TryOut />*/}
-          {/*<Description />*/}
+          <Flexible/>
+          <EasyInstall />
+          <MobileApp/>
+          <Dashboard/>
+          <Tools/>
           {/*<Showcase />*/}
         </div>
       </div>

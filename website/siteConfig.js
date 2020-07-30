@@ -73,7 +73,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Makipos`,
+  copyright: 'Copyright © 2018 Makipos',
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
@@ -97,7 +97,7 @@ const siteConfig = {
   // docsSideNavCollapsible: true,
 
   // Show documentation's last contributor's name.
-  // enableUpdateBy: true,
+  enableUpdateBy: true,
 
   // Show documentation's last update time.
   enableUpdateTime: true,
