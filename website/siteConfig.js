@@ -21,8 +21,8 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'Makipos', // Title for your website.
-  tagline: 'Nền tảng iot Makipos',
+  title: 'Nền tảng IOT Makipos', // Title for your website.
+  tagline: 'Dành cho các ứng dụng giám sát thiết bị, nhà thông minh',
   url: 'https://makipos.github.io', // Your website URL
   baseUrl: '/iot-server/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:

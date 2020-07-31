@@ -4,7 +4,7 @@ title: HTTP
 
 Http api được cung cấp thông qua cổng dịch vụ 3028, 3029(https) sử dụng cơ chế token xác thực trong mỗi truy vấn.
 
-![](https://makihome.vn/wp-content/uploads/2020/01/user_roles.svg)
+![](https://makihome.vn/wp-content/uploads/2020/07/http-secure.png)
 
 Với mỗi token định danh của user, tất cả truy vấn sẽ phải đi qua 1 lớp xác thực kiểm tra quyền hạn của user đó đối với từng endpoint.
 

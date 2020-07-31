@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Nền tảng iot Makipos",
+    "tagline": "Dành cho các ứng dụng giám sát thiết bị, nhà thông minh",
     "docs": {
       "architecture": {
         "title": "Kiến trúc",
@@ -40,7 +40,7 @@
         "title": "Quyền sở hữu"
       },
       "update_service": {
-        "title": "OTA"
+        "title": "Cập nhật OTA"
       },
       "users_service": {
         "title": "User"
