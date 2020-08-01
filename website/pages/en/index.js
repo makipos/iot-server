@@ -221,12 +221,17 @@ class Index extends React.Component {
             content:
               'Ứng dụng xây dựng trên framework React Native đa nền tảng cho [android](https://play.google.com/store/apps/details?id=com.mkpsmarthome.pro) và [ios](https://www.apple.com/ios/app-store/). Giao diện thân thiện người dùng, tùy chỉnh dễ dàng  \n\
               - Điều khiển quản lý thiết bị  \n\
+              - Thời tiết trực quan  \n\
+              - Theo dõi qua camera  \n\
+              - Tùy chỉnh phòng, nhà, biểu tượng, tên thiết bị  \n\
               - Chia sẻ quyền sử dụng  \n\
               - Theo dõi lịch sử thiết bị  \n\
               - Thông báo người dùng  \n\
               - Hẹn giờ điều khiển thiết bị  \n\
               - Kịch bản  \n\
-              - Luật thông minh  \n',
+              - Luật thông minh  \n\
+              - Đa ngôn ngữ  \n\
+              - Tiếp nhận phản hồi từ người dùng\n',
             image: `${baseUrl}img/mobileapp.png`,
             imageAlign: 'right',
             title: 'Mobile app',
