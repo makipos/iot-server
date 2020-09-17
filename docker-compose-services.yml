@@ -27,7 +27,9 @@ services:
     labels:
       - "traefik.port=3030"
       - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation"
+      - "traefik.root.frontend.rule=PathPrefixStrip:/users-service"
       - "traefik.backend.healthcheck.path=/health"
+      - "traefik.backend.loadbalancer.stickiness=true"
     deploy:
       replicas: 2
       resources:
@@ -36,7 +38,9 @@ services:
       labels:
         - "traefik.port=3030"
         - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation"
+        - "traefik.root.frontend.rule=PathPrefixStrip:/users-service"
         - "traefik.backend.healthcheck.path=/health"
+        - "traefik.backend.loadbalancer.stickiness=true"
     # depends_on:
     #   - redis
     #   - mongodb
@@ -67,7 +71,9 @@ services:
     labels:
       - "traefik.port=3030"
       - "traefik.device.frontend.rule=PathPrefix:/devices"
+      - "traefik.root.frontend.rule=PathPrefixStrip:/devices-service"
       - "traefik.backend.healthcheck.path=/health"
+      - "traefik.backend.loadbalancer.stickiness=true"
     deploy:
       replicas: 2
       resources:
@@ -76,7 +82,9 @@ services:
       labels:
         - "traefik.port=3030"
         - "traefik.device.frontend.rule=PathPrefix:/devices"
+        - "traefik.root.frontend.rule=PathPrefixStrip:/devices-service"
         - "traefik.backend.healthcheck.path=/health"
+        - "traefik.backend.loadbalancer.stickiness=true"
       # placement:
       #   constraints:
       #     - node.hostname == ${STORE_NODE}
@@ -110,7 +118,9 @@ services:
     labels:
       - "traefik.port=3030"
       - "traefik.relation.frontend.rule=PathPrefix:/relations"
+      - "traefik.root.frontend.rule=PathPrefixStrip:/relations-service"
       - "traefik.backend.healthcheck.path=/health"
+      - "traefik.backend.loadbalancer.stickiness=true"
     deploy:
       replicas: 2
       resources:
@@ -119,7 +129,9 @@ services:
       labels:
         - "traefik.port=3030"
         - "traefik.relation.frontend.rule=PathPrefix:/relations"
+        - "traefik.root.frontend.rule=PathPrefixStrip:/relations-service"
         - "traefik.backend.healthcheck.path=/health"
+        - "traefik.backend.loadbalancer.stickiness=true"
     # depends_on:
     #   - users-service
     #   - devices-service
@@ -150,7 +162,9 @@ services:
     labels:
       - "traefik.port=3030"
       - "traefik.automatic.frontend.rule=PathPrefix:/automatic"
+      - "traefik.root.frontend.rule=PathPrefixStrip:/automatic-service"
       - "traefik.backend.healthcheck.path=/health"
+      - "traefik.backend.loadbalancer.stickiness=true"
     deploy:
       replicas: 2
       resources:
@@ -159,7 +173,9 @@ services:
       labels:
         - "traefik.port=3030"
         - "traefik.automatic.frontend.rule=PathPrefix:/automatic"
+        - "traefik.root.frontend.rule=PathPrefixStrip:/automatic-service"
         - "traefik.backend.healthcheck.path=/health"
+        - "traefik.backend.loadbalancer.stickiness=true"
     # depends_on:
     #   - users-service
     #   - devices-service
@@ -192,7 +208,9 @@ services:
     labels:
       - "traefik.port=3030"
       - "traefik.update.frontend.rule=PathPrefix:/update"
+      - "traefik.root.frontend.rule=PathPrefixStrip:/update-service"
       - "traefik.backend.healthcheck.path=/health"
+      - "traefik.backend.loadbalancer.stickiness=true"
     deploy:
       replicas: 1
       resources:
@@ -201,7 +219,9 @@ services:
       labels:
         - "traefik.port=3030"
         - "traefik.update.frontend.rule=PathPrefix:/update"
+        - "traefik.root.frontend.rule=PathPrefixStrip:/update-service"
         - "traefik.backend.healthcheck.path=/health"
+        - "traefik.backend.loadbalancer.stickiness=true"
       # placement:
       #   constraints:
       #     - node.hostname == ${STORE_NODE}
