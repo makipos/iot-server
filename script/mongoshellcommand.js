@@ -183,6 +183,12 @@ db.usersroles.insert({
                         "entity" : "user",
                         "idField" : "_id",
                         "ownerField" : "_id"
+                    },
+                    {
+                        "_id" : ObjectId("5f6f12b775a5304ed471a0f3"),
+                        "entity" : "user",
+                        "idField" : "_id",
+                        "ownerField" : "__id__"
                     }
                 ],
                 "whiteList" : [],
@@ -700,6 +706,12 @@ db.usersroles.insert({
                         "entity" : "user",
                         "idField" : "_id",
                         "ownerField" : "_id"
+                    },
+                    {
+                        "_id" : ObjectId("5f6f127071a666227288ffed"),
+                        "entity" : "user",
+                        "idField" : "_id",
+                        "ownerField" : "__id__"
                     }
                 ],
                 "whiteList" : [],
