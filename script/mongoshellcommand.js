@@ -19,8 +19,8 @@ if(documentArray.length === 0){
 db.usersroles.deleteOne({"name" : "admin"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c794aa8334c194b1a656c"),
-    "updatedAt" : ISODate("2019-10-31T08:34:03.870Z"),
-    "createdAt" : ISODate("2019-01-02T03:05:46.553Z"),
+    "updatedAt" : ISODate("2020-10-09T10:59:13.824+07:00"),
+    "createdAt" : ISODate("2019-01-02T10:05:46.553+07:00"),
     "name" : "admin",
     "permissions" : [
         {
@@ -127,8 +127,8 @@ db.usersroles.insert({
 db.usersroles.deleteOne({"name" : "device"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c79a7a8334c194b1a6648"),
-    "updatedAt" : ISODate("2020-01-14T07:28:00.514Z"),
-    "createdAt" : ISODate("2019-01-02T03:15:28.317Z"),
+    "updatedAt" : ISODate("2020-09-29T14:47:15.995+07:00"),
+    "createdAt" : ISODate("2019-01-02T10:15:28.317+07:00"),
     "name" : "device",
     "permissions" : [
         {
@@ -136,10 +136,19 @@ db.usersroles.insert({
                 "skipPostRestrict" : false,
                 "custom" : [],
                 "restrict" : [],
-                "whiteList" : [],
+                "whiteList" : [
+                    {
+                        "idValue" : [
+                            "5ca310342afab500063c7c72"
+                        ],
+                        "_id" : ObjectId("5e98832b43a98a049048ed5a"),
+                        "entity" : "user",
+                        "idField" : "deviceTypeId"
+                    }
+                ],
                 "blackList" : []
             },
-            "forbidden" : true,
+            "forbidden" : false,
             "_id" : ObjectId("5c7353c47e770800063bb64c"),
             "method" : "create",
             "url" : "devices"
@@ -185,7 +194,7 @@ db.usersroles.insert({
                         "ownerField" : "_id"
                     },
                     {
-                        "_id" : ObjectId("5f6f12b775a5304ed471a0f3"),
+                        "_id" : ObjectId("5f72e684fafac1093adb06ac"),
                         "entity" : "user",
                         "idField" : "_id",
                         "ownerField" : "__id__"
@@ -477,8 +486,8 @@ db.usersroles.insert({
 db.usersroles.deleteOne({"name" : "user"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c7982a8334c194b1a65fb"),
-    "updatedAt" : ISODate("2020-01-14T07:41:39.351Z"),
-    "createdAt" : ISODate("2019-01-02T03:11:49.652Z"),
+    "updatedAt" : ISODate("2020-09-26T17:05:36.057+07:00"),
+    "createdAt" : ISODate("2019-01-02T10:11:49.652+07:00"),
     "name" : "user",
     "permissions" : [
         {
@@ -976,7 +985,17 @@ db.usersroles.insert({
         {
             "limit" : {
                 "skipPostRestrict" : false,
-                "custom" : [],
+                "custom" : [
+                    {
+                        "range" : [],
+                        "_id" : ObjectId("5e65a7c4ff96326b25577cbd"),
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "_id"
+                        },
+                        "field" : "author"
+                    }
+                ],
                 "restrict" : [
                     {
                         "_id" : ObjectId("5c9ddc382116130006d894b9"),
@@ -1032,7 +1051,17 @@ db.usersroles.insert({
                         "ownerField" : "author"
                     }
                 ],
-                "custom" : []
+                "custom" : [
+                    {
+                        "range" : [],
+                        "_id" : ObjectId("5ea0068e1380a525bcf088f5"),
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "_id"
+                        },
+                        "field" : "author"
+                    }
+                ]
             },
             "forbidden" : false,
             "_id" : ObjectId("5d71de5dc529450006a80cfc"),
