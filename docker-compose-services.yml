@@ -231,6 +231,54 @@ services:
       # - redis
       # - mongodb
 
+  files-service:
+    image: makipos/files-service:${FILES_VERSION}
+    container_name: makiposiot-files-service
+    restart: always
+    networks:
+      - vpc
+    expose:
+      - "3030"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /media/Programs/Programs_data/makiposiot/files_service:/media/data
+      - /media/Programs/Programs_data/makiposiot/files_service/logs:/media/data/logs
+      - ${CONFIG_PATH}/files-service/config:/usr/src/app/config
+    environment:
+      - NODE_ENV=productionpkg
+    healthcheck:
+      test: curl -f http://localhost:3030/health || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 2
+      start_period: 5s
+    labels:
+      - "traefik.port=3030"
+      - "traefik.files.frontend.rule=PathPrefix:/files,/devices-image-static"
+      - "traefik.root.frontend.rule=PathPrefixStrip:/files-service"
+      - "traefik.backend.healthcheck.path=/health"
+      - "traefik.backend.loadbalancer.stickiness=true"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 200M
+      labels:
+        - "traefik.port=3030"
+        - "traefik.files.frontend.rule=PathPrefix:/files,/devices-image-static"
+        - "traefik.root.frontend.rule=PathPrefixStrip:/files-service"
+        - "traefik.backend.healthcheck.path=/health"
+        - "traefik.backend.loadbalancer.stickiness=true"
+      # placement:
+      #   constraints:
+      #     - node.hostname == ${STORE_NODE}
+    # depends_on:
+    #   - users-service
+    #   - devices-service
+      # - redis
+      # - mongodb
+
 networks:
   vpc:
     external:

@@ -1,0 +1,55 @@
+{
+  "host": "localhost",
+  "serviceName":"files-service",
+  "port": 3030,
+  "public": "../public/",
+  "files_folder":"/media/data/files",
+  "paginate": {
+    "default": 50,
+    "max": 100
+  },
+  "log2Console":true,
+  "logLevel":"debug",
+  "logPath":"/media/data/",
+  "net_interface":"eth0",
+  "private_network": {
+    "addr": "10.200.0.0",
+    "whiteList":[]
+  },
+  "traefik_gateway": {
+    "addr": "http://traefik:80"
+  },
+  "redis": {
+    "url": "redis://redis:6379"
+  },
+  "redisCache" : {
+    "url" : "redis://redis-cache:6379",
+     "defaultDuration": 86400,
+     "parseNestedRoutes": false,
+     "removePathFromCacheKey": true
+   },
+  "authentication": {
+    "secret": "",
+    "strategies": [
+      "jwt"
+    ],
+    "service": "unuse",
+    "jwt": {
+      "audience": "",
+      "subject": "",
+      "issuer": "",
+      "algorithm": "HS256",
+      "expiresIn": "30d",
+      "serviceByType":{
+        "user":{
+          "entity": "user",
+          "service":"users"
+        },
+        "device":{
+          "entity": "device",
+          "service":"devices"
+        }
+      }
+    }
+  }
+}
