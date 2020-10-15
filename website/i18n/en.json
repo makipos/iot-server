@@ -21,6 +21,9 @@
       "devices_service": {
         "title": "Thiết bị"
       },
+      "feature": {
+        "title": "Chức năng"
+      },
       "gateway": {
         "title": "Gateway"
       },
@@ -53,6 +56,7 @@
       }
     },
     "links": {
+      "Chức năng": "Chức năng",
       "Kiến trúc": "Kiến trúc",
       "Hướng dẫn": "Hướng dẫn"
     },
