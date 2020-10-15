@@ -7,6 +7,7 @@ title: Chức năng
 | Quản lý tài khoản người dùng | Lưu trữ thông tin tài khoản của người dùng |
 | Đăng ký đăng nhập | - Sử dụng tài khoản, mật khẩu <br> - Sử dụng google <br> - Sử dụng facebook <br> - Sử dụng apple signin |
 | Lịch sử thao tác người dùng | Mọi cuộc gọi API của người dùng được ghi lại |
+| Quản lý cấp phát quyền hạn cho tài khoản (Thêm, sửa, xóa) | - Quyền hạn của tài khoản đối với từng API trong hệ thống được quản lý chặt chẽ linh động |
 | Phản hồi từ người dùng | Ghi nhận lưu trữ phản hồi từ người dùng thông qua ứng dụng |
 | Chặn, khóa tài khoản người dùng | |
 | Quản lý thuộc tính thiết bị IOT <br> (Thêm, sửa, xóa) | - Tên, mã thuộc tính <br> - Tên, icon hiển thị <br> - Kiểu, khoảng giá trị, đơn vị <br> - Tùy chỉnh thông báo cho từng khoảng giá trị|
