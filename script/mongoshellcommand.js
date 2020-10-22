@@ -19,7 +19,7 @@ if(documentArray.length === 0){
 db.usersroles.deleteOne({"name" : "admin"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c794aa8334c194b1a656c"),
-    "updatedAt" : ISODate("2020-10-09T10:59:13.824+07:00"),
+    "updatedAt" : ISODate("2020-10-19T14:41:06.634+07:00"),
     "createdAt" : ISODate("2019-01-02T10:05:46.553+07:00"),
     "name" : "admin",
     "permissions" : [
@@ -110,6 +110,29 @@ db.usersroles.insert({
         },
         {
             "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : [
+                    {
+                        "range" : [],
+                        "_id" : ObjectId("5f8d4312f9b02246e1889ea8"),
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "_id"
+                        },
+                        "field" : "author"
+                    }
+                ]
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5f8d4312f9b0222272889ea7"),
+            "url" : "update-device",
+            "method" : "create"
+        },
+        {
+            "limit" : {
                 "skipPostRestrict" : true,
                 "custom" : [],
                 "restrict" : [],
@@ -127,7 +150,7 @@ db.usersroles.insert({
 db.usersroles.deleteOne({"name" : "device"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c79a7a8334c194b1a6648"),
-    "updatedAt" : ISODate("2020-09-29T14:47:15.995+07:00"),
+    "updatedAt" : ISODate("2020-10-22T15:02:56.107+07:00"),
     "createdAt" : ISODate("2019-01-02T10:15:28.317+07:00"),
     "name" : "device",
     "permissions" : [
@@ -246,6 +269,28 @@ db.usersroles.insert({
             "_id" : ObjectId("5c7353c47e770800063bb648"),
             "method" : "get",
             "url" : "devices-types"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [
+                    {
+                        "idValue" : [
+                            "5ca310342afab500063c7c72"
+                        ],
+                        "_id" : ObjectId("5f913cb0e9a225830197a698"),
+                        "entity" : "user",
+                        "idField" : "deviceTypeId"
+                    }
+                ],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5f913cb0e9a225635297a697"),
+            "url" : "devices-get-type",
+            "method" : "all"
         },
         {
             "limit" : {
