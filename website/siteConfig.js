@@ -35,13 +35,13 @@ const siteConfig = {
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
-
+  wrapPagesHTML: true,
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'feature', label: 'Chức năng'},
     {doc: 'architecture', label: 'Kiến trúc'},
     {doc: 'installation', label: 'Hướng dẫn'},
-    // {page: 'help', label: 'Trợ giúp'},
+    {page: 'api', label: 'API'},
     // {blog: true, label: 'Bài viết'}
   ],
 
