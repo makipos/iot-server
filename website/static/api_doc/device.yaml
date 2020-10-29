@@ -185,3 +185,42 @@ paths:
                         type: array
                         items:
                           $ref: 'device_schema.yaml#/devicesType'
+  devices-properties:
+    get:
+      description: Lấy thông tin nhiều device property
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc tìm kiếm"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Devices
+      parameters:
+        - $ref: 'base.yaml#/parameters/limit'
+        - $ref: 'base.yaml#/parameters/skip'
+        - $ref: 'base.yaml#/parameters/sort'
+        - in: query
+          name: _id
+          style: deepObject
+          explode: true
+          allowEmptyValue: true
+          schema:
+            type: string
+          examples:
+            empty:
+              value:
+            one_id:
+              description: lọc 1 deviceProperty Id
+              value: "5a13cf6758e9850001d2b278"
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                type: object
+                allOf:
+                  - $ref: 'base.yaml#/schemas/paging_response'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: 'device_schema.yaml#/devicesProperty'

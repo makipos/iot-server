@@ -44,3 +44,5 @@ paths:
     $ref: 'device.yaml#/paths/devices'
   /devices-types:
     $ref: 'device.yaml#/paths/devices-types'
+  /devices-properties:
+    $ref: 'device.yaml#/paths/devices-properties'
