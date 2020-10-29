@@ -1,0 +1,197 @@
+device:
+  type: object
+  properties:
+    productId:
+      description: Tên đăng nhập
+      readOnly: true
+      type: string
+    manufacturerId:
+      description: Mã nhà quản lý
+      type: string
+    virtual:
+      description: Thiết bị ảo hay thật (Thiết bị ảo là thiết bị của bên khác được tạo mới trong quá trình user sử dụng gateway)
+      type: boolean
+    roles:
+      type: array
+      items:
+        description: role của tài khoản
+        type: string
+        example: "device"
+    image:
+      type: string
+    description:
+      type: string
+
+    hardwareVersion:
+      type: string
+    hardwareVerOfFirm:
+      description: Phiên bản phần cứng mà phần mềm hiện tại đang hỗ trợ (mục đích tránh việc update nhầm firmware, cần phải giống với trường hardwareVersion)
+      type: string
+    firmwareVersion:
+      type: number
+
+    status:
+      type: string
+      enum:
+        - OFFLINE
+        - ONLINE
+    statusByProtocols:
+      description: Trạng thái của từng kiểu kết nối
+      type: object
+    activated:
+      type: boolean
+      deprecated: true
+    deviceTypeId:
+      description: Mã loại thiết bị
+      type: string
+    ipAddress:
+      description: địa chỉ ip kết nối gần nhất
+      type: string
+    location:
+      description: vị trí ghi nhận gần nhất
+      type: object
+      properties:
+        type:
+          type: string
+          example: Point
+        coordinates:
+          type: array
+          items:
+            type: number
+          example: [105.7849693536417,20.985777677578948]
+    propertiesValue:
+      description: Giá trị của các thuộc tính hiện tại
+      type: object
+    warrantyActivationTime:
+      description: Thời điểm kích hoạt sử dụng
+      type: string
+
+devicesType:
+  type: object
+  properties:
+    name:
+      description: Tên loại thiết bị
+      type: string
+    displayName:
+      description: Tên hiển thị
+      type: string
+    image:
+      description: Ảnh thiết bị
+      type: string
+    description:
+      type: string
+    manufacturerId:
+      type: string
+    gateway:
+      description: Thiết bị có khả năng kết nối trực tiếp tới server
+      type: boolean
+    protocol:
+      description: các giao thức kết nối loại thiết bị hỗ trợ
+      type: array
+      items:
+        type: object
+    properties:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            description: tên thuộc tính
+            type: string
+          displayName:
+            type: string
+          icon:
+            type: string
+          description:
+            type: string
+          unit:
+            type: string
+          propertyId:
+            type: string
+          localId:
+            type: string
+          code:
+            type: string
+          systemOnly:
+            type: boolean
+          displayPriority:
+            type: number
+
+devicesProperty:
+  type: object
+  properties:
+    name:
+      description: Tên loại thiết bị
+      type: string
+    displayName:
+      description: Tên hiển thị
+      type: string
+    icon:
+      type: string
+    code:
+      type: string
+    description:
+      type: string
+    manufacturerId:
+      type: string
+    writeable:
+      type: boolean
+    methode:
+      type: boolean
+    params:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+          displayName:
+            type: string
+          description:
+            type: string
+          type:
+            type: string
+            enum:
+              - NUMBER
+              - ARRAY_NUMBER
+              - ARRAY_NUMBER_FIX
+              - STRING
+              - ARRAY_STRING
+              - ARRAY_STRING_FIX
+              - BOOLEAN
+              - ARRAY_BOOLEAN
+              - ARRAY_BOOLEAN_FIX
+          unit:
+            type: string
+          defaultValue:
+            type: any
+          range:
+            type: array
+            items:
+              type: object
+              properties:
+                min:
+                  type: number
+                max:
+                  type: number
+                step:
+                  type: number
+                name:
+                  type: string
+                value:
+                  type: any
+                icon:
+                  type: string
+                color:
+                  type: string
+                valueSetting:
+                  type: object
+    controlPrototype:
+      type: object
+      properties:
+        upValueMethodeId:
+          type: string
+        downValueMethodeId:
+          type: string
+        setValueMethodeId:
+          type: string

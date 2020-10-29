@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  description: Makipos IOT API
+  version: 1.0.0
+  title: Makipos IOT
+  contact:
+    name: Tran Quoc Phuong
+    email: phuongtq@makipos.com
+servers:
+  - url: http://server.makipos.net:3028
+    description: Makipos IOT test server
+security:
+  - jsonwebtoken: []
+tags:
+  - name: Users
+    description: API về người dùng
+  - name: Devices
+    description: API về thiết bị IOT
+  - name: Relations
+    description:  API về quan hệ sở hữu giữa thiết bị và người dùng
+
+components:
+  securitySchemes:
+    jsonwebtoken:
+      type: http
+      name: Authorization
+      in: header
+      scheme: Bearer
+      bearerFormat: JWT
+
+paths:
+  /users/authentication:
+    $ref: 'user.yaml#/paths/users_authentication'
+  /users/{userId}:
+    $ref: 'user.yaml#/paths/users_userId'
+  /users:
+    $ref: 'user.yaml#/paths/users'
+
+  /devices/authentication:
+    $ref: 'device.yaml#/paths/devices_authentication'
+  /devices/{deviceId}:
+    $ref: 'device.yaml#/paths/devices_deviceId'
+  /devices:
+    $ref: 'device.yaml#/paths/devices'
+  /devices-types:
+    $ref: 'device.yaml#/paths/devices-types'
+  /devices-properties:
+    $ref: 'device.yaml#/paths/devices-properties'

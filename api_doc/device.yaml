@@ -1,0 +1,226 @@
+components:
+  requestBodies:
+    login:
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                required: true
+                enum:
+                  - local
+              productId:
+                description: Mã thiết bị
+                type: string
+              password:
+                description: Mật khẩu thiết bị
+                type: string
+              exp:
+                description: Thời gian hiệu lực
+                type: string
+                examples:
+                  - 30m
+                  - 24h
+                  - 2d
+          examples:
+            local:
+              value: {"strategy":"local","productId":"switch1","password":"mkpsmarthome"}
+
+paths:
+  devices_authentication:
+    post:
+      description: Lấy access token cho thiết bị
+      tags:
+        - Devices
+      security: []
+      requestBody:
+        $ref: 'device.yaml#/components/requestBodies/login'
+      responses:
+        default:
+          $ref: 'base.yaml#/responses/token'
+
+  devices_deviceId:
+    get:
+      description: Lấy thông tin thiết bị
+      tags:
+        - Devices
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+            example: "5cb07a0ce681b70006a13a59"
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                $ref: 'device_schema.yaml#/device'
+    patch:
+      description: Lấy thông tin thiết bị
+      tags:
+        - Devices
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+            example: "5cb07a0ce681b70006a13a59"
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: 'device_schema.yaml#/device'
+            examples:
+              password:
+                summary: Thay đổi mật khẩu
+                value: {"password":"123456a@"}
+              deviceType:
+                summary: Thay đổi deviceTypeId
+                value: {"deviceTypeId":"5a2f9081dc6f2e00017187d6"}
+              firmware:
+                summary: Cập nhật firmware version lên server
+                value: {"firmwareVersion":1,"hardwareVerOfFirm":"1"}
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                $ref: 'device_schema.yaml#/device'
+
+  devices:
+    get:
+      description: Lấy thông tin nhiều device
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc tìm kiếm"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Devices
+      parameters:
+        - $ref: 'base.yaml#/parameters/limit'
+        - $ref: 'base.yaml#/parameters/skip'
+        - $ref: 'base.yaml#/parameters/sort'
+        - in: query
+          name: _id
+          style: deepObject
+          explode: true
+          allowEmptyValue: true
+          schema:
+            type: string
+          examples:
+            empty:
+              value:
+            one_id:
+              description: lọc 1 device Id
+              value: "5dddfdcc4f3f55000741887c"
+        - in: query
+          name: productId
+          style: deepObject
+          explode: true
+          allowEmptyValue: true
+          schema:
+            type: string
+          examples:
+            empty:
+              value:
+            one_productId:
+              description: lọc 1 device Id
+              value: "ABCD04321"
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                type: object
+                allOf:
+                  - $ref: 'base.yaml#/schemas/paging_response'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: 'device_schema.yaml#/device'
+  devices-types:
+    get:
+      description: Lấy thông tin nhiều device type
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc tìm kiếm"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Devices
+      parameters:
+        - $ref: 'base.yaml#/parameters/limit'
+        - $ref: 'base.yaml#/parameters/skip'
+        - $ref: 'base.yaml#/parameters/sort'
+        - in: query
+          name: _id
+          style: deepObject
+          explode: true
+          allowEmptyValue: true
+          schema:
+            type: string
+          examples:
+            empty:
+              value:
+            one_id:
+              description: lọc 1 deviceType Id
+              value: "5c2c416e24c8c70008b5ec2e"
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                type: object
+                allOf:
+                  - $ref: 'base.yaml#/schemas/paging_response'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: 'device_schema.yaml#/devicesType'
+  devices-properties:
+    get:
+      description: Lấy thông tin nhiều device property
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc tìm kiếm"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Devices
+      parameters:
+        - $ref: 'base.yaml#/parameters/limit'
+        - $ref: 'base.yaml#/parameters/skip'
+        - $ref: 'base.yaml#/parameters/sort'
+        - in: query
+          name: _id
+          style: deepObject
+          explode: true
+          allowEmptyValue: true
+          schema:
+            type: string
+          examples:
+            empty:
+              value:
+            one_id:
+              description: lọc 1 deviceProperty Id
+              value: "5a13cf6758e9850001d2b278"
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                type: object
+                allOf:
+                  - $ref: 'base.yaml#/schemas/paging_response'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: 'device_schema.yaml#/devicesProperty'

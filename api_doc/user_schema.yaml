@@ -1,0 +1,63 @@
+user:
+  type: object
+  properties:
+    username:
+      description: Tên đăng nhập
+      readOnly: true
+      type: string
+    manufacturerId:
+      description: Mã nhà quản lý
+      type: string
+
+    facebookId:
+      readOnly: true
+      type: string
+    googleId:
+      readOnly: true
+      type: string
+    accountkitId:
+      readOnly: true
+      type: string
+    appleId:
+      readOnly: true
+      type: string
+
+    facebookToken:
+      readOnly: true
+      type: string
+
+    googleToken:
+      readOnly: true
+      type: string
+
+    accountkitToken:
+      readOnly: true
+      type: string
+
+    googleAssistant:
+      description: Đã liên kết google assistance
+      type: boolean
+      example: false
+    roles:
+      type: array
+      items:
+        description: role của tài khoản
+        type: string
+        example: user
+    name:
+      description: Tên hiển thị
+      type: string
+    email:
+      type: string
+    phoneNumber:
+      type: string
+    photo:
+      type: string
+    addr:
+      type: string
+    userSetting:
+      description: Object chứa thông tin tùy chỉnh, cấu hình cho tài khoản người dùng
+      type: string
+    profile:
+      description: Thông tin chi tiết về các phương thức đăng nhập
+      type: object
