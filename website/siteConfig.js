@@ -42,6 +42,7 @@ const siteConfig = {
     {doc: 'architecture', label: 'Kiến trúc'},
     {doc: 'installation', label: 'Hướng dẫn'},
     {page: 'api', label: 'API'},
+    // {page: 'users', label: 'API'},
     // {blog: true, label: 'Bài viết'}
   ],
 

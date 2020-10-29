@@ -7,7 +7,7 @@ info:
     name: Tran Quoc Phuong
     email: phuongtq@makipos.com
 servers:
-  - url: http://server.makipos.net:3028
+  - url: https://server.makipos.net:3029
     description: Makipos IOT test server
 security:
   - jsonwebtoken: []
