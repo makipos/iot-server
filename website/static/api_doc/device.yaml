@@ -1,0 +1,307 @@
+components:
+  requestBodies:
+    login:
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              strategy:
+                type: string
+                required: true
+                enum:
+                  - local
+              productId:
+                description: Mã thiết bị
+                type: string
+              password:
+                description: Mật khẩu thiết bị
+                type: string
+              exp:
+                description: Thời gian hiệu lực
+                type: string
+                examples:
+                  - 30m
+                  - 24h
+                  - 2d
+          examples:
+            local:
+              value: {"strategy":"local","username":"switch1","password":"mkpsmarthome","exp":"30d"}
+  schemas:
+    device:
+      type: object
+      properties:
+        productId:
+          description: Tên đăng nhập
+          readOnly: true
+          type: string
+        manufacturerId:
+          description: Mã nhà quản lý
+          type: string
+        virtual:
+          description: Thiết bị ảo hay thật (Thiết bị ảo là thiết bị của bên khác được tạo mới trong quá trình user sử dụng gateway)
+          type: boolean
+        roles:
+          type: array
+          items:
+            description: role của tài khoản
+            type: string
+            example: "device"
+        image:
+          type: string
+        description:
+          type: string
+
+        hardwareVersion:
+          type: string
+        hardwareVerOfFirm:
+          description: Phiên bản phần cứng mà phần mềm hiện tại đang hỗ trợ (mục đích tránh việc update nhầm firmware, cần phải giống với trường hardwareVersion)
+          type: string
+        firmwareVersion:
+          type: number
+
+        status:
+          type: string
+          enum:
+            - OFFLINE
+            - ONLINE
+        statusByProtocols:
+          description: Trạng thái của từng kiểu kết nối
+          type: object
+        activated:
+          type: boolean
+          deprecated: true
+        deviceTypeId:
+          description: Mã loại thiết bị
+          type: string
+        ipAddress:
+          description: địa chỉ ip kết nối gần nhất
+          type: string
+        location:
+          description: vị trí ghi nhận gần nhất
+          type: object
+          properties:
+            type:
+              type: string
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              example: [105.7849693536417,20.985777677578948]
+        propertiesValue:
+          description: Giá trị của các thuộc tính hiện tại
+          type: object
+        warrantyActivationTime:
+          description: Thời điểm kích hoạt sử dụng
+          type: string
+
+    devicesType:
+      type: object
+      properties:
+        name:
+          description: Tên loại thiết bị
+          type: string
+        displayName:
+          description: Tên hiển thị
+          type: string
+        image:
+          description: Ảnh thiết bị
+          type: string
+        description:
+          type: string
+        manufacturerId:
+          type: string
+        gateway:
+          description: Thiết bị có khả năng kết nối trực tiếp tới server
+          type: boolean
+        protocol:
+          description: các giao thức kết nối loại thiết bị hỗ trợ
+          type: array
+          items:
+            type: object
+        properties:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                description: tên thuộc tính
+                type: string
+              displayName:
+                type: string
+              icon:
+                type: string
+              description:
+                type: string
+              unit:
+                type: string
+              propertyId:
+                type: string
+              localId:
+                type: string
+              code:
+                type: string
+              systemOnly:
+                type: boolean
+              displayPriority:
+                type: number
+
+paths:
+  devices_authentication:
+    post:
+      description: Lấy access token cho thiết bị
+      tags:
+        - Devices
+      security: []
+      parameters:
+      requestBody:
+        $ref: 'device.yaml#/components/requestBodies/login'
+      responses:
+        default:
+          $ref: 'base.yaml#/components/responses/token'
+
+  devices_deviceId:
+    get:
+      description: Lấy thông tin thiết bị
+      tags:
+        - Devices
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+            example: "5cb07a0ce681b70006a13a59"
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                $ref: 'device.yaml#/components/schemas/device'
+    patch:
+      description: Lấy thông tin thiết bị
+      tags:
+        - Devices
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+            example: "5cb07a0ce681b70006a13a59"
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: 'device.yaml#/components/schemas/device'
+            examples:
+              password:
+                summary: Thay đổi mật khẩu
+                value: {"password":"123456a@"}
+              deviceType:
+                summary: Thay đổi deviceTypeId
+                value: {"deviceTypeId":"5a2f9081dc6f2e00017187d6"}
+              firmware:
+                summary: Cập nhật firmware version lên server
+                value: {"firmwareVersion":1,"hardwareVerOfFirm":"1"}
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                $ref: 'device.yaml#/components/schemas/device'
+
+  devices:
+    get:
+      description: Lấy thông tin nhiều device
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc tìm kiếm"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Devices
+      parameters:
+        - $ref: 'base.yaml#/components/parameters/limit'
+        - $ref: 'base.yaml#/components/parameters/skip'
+        - $ref: 'base.yaml#/components/parameters/sort'
+        - in: query
+          name: _id
+          style: deepObject
+          explode: true
+          allowEmptyValue: true
+          schema:
+            type: string
+          examples:
+            empty:
+              value:
+            one_id:
+              description: lọc 1 device Id
+              value: "5dddfdcc4f3f55000741887c"
+        - in: query
+          name: productId
+          style: deepObject
+          explode: true
+          allowEmptyValue: true
+          schema:
+            type: string
+          examples:
+            empty:
+              value:
+            one_productId:
+              description: lọc 1 device Id
+              value: "ABCD04321"
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                type: object
+                allOf:
+                  - $ref: 'base.yaml#/components/schemas/paging_response'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: 'device.yaml#/components/schemas/device'
+  devices_types:
+    get:
+      description: Lấy thông tin nhiều device type
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc tìm kiếm"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Devices
+      parameters:
+        - $ref: 'base.yaml#/components/parameters/limit'
+        - $ref: 'base.yaml#/components/parameters/skip'
+        - $ref: 'base.yaml#/components/parameters/sort'
+        - in: query
+          name: _id
+          style: deepObject
+          explode: true
+          allowEmptyValue: true
+          schema:
+            type: string
+          examples:
+            empty:
+              value:
+            one_id:
+              description: lọc 1 deviceType Id
+              value: "5c2c416e24c8c70008b5ec2e"
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                type: object
+                allOf:
+                  - $ref: 'base.yaml#/components/schemas/paging_response'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: 'device.yaml#/components/schemas/devicesType'

@@ -1,0 +1,67 @@
+components:
+  responses:
+    default:
+      content:
+        'application/json':
+          schema:
+            type: object
+    token:
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              accessToken:
+                description: jwt sử dụng trong header cho các API khác
+                type: string
+                example : jwt sử dụng trong header cho các API khác
+  schemas:
+    paging_response:
+      type: object
+      properties:
+        total:
+          description: Tổng số lượng bản ghi tìm thấy
+          type: number
+        limit:
+          description: Giới hạn số lượng bản ghi trả về
+          type: number
+        skip:
+          description: Số lượng bản ghi bỏ qua khi trả về
+          type: number
+
+    # search_field_in:
+    #   type: array
+    #   properties:
+
+
+  parameters:
+    limit:
+      in: query
+      name: $limit
+      allowEmptyValue: true
+      schema:
+        type: number
+        example: 10
+    skip:
+      in: query
+      name: $skip
+      allowEmptyValue: true
+      schema:
+        type: number
+        example: 0
+    sort:
+      in: query
+      name: $sort
+      style: deepObject
+      explode: true
+      allowEmptyValue: true
+      schema:
+        description: object quy định xắp xếp kết quả trả về theo trường , -1 là giảm dần, 1 là tăng dần
+        type: object
+        additionalProperties:
+          type: number
+          enum:
+            - 1
+            - -1
+        minProperties: 1
+        example: {"createdAt":-1}
