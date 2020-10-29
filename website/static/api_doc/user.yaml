@@ -35,70 +35,6 @@ components:
               value: {"strategy":"local","username":"test","password":"12345678","exp":"30d"}
             google-token:
               value: {"strategy":"google-token","access_token":"google access token","exp":"30d"}
-  schemas:
-    user:
-      type: object
-      properties:
-        username:
-          description: Tên đăng nhập
-          readOnly: true
-          type: string
-        manufacturerId:
-          description: Mã nhà quản lý
-          type: string
-
-        facebookId:
-          readOnly: true
-          type: string
-        googleId:
-          readOnly: true
-          type: string
-        accountkitId:
-          readOnly: true
-          type: string
-        appleId:
-          readOnly: true
-          type: string
-
-        facebookToken:
-          readOnly: true
-          type: string
-
-        googleToken:
-          readOnly: true
-          type: string
-
-        accountkitToken:
-          readOnly: true
-          type: string
-
-        googleAssistant:
-          description: Đã liên kết google assistance
-          type: boolean
-          example: false
-        roles:
-          type: array
-          items:
-            description: role của tài khoản
-            type: string
-            example: user
-        name:
-          description: Tên hiển thị
-          type: string
-        email:
-          type: string
-        phoneNumber:
-          type: string
-        photo:
-          type: string
-        addr:
-          type: string
-        userSetting:
-          description: Object chứa thông tin tùy chỉnh, cấu hình cho tài khoản người dùng
-          type: string
-        profile:
-          description: Thông tin chi tiết về các phương thức đăng nhập
-          type: object
 
 paths:
   users_authentication:
@@ -120,7 +56,7 @@ paths:
         $ref: 'user.yaml#/components/requestBodies/login'
       responses:
         default:
-          $ref: 'base.yaml#/components/responses/token'
+          $ref: 'base.yaml#/responses/token'
 
   users_userId:
     get:
@@ -140,7 +76,7 @@ paths:
           content:
             'application/json':
               schema :
-                $ref: 'user.yaml#/components/schemas/user'
+                $ref: 'user_schema.yaml#/user'
 
     patch:
       description: Cập nhật thông tin user
@@ -158,7 +94,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: 'user.yaml#/components/schemas/user'
+              $ref: 'user_schema.yaml#/user'
             examples:
               name:
                 summary: Đổi tên hiển thị
@@ -171,7 +107,7 @@ paths:
           content:
             'application/json':
               schema :
-                $ref: 'user.yaml#/components/schemas/user'
+                $ref: 'user_schema.yaml#/user'
 
   users:
     get:
@@ -182,9 +118,9 @@ paths:
       tags:
         - Users
       parameters:
-        - $ref: 'base.yaml#/components/parameters/limit'
-        - $ref: 'base.yaml#/components/parameters/skip'
-        - $ref: 'base.yaml#/components/parameters/sort'
+        - $ref: 'base.yaml#/parameters/limit'
+        - $ref: 'base.yaml#/parameters/skip'
+        - $ref: 'base.yaml#/parameters/sort'
         - in: query
           name: _id
           style: deepObject
@@ -205,10 +141,10 @@ paths:
               schema :
                 type: object
                 allOf:
-                  - $ref: 'base.yaml#/components/schemas/paging_response'
+                  - $ref: 'base.yaml#/schemas/paging_response'
                   - type: object
                     properties:
                       data:
                         type: array
                         items:
-                          $ref: 'user.yaml#/components/schemas/user'
+                          $ref: 'user_schema.yaml#/user'

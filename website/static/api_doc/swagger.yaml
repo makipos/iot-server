@@ -43,4 +43,4 @@ paths:
   /devices:
     $ref: 'device.yaml#/paths/devices'
   /devices-types:
-    $ref: 'device.yaml#/paths/devices_types'
+    $ref: 'device.yaml#/paths/devices-types'

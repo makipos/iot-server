@@ -26,126 +26,7 @@ components:
                   - 2d
           examples:
             local:
-              value: {"strategy":"local","username":"switch1","password":"mkpsmarthome","exp":"30d"}
-  schemas:
-    device:
-      type: object
-      properties:
-        productId:
-          description: Tên đăng nhập
-          readOnly: true
-          type: string
-        manufacturerId:
-          description: Mã nhà quản lý
-          type: string
-        virtual:
-          description: Thiết bị ảo hay thật (Thiết bị ảo là thiết bị của bên khác được tạo mới trong quá trình user sử dụng gateway)
-          type: boolean
-        roles:
-          type: array
-          items:
-            description: role của tài khoản
-            type: string
-            example: "device"
-        image:
-          type: string
-        description:
-          type: string
-
-        hardwareVersion:
-          type: string
-        hardwareVerOfFirm:
-          description: Phiên bản phần cứng mà phần mềm hiện tại đang hỗ trợ (mục đích tránh việc update nhầm firmware, cần phải giống với trường hardwareVersion)
-          type: string
-        firmwareVersion:
-          type: number
-
-        status:
-          type: string
-          enum:
-            - OFFLINE
-            - ONLINE
-        statusByProtocols:
-          description: Trạng thái của từng kiểu kết nối
-          type: object
-        activated:
-          type: boolean
-          deprecated: true
-        deviceTypeId:
-          description: Mã loại thiết bị
-          type: string
-        ipAddress:
-          description: địa chỉ ip kết nối gần nhất
-          type: string
-        location:
-          description: vị trí ghi nhận gần nhất
-          type: object
-          properties:
-            type:
-              type: string
-              example: Point
-            coordinates:
-              type: array
-              items:
-                type: number
-              example: [105.7849693536417,20.985777677578948]
-        propertiesValue:
-          description: Giá trị của các thuộc tính hiện tại
-          type: object
-        warrantyActivationTime:
-          description: Thời điểm kích hoạt sử dụng
-          type: string
-
-    devicesType:
-      type: object
-      properties:
-        name:
-          description: Tên loại thiết bị
-          type: string
-        displayName:
-          description: Tên hiển thị
-          type: string
-        image:
-          description: Ảnh thiết bị
-          type: string
-        description:
-          type: string
-        manufacturerId:
-          type: string
-        gateway:
-          description: Thiết bị có khả năng kết nối trực tiếp tới server
-          type: boolean
-        protocol:
-          description: các giao thức kết nối loại thiết bị hỗ trợ
-          type: array
-          items:
-            type: object
-        properties:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                description: tên thuộc tính
-                type: string
-              displayName:
-                type: string
-              icon:
-                type: string
-              description:
-                type: string
-              unit:
-                type: string
-              propertyId:
-                type: string
-              localId:
-                type: string
-              code:
-                type: string
-              systemOnly:
-                type: boolean
-              displayPriority:
-                type: number
+              value: {"strategy":"local","productId":"switch1","password":"mkpsmarthome"}
 
 paths:
   devices_authentication:
@@ -154,12 +35,11 @@ paths:
       tags:
         - Devices
       security: []
-      parameters:
       requestBody:
         $ref: 'device.yaml#/components/requestBodies/login'
       responses:
         default:
-          $ref: 'base.yaml#/components/responses/token'
+          $ref: 'base.yaml#/responses/token'
 
   devices_deviceId:
     get:
@@ -179,7 +59,7 @@ paths:
           content:
             'application/json':
               schema :
-                $ref: 'device.yaml#/components/schemas/device'
+                $ref: 'device_schema.yaml#/device'
     patch:
       description: Lấy thông tin thiết bị
       tags:
@@ -196,7 +76,7 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: 'device.yaml#/components/schemas/device'
+              $ref: 'device_schema.yaml#/device'
             examples:
               password:
                 summary: Thay đổi mật khẩu
@@ -212,7 +92,7 @@ paths:
           content:
             'application/json':
               schema :
-                $ref: 'device.yaml#/components/schemas/device'
+                $ref: 'device_schema.yaml#/device'
 
   devices:
     get:
@@ -223,9 +103,9 @@ paths:
       tags:
         - Devices
       parameters:
-        - $ref: 'base.yaml#/components/parameters/limit'
-        - $ref: 'base.yaml#/components/parameters/skip'
-        - $ref: 'base.yaml#/components/parameters/sort'
+        - $ref: 'base.yaml#/parameters/limit'
+        - $ref: 'base.yaml#/parameters/skip'
+        - $ref: 'base.yaml#/parameters/sort'
         - in: query
           name: _id
           style: deepObject
@@ -259,14 +139,14 @@ paths:
               schema :
                 type: object
                 allOf:
-                  - $ref: 'base.yaml#/components/schemas/paging_response'
+                  - $ref: 'base.yaml#/schemas/paging_response'
                   - type: object
                     properties:
                       data:
                         type: array
                         items:
-                          $ref: 'device.yaml#/components/schemas/device'
-  devices_types:
+                          $ref: 'device_schema.yaml#/device'
+  devices-types:
     get:
       description: Lấy thông tin nhiều device type
       externalDocs:
@@ -275,9 +155,9 @@ paths:
       tags:
         - Devices
       parameters:
-        - $ref: 'base.yaml#/components/parameters/limit'
-        - $ref: 'base.yaml#/components/parameters/skip'
-        - $ref: 'base.yaml#/components/parameters/sort'
+        - $ref: 'base.yaml#/parameters/limit'
+        - $ref: 'base.yaml#/parameters/skip'
+        - $ref: 'base.yaml#/parameters/sort'
         - in: query
           name: _id
           style: deepObject
@@ -298,10 +178,10 @@ paths:
               schema :
                 type: object
                 allOf:
-                  - $ref: 'base.yaml#/components/schemas/paging_response'
+                  - $ref: 'base.yaml#/schemas/paging_response'
                   - type: object
                     properties:
                       data:
                         type: array
                         items:
-                          $ref: 'device.yaml#/components/schemas/devicesType'
+                          $ref: 'device_schema.yaml#/devicesType'
