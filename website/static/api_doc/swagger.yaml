@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  description: Makipos IOT API
+  version: 1.0.0
+  title: Makipos IOT
+  contact:
+    name: Tran Quoc Phuong
+    email: phuongtq@makipos.com
+servers:
+  - url: http://server.makipos.net:3028
+    description: Makipos IOT test server
+security:
+  - jsonwebtoken: []
+tags:
+  - name: Users
+    description: API về người dùng
+  - name: Devices
+    description: API về thiết bị IOT
+  - name: Relations
+    description:  API về quan hệ sở hữu giữa thiết bị và người dùng
+components:
+  securitySchemes:
+    jsonwebtoken:
+      type: http
+      # type: apiKey
+      name: Authorization
+      in: header
+      scheme: Bearer
+      bearerFormat: JWT
+  responses:
+    default:
+      content:
+        'application/json':
+          schema:
+            type: object
+    token:
+      content:
+        'application/json':
+          schema:
+            type: object
+            properties:
+              accessToken:
+                description: jwt sử dụng trong header cho các API khác
+                type: string
+                example : jwt sử dụng trong header cho các API khác
+
+paths:
+  /users/authentication:
+    post:
+      description: Lấy access token cho user
+      tags:
+        - Users
+      security: []
+      parameters:
+        - in: query
+          name: _v
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: number
+            enum:
+              - 1
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                strategy:
+                  type: string
+                  required: true
+                  enum:
+                    - local
+                    - facebook-token
+                    - google-token
+                    - apple-idtoken
+                access_token:
+                  description: accesstoken của bên thứ 3
+                  type: string
+                username:
+                  description: Tên đăng nhập của người dùng
+                  type: string
+                password:
+                  description: Mật khẩu tài khoản
+                  type: string
+                exp:
+                  description: Thời gian hiệu lực
+                  type: string
+                  examples:
+                    - 30m
+                    - 24h
+                    - 2d
+            examples:
+              local:
+                value: {"strategy":"local","username":"test","password":"12345678","exp":"30d"}
+              google-token:
+                value: {"strategy":"google-token","access_token":"google access token","exp":"30d"}
+      responses:
+        default:
+          $ref: '#/components/responses/token'
+  /users/{userId}:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        allowEmptyValue: false
+        schema:
+          type: string
+          example: "5b4cb84bada24b0007fac90b"
+    get:
+      description: Lấy thông tin user
+      tags:
+        - Users
+      responses:
+        default:
+          $ref: '#/components/responses/default'
+
+    patch:
+      description: Cập nhật thông tin user
+      tags:
+        - Users
+      responses:
+        default:
+          $ref: '#/components/responses/default'
+
+  /devices/authentication:
+    post:
+      description: Lấy access token cho thiết bị
+      tags:
+        - Devices
+      security: []
+      parameters:
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                strategy:
+                  type: string
+                  required: true
+                  enum:
+                    - local
+                productId:
+                  description: Mã thiết bị
+                  type: string
+                password:
+                  description: Mật khẩu thiết bị
+                  type: string
+                exp:
+                  description: Thời gian hiệu lực
+                  type: string
+                  examples:
+                    - 30m
+                    - 24h
+                    - 2d
+            examples:
+              local:
+                value: {"strategy":"local","username":"switch1","password":"mkpsmarthome","exp":"30d"}
+      responses:
+        default:
+          $ref: '#/components/responses/token'
+
+  /devices/{deviceId}:
+    get:
+      description: Lấy thông tin thiết bị
+      tags:
+        - Devices
+      produces:
+        - "application/json"
+      parameters:
+        - in: path
+          name: deviceId
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: string
+            example: "5cb07a0ce681b70006a13a59"
+      responses:
+        default:
+          $ref: '#/components/responses/default'
