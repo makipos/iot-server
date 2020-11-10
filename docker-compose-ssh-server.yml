@@ -7,8 +7,8 @@ services:
     restart: always
     networks:
       - vpc
-    ports:
-      - "2222:22"
+    # ports:
+    #   - "2222:22"
     labels:
       - "traefik.enable=false"
     deploy:
