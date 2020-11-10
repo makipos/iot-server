@@ -90,10 +90,10 @@ paths:
                       - tester
             examples:
               deviceAddChild:
-                summary: device gateway gọi API thêm thiết bị con cho nó để quản lý
+                summary: device gateway gọi API thêm thiết bị con để quản lý
                 value: {"childrenId":"ABCD04344","childrenType":"productId"}
               deviceAddUserParent:
-                summary: device gateway gọi API xác nhận user làm chủ sở hữu của nó
+                summary: device gateway gọi API xác nhận user làm chủ sở hữu
                 value: {"parentId":"5b4cb84bada24b0007fac90b","parentType":"userId"}
               usserShare2User:
                 summary: người dùng chia sẻ thiết bị của họ cho người dùng khác
