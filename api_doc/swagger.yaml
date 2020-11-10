@@ -9,6 +9,8 @@ info:
 servers:
   - url: https://server.makipos.net:3029
     description: Makipos IOT test server
+  - url: https://smarthome.makipos.net:3029
+    description: Makipos IOT production server
 security:
   - jsonwebtoken: []
 tags:
@@ -46,3 +48,8 @@ paths:
     $ref: 'device.yaml#/paths/devices-types'
   /devices-properties:
     $ref: 'device.yaml#/paths/devices-properties'
+
+  /relations:
+    $ref: 'relation.yaml#/paths/relations'
+  /relations-getchilds:
+    $ref: 'relation.yaml#/paths/relations-getchilds'

@@ -1,0 +1,224 @@
+paths:
+
+  relations:
+    get:
+      description: truy vấn sở hữu (api này chỉ dành cho quản lý)
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc tìm kiếm"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Relations
+      parameters:
+        - $ref: 'base.yaml#/parameters/limit'
+        - $ref: 'base.yaml#/parameters/skip'
+        - $ref: 'base.yaml#/parameters/sort'
+        - in: query
+          name: parentId
+          description: mã cha
+          schema:
+            type: string
+        - in: query
+          name: parentType
+          description: loại cha
+          schema:
+            type: string
+        - in: query
+          name: childrenId
+          description: mã con
+          schema:
+            type: string
+        - in: query
+          name: parentType
+          description: loại con
+          schema:
+            type: string
+        - in: query
+          name: roles
+          description: roles
+          schema:
+            type: string
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                type: object
+                allOf:
+                  - $ref: 'base.yaml#/schemas/paging_response'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: 'relation_schema.yaml#/relation'
+    post:
+      description: tạo quan hệ sở hữu
+      tags:
+        - Relations
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              type: object
+              properties:
+                parentType:
+                  description: Chỉ định kiểu của parentId
+                  type: string
+                  enum:
+                    - userId
+                parentId:
+                  description: Mã chỉ định parent
+                  type: string
+                childrenType:
+                  description: Chỉ định kiểu của childrenId
+                  type: string
+                  enum:
+                    - deviceId
+                    - productId
+                childrenId:
+                  description: Mã chỉ định children
+                  type: string
+                roles:
+                  description: role của quan hệ sở hữu này
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - admin
+                      - manager
+                      - user
+                      - tester
+            examples:
+              deviceAddChild:
+                summary: device gateway gọi API thêm thiết bị con cho nó để quản lý
+                value: {"childrenId":"ABCD04344","childrenType":"productId"}
+              deviceAddUserParent:
+                summary: device gateway gọi API xác nhận user làm chủ sở hữu của nó
+                value: {"parentId":"5b4cb84bada24b0007fac90b","parentType":"userId"}
+              usserShare2User:
+                summary: người dùng chia sẻ thiết bị của họ cho người dùng khác
+                value: {"parentId":"test11","parentType":"username","childrenId":"5cb07a0ce681b70006a13a59","childrenType": "deviceId","roles":["manage"]}
+
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                $ref: 'relation_schema.yaml#/relation'
+
+    delete:
+      description: Xóa quyền sở hữu
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Relations
+      parameters:
+        - in: query
+          name: parentId
+          description: mã cha cần xóa
+          schema:
+            type: string
+          examples:
+            userDelDevice:
+              description: Người dùng từ bỏ thiết bị sở hữu
+              value: null
+            userDelShare:
+              description: Người dùng xóa người dùng khác khỏi thiết bị đã chia sẻ
+              value: 5fa256c87c652e00071fd74e
+        - in: query
+          name: childrenId
+          description: mã con cần xóa
+          schema:
+            type: string
+          examples:
+            userDelDevice:
+              description: Người dùng từ bỏ thiết bị sở hữu
+              value: 5cb07a0ce681b70006a13a59
+            userDelShare:
+              description: Người dùng xóa người dùng khác khỏi thiết bị đã chia sẻ
+              value: 5dddfdcc4f3f550007418893
+        - in: query
+          name: childrenProductId
+          description: mã productId của thiết bị con cần từ bỏ
+          schema:
+            type: string
+          examples:
+            userDelDevice:
+              value: null
+            userDelShare:
+              value: null
+            gatewayDelChild:
+              description: Thiết bị gateway từ bỏ quản lý thiết bị con
+              value: ABCD04344
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                $ref: 'relation_schema.yaml#/relation'
+
+  relations-getchilds:
+    get:
+      description: truy vấn sở hữu dành cho tài khoản người dùng thông thường
+      externalDocs:
+        description: "Xem thêm về truy vấn lọc tìm kiếm"
+        url: "https://docs.feathersjs.com/api/databases/querying.html"
+      tags:
+        - Relations
+      parameters:
+        - in: query
+          name: noNeedInfo
+          description: Chỉ định không chèn thêm dữ liệu chi tiết của đối tượng con
+          schema:
+            type: string
+            enum:
+              - 1
+              - null
+            # default: 1
+        - in: query
+          name: parentId
+          description: mã cha
+          schema:
+            type: string
+        - in: query
+          name: parentType
+          description: loại cha
+          schema:
+            type: string
+        - in: query
+          name: childrenId
+          description: mã con
+          schema:
+            type: string
+        - in: query
+          name: parentType
+          description: loại con
+          schema:
+            type: string
+        - in: query
+          name: roles
+          description: roles
+          schema:
+            type: string
+      responses:
+        default:
+          content:
+            'application/json':
+              schema :
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: 'relation_schema.yaml#/relation'
+                  childrenDeviceInfo:
+                    type: array
+                    description: có khi noNeedInfo không bằng 1
+                    items:
+                      $ref: 'device_schema.yaml#/device'
+                  childrenUserInfo:
+                    type: array
+                    description: có khi noNeedInfo không bằng 1
+                    items:
+                      $ref: 'user_schema.yaml#/user'

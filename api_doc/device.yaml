@@ -96,7 +96,7 @@ paths:
 
   devices:
     get:
-      description: Lấy thông tin nhiều device
+      description: Lấy thông tin nhiều device đang thuộc quyền quản lý sở hữu
       externalDocs:
         description: "Xem thêm về truy vấn lọc tìm kiếm"
         url: "https://docs.feathersjs.com/api/databases/querying.html"
