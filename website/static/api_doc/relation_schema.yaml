@@ -1,0 +1,48 @@
+relation:
+  type: object
+  properties:
+    parentId:
+      description: Mã đối tượng cha
+      readOnly: true
+      type: string
+    parentType:
+      description: Loại đối tượng là thiết bị (gateway) hay người dùng
+      readOnly: true
+      type: string
+      enum:
+        - user
+        - device
+
+    childrenId:
+      description: Mã đối tượng con
+      readOnly: true
+      type: string
+    childrenType:
+      description: Loại đối tượng con  là thiết bị (gateway) hay người dùng
+      readOnly: true
+      type: string
+      enum:
+        - user
+        - device
+
+    author:
+      description: Mã đối tượng tạo liên kết này
+      readOnly: true
+      type: string
+    authorType:
+      description: Loại đối tượng tạo liên kết này
+      readOnly: true
+      type: string
+      enum:
+        - user
+        - device
+    roles:
+      type: array
+      items:
+        description: role của quyền sở hữu này. Một gate way chỉ có thể có 1 admin, admin được phép thêm manager và user, manager được phép thêm user.
+        type: string
+        enum:
+          - admin
+          - manager
+          - user
+        example: user
