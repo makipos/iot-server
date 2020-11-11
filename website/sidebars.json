@@ -6,6 +6,15 @@
   },
   "docs-tutorial": {
     "Cài đặt": ["installation","verify"],
-    "Vận hành": []
+    "Vận hành": [],
+    "Kết nối": [
+      {
+        "type": "subcategory",
+        "label": "Cài đặt thiết bị IOT",
+        "ids":[
+          "wificonfig"
+        ]
+      }
+    ]
   }
 }

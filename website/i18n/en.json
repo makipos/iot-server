@@ -53,6 +53,9 @@
       },
       "webmanager": {
         "title": "Web quản trị"
+      },
+      "wificonfig": {
+        "title": "Cài đặt wifi"
       }
     },
     "links": {
@@ -66,7 +69,8 @@
       "Service": "Service",
       "Bảo mật": "Bảo mật",
       "Cài đặt": "Cài đặt",
-      "Vận hành": "Vận hành"
+      "Vận hành": "Vận hành",
+      "Kết nối": "Kết nối"
     }
   },
   "pages-strings": {
