@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Cài đặt wifi · Nền tảng IOT Makipos</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="# 1 Giới thiệu"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Cài đặt wifi · Nền tảng IOT Makipos"/><meta property="og:type" content="website"/><meta property="og:url" content="https://makipos.github.io/iot-server/"/><meta property="og:description" content="# 1 Giới thiệu"/><meta property="og:image" content="https://makipos.github.io/iot-server/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://makipos.github.io/iot-server/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/iot-server/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/iot-server/js/scrollSpy.js"></script><link rel="stylesheet" href="/iot-server/css/main.css"/><script src="/iot-server/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/iot-server/"><img class="logo" src="/iot-server/img/favicon.ico" alt="Nền tảng IOT Makipos"/><h2 class="headerTitleWithLogo">Nền tảng IOT Makipos</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/iot-server/docs/feature" target="_self">Chức năng</a></li><li class=""><a href="/iot-server/docs/architecture" target="_self">Kiến trúc</a></li><li class="siteNavGroupActive"><a href="/iot-server/docs/installation" target="_self">Hướng dẫn</a></li><li class=""><a href="/iot-server/api" target="_self">API</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Cài đặt thiết bị IOT</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Cài đặt</h3><ul class=""><li class="navListItem"><a class="navItem" href="/iot-server/docs/installation">Cài đặt</a></li><li class="navListItem"><a class="navItem" href="/iot-server/docs/verify">Kiểm tra</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Kết nối</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Cài đặt thiết bị IOT</h4><ul><li class="navListItem navListItemActive"><a class="navItem" href="/iot-server/docs/wificonfig">Cài đặt wifi</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Cài đặt wifi</h1></header><article><div><span><h1><a class="anchor" aria-hidden="true" id="1-giới-thiệu"></a><a href="#1-giới-thiệu" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1 Giới thiệu</h1>
+<p>Quá trình cài cấu hình nhằm các mục đích:</p>
+<ul>
+<li>Mobile app gửi thông tin wifi (tên wifi, mật khẩu) cho thiết bị để kết nối internet.</li>
+<li>Mobile app gửi userId cho thiết bị. Thiết bị khai báo với server về user sở hữu. Server lưu lại để cấp quyền cho user.</li>
+<li>Mobile app gửi location hiện tại cho thiết bị. Thiết bị cập nhật location lên server. Location cuối cùng được cài đặt được hiểu là vị trí hiện tại của thiết bị.</li>
+</ul>
+<h1><a class="anchor" aria-hidden="true" id="2-các-bước-thực-hiện-với-ble"></a><a href="#2-các-bước-thực-hiện-với-ble" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2 Các bước thực hiện với BLE</h1>
+<ul>
+<li>Device name: MKP-DeviceId   VD: MKP-AIO000001084.</li>
+<li>BLE GATT bao gồm 1 service chứa 2 character.</li>
+</ul>
+<table>
+<thead>
+<tr><th>Tham số</th><th>Giá trị UUID</th><th>Ý nghĩa</th></tr>
+</thead>
+<tbody>
+<tr><td>GATT SERVICE UUID</td><td>0x12AB</td><td></td></tr>
+<tr><td>GATT CHAR UUID WIFI LIST</td><td>0xAB01</td><td>Lưu danh sách wifi quét được trong giá trị của character. Các SSID được ngăn cách bởi ký tự 0x06 . Mobile app lấy thông tin bằng thao tác Read</td></tr>
+<tr><td>GATT CHAR UUID COM</td><td>0xAB02</td><td>Character cho phép giao tiếp giữa mobile app và gateway. Mobile app gửi lệnh bằng thao tác Write. Thiết bị gửi dữ liệu thông qua Notify. Mobile app phải đăng ký nhận Notify.</td></tr>
+</tbody>
+</table>
+<p>Các lệnh dưới đây được truyền trong character 0xAB02 .</p>
+<h2><a class="anchor" aria-hidden="true" id="b1-mobile-app-truyền-thông-tin-wifi-cho-thiết-bị"></a><a href="#b1-mobile-app-truyền-thông-tin-wifi-cho-thiết-bị" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B1: Mobile app truyền thông tin wifi cho thiết bị</h2>
+<p>Cấu trúc:</p>
+<pre><code class="hljs"><span class="hljs-symbol">_UWF:</span>SSID<span class="hljs-params">&lt;<span class="hljs-number">0x06</span>&gt;</span>Password<span class="hljs-params">&lt;<span class="hljs-number">0x04</span>&gt;</span>
+</code></pre>
+<p>Vi dụ:</p>
+<pre><code class="hljs">_UWF:Wifiname&lt;<span class="hljs-number">0x06</span>&gt;<span class="hljs-number">123456</span>&lt;<span class="hljs-number">0x04</span>&gt;
+</code></pre>
+<p>Thiết bị gửi thông báo kết nối wifi thành công:</p>
+<pre><code class="hljs"><span class="hljs-attribute">Wifi_OK</span>
+</code></pre>
+<p>Chú ý: hiện thiết bị chưa có cơ chế phát hiện kết nối thất bại. Mobile app tự xác định 1 khoảng thời gian (30s đến 1 phút) nếu thiết bị không trả về thanh công thì coi như thất bại.</p>
+<h2><a class="anchor" aria-hidden="true" id="b2-mobile-app-truyền-thông-tin-location-cho-thiết-bị"></a><a href="#b2-mobile-app-truyền-thông-tin-location-cho-thiết-bị" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B2: Mobile app truyền thông tin location cho thiết bị</h2>
+<p>Cấu trúc:</p>
+<pre><code class="hljs"><span class="hljs-symbol">_LOI:</span> <span class="hljs-params">&lt;long&gt;</span><span class="hljs-params">&lt;<span class="hljs-number">0x06</span>&gt;</span><span class="hljs-params">&lt;lat&gt;</span><span class="hljs-params">&lt;<span class="hljs-number">0x04</span>&gt;</span>
+</code></pre>
+<p>Vi dụ:</p>
+<pre><code class="hljs">_LOI: <span class="hljs-number">105.7831197</span>&lt;<span class="hljs-number">0x06</span>&gt;<span class="hljs-number">21.0319133</span>&lt;<span class="hljs-number">0x04</span>&gt;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="b3-mobile-app-truyền-thông-tin-user-id-cho-thiết-bị"></a><a href="#b3-mobile-app-truyền-thông-tin-user-id-cho-thiết-bị" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B3: Mobile app truyền thông tin user ID cho thiết bị</h2>
+<p>Cấu trúc:</p>
+<pre><code class="hljs"><span class="hljs-symbol">_UID:</span>UserID<span class="hljs-params">&lt;<span class="hljs-number">0x04</span>&gt;</span>
+</code></pre>
+<p>Vi dụ:</p>
+<pre><code class="hljs">_UID:<span class="hljs-number">123132</span>abcd12ef&lt;<span class="hljs-number">0x04</span>&gt;
+</code></pre>
+<p>Thiết bị trả về:</p>
+<table>
+<thead>
+<tr><th>Kết quả</th><th>Ý nghĩa</th></tr>
+</thead>
+<tbody>
+<tr><td>User_OK</td><td>Thêm user thành công</td></tr>
+<tr><td>User_EXIST</td><td>Thiết bị đã thuộc user từ trước</td></tr>
+<tr><td>User_FALSE</td><td>Lỗi khác</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="b4-mobile-app-gửi-lệnh-kết-thúc-quá-trình-cài-đặt"></a><a href="#b4-mobile-app-gửi-lệnh-kết-thúc-quá-trình-cài-đặt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>B4: Mobile app gửi lệnh kết thúc quá trình cài đặt</h2>
+<p>Sau khi nhận được phản hồi từ B3
+Cấu trúc:</p>
+<pre><code class="hljs"><span class="hljs-symbol">_END:</span><span class="hljs-params">&lt;<span class="hljs-number">0x04</span>&gt;</span>
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 11/11/2020 by tranphuong.080</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/iot-server/docs/verify"><span class="arrow-prev">← </span><span>Kiểm tra</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#b1-mobile-app-truyền-thông-tin-wifi-cho-thiết-bị">B1: Mobile app truyền thông tin wifi cho thiết bị</a></li><li><a href="#b2-mobile-app-truyền-thông-tin-location-cho-thiết-bị">B2: Mobile app truyền thông tin location cho thiết bị</a></li><li><a href="#b3-mobile-app-truyền-thông-tin-user-id-cho-thiết-bị">B3: Mobile app truyền thông tin user ID cho thiết bị</a></li><li><a href="#b4-mobile-app-gửi-lệnh-kết-thúc-quá-trình-cài-đặt">B4: Mobile app gửi lệnh kết thúc quá trình cài đặt</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/iot-server/" class="nav-home"><img src="/iot-server/img/favicon.ico" alt="Nền tảng IOT Makipos" width="66" height="58"/></a><div><h5>Docs</h5></div><div><h5>Community</h5><a href="https://www.facebook.com/makihomevn/" target="_blank" rel="noreferrer noopener">Facebook</a></div><div><h5>More</h5><a href="/iot-server/blog">Blog</a><a href="https://github.com/makipos/iot-server">GitHub</a></div></section><section class="copyright">Copyright © 2018 Makipos</section></footer></div></body></html>
