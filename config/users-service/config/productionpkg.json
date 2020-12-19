@@ -1,5 +1,6 @@
 {
   "log2Console":false,
+  "logLevel":"info",
   "mongodb": {
     "addr":"mongodb://mongodb:27017/makiposiot"
   },
