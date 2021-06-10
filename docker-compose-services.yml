@@ -34,7 +34,7 @@ services:
       replicas: 2
       resources:
         limits:
-          memory: 500M
+          memory: 1000M
       labels:
         - "traefik.port=3030"
         - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation"
