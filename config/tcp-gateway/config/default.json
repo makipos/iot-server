@@ -13,7 +13,7 @@
     "addr":"10.200.0.0"
   },
   "traefik-gateway": {
-    "addr": "http://traefik:80"
+    "addr": "http://traefik:3028"
   },
   "emqtt-server":{
     "addr": "mqtt://emqtt",

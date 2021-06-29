@@ -261,13 +261,18 @@ defaultEntryPoints = ["http"]
 # To redirect an http entrypoint to an https entrypoint (with SNI support):
 [entryPoints]
   [entryPoints.http]
-  address = ":80"
+  address = ":3028"
   # [entryPoints.https]
-  # address = ":443"
+  # address = ":3029"
   #   [entryPoints.https.tls]
   #     [[entryPoints.https.tls.certificates]]
   #     CertFile = "/etc/traefik/cert/server_pro.crt"
   #     KeyFile = "/etc/traefik/cert/server_pro.key"
+  [entryPoints.httpfront]
+  address = ":80"
+  # [entryPoints.httpsfront]
+  # address = ":443"
+  #   [entryPoints.https.tls]
 #
 # To redirect an entrypoint rewriting the URL:
 # [entryPoints]

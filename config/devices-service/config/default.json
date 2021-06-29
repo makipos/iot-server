@@ -18,7 +18,7 @@
   },
   "nokeep_status":86400000,
   "traefik_gateway": {
-    "addr": "http://traefik:80"
+    "addr": "http://traefik:3028"
   },
   "emqtt_server":{
     "httpApi":"http://emqtt:8080/api/v2",

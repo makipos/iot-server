@@ -17,7 +17,7 @@
     "whiteList":[]
   },
   "traefik_gateway": {
-    "addr": "http://traefik:80"
+    "addr": "http://traefik:3028"
   },
   "redis": {
     "url": "redis://redis:6379"

@@ -31,15 +31,24 @@ services:
       - net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
     networks:
       - vpc
+      - makiposiot-frontend
     expose:
       - "80"
       - "8080"
     ports:
       - published: 3028
-        target: 80
+        target: 3028
         protocol: tcp
         mode: host
       - published: 3029
+        target: 3029
+        protocol: tcp
+        mode: host
+      - published: 80
+        target: 80
+        protocol: tcp
+        mode: host
+      - published: 443
         target: 443
         protocol: tcp
         mode: host
@@ -57,3 +66,6 @@ networks:
   vpc:
     external:
       name: makiposiot-internal
+  makiposiot-frontend:
+    external:
+      name: makiposiot-frontend

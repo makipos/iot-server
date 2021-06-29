@@ -16,7 +16,7 @@
     "whiteList":[]
   },
   "traefik_gateway": {
-    "addr": "http://traefik:80"
+    "addr": "http://traefik:3028"
   },
   "emqtt_server":{
     "addr": "mqtt://emqtt",
