@@ -4,6 +4,7 @@
   "port": 3030,
   "public": "../public/",
   "files_folder":"/media/data/files",
+  "files_secure_folder": "/media/data/files_secure",
   "paginate": {
     "default": 50,
     "max": 100

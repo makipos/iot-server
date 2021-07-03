@@ -15,3 +15,4 @@ mkdir -p /media/Programs/Programs_data/makiposiot/relations_service/logs
 mkdir -p /media/Programs/Programs_data/makiposiot/users_service/logs
 mkdir -p /media/Programs/Programs_data/makiposiot/files_service/logs
 mkdir -p /media/Programs/Programs_data/makiposiot/files_service/files
+mkdir -p /media/Programs/Programs_data/makiposiot/files_service/files_secure
