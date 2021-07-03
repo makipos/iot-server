@@ -26,7 +26,7 @@
     "url" : "redis://redis-cache:6379",
      "defaultDuration": 86400,
      "parseNestedRoutes": false,
-     "removePathFromCacheKey": true
+     "removePathFromCacheKey": false
    },
   "authentication": {
     "secret": "",

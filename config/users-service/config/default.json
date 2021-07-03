@@ -45,7 +45,7 @@
     "url": "redis://redis-cache:6379",
     "defaultDuration": 600,
     "parseNestedRoutes": false,
-    "removePathFromCacheKey": true
+    "removePathFromCacheKey": false
   },
   "limit": {
     "schema": 10
