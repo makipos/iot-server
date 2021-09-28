@@ -10,32 +10,30 @@ import SwaggerUIStandalonePreset from 'swagger-ui/dist/swagger-ui-standalone-pre
 import 'swagger-ui/dist/swagger-ui.css';
 import './api.css';
 
-class SwaggerPage extends Component {
-  componentDidMount() {
-    SwaggerUI({
-      url: 'api_doc/swagger.yaml',
-      'dom_id': '#swaggerContainer',
-      deepLinking: true,
-      persistAuthorization: true,
-      presets: [
-        SwaggerUI.presets.apis,
-        SwaggerUI.SwaggerUIStandalonePreset
-      ],
-      plugins: [
-        SwaggerUI.plugins.DownloadUrl
-      ],
-      layout: 'BaseLayout'
-    });
-  }
 
-  render() {
-    return (
-      <Layout>
-        <div id="swaggerContainer" />
-      </Layout>
-    );
-  }
-}
+const SwaggerPage = ()=>{
+  const swaggerFile = useBaseUrl('/api_doc/swagger.yaml');
+  return (
+    <Layout>
+      <div ref={()=>{
+        SwaggerUI({
+          url: swaggerFile,
+          'dom_id': '#swaggerContainer',
+          deepLinking: true,
+          persistAuthorization: true,
+          presets: [
+            SwaggerUI.presets.apis,
+            SwaggerUI.SwaggerUIStandalonePreset
+          ],
+          plugins: [
+            SwaggerUI.plugins.DownloadUrl
+          ],
+          layout: 'BaseLayout'
+        });
+      }} id="swaggerContainer" />
+    </Layout>
+  );
+};
 
 
 export default SwaggerPage;
