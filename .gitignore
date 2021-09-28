@@ -11,3 +11,4 @@ production*.yml
 test*.yml
 get-docker.sh
 *.map
+website_template/
