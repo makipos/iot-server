@@ -1,5 +1,5 @@
 ---
-title: Luật tự động
+title: "Luật tự động"
 ---
 
 Service bao gồm nhóm các service (endpoint) nhỏ hơn chịu trách nhiệm quản lý, lưu trữ, xử lý vận hành luật tự động trong hệ thống

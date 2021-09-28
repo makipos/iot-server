@@ -1,5 +1,5 @@
 ---
-title: Quyền sở hữu
+title: "Quyền sở hữu"
 ---
 
 Service lưu trữ, quản lý mối quan hệ sở hữu giữa người dùng và thiết bị.

@@ -1,6 +1,6 @@
 ---
-title: Kiến trúc  
-sidebar_label: Tổng quan
+title: "Kiến trúc"
+sidebar_label: "Tổng quan"
 ---
 
 <!-- Check the [documentation](https://docusaurus.io) for how to use Docusaurus. -->

@@ -1,5 +1,5 @@
 ---
-title: Thiết bị
+title: "Thiết bị"
 ---
 
 Service bao gồm 1 nhóm các service (endpoint) nhỏ hơn chịu trách nhiệm quản lý, lưu trữ thông tin của thiết bị.
