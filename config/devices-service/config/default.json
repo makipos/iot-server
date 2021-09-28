@@ -1,5 +1,6 @@
 {
   "host": "localhost",
+  "server_address":"http://localhost:3028",
   "serviceName":"devices-service",
   "port": 3030,
   "public": "../public/",
@@ -51,6 +52,12 @@
   },
   "googleApi": {
     "serviceAccountKey": ""
+  },
+  "maikaHomeGraphKey":"",
+  "maikaHomeGraphUrl":"https://staging.actions-api.iviet.com/v1/devices",
+  "slack":{
+    "token":"",
+    "conversationId":""
   },
   "defaultPassword": "",
   "authentication": {

@@ -1,4 +1,5 @@
 {
+  "server_address":"http://localhost:3028",
   "log2Console":false,
   "logLevel":"info",
   "mongodb": {

@@ -74,6 +74,7 @@ services:
       - "traefik.root.frontend.rule=PathPrefixStrip:/devices-service"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
+      - "MKPS_server_address=http://localhost:3028"
     deploy:
       replicas: 2
       resources:
