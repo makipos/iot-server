@@ -1,33 +1,31 @@
 /*eslint-disable new-cap*/
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import Layout from '@theme/Layout';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import useIsBrowser from '@docusaurus/useIsBrowser';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import SwaggerUIBundle from '../../static/pages/api/swagger-ui-bundle.js';
-import SwaggerUIStandalonePreset from '../../static/pages/api/swagger-ui-standalone-preset.js';
-import '../../static/pages/api/swagger-ui.css';
+import SwaggerUI from 'swagger-ui';
+import SwaggerUIStandalonePreset from 'swagger-ui/dist/swagger-ui-standalone-preset.js';
+import 'swagger-ui/dist/swagger-ui.css';
 import './api.css';
 
-class Swagger extends Component {
+class SwaggerPage extends Component {
   componentDidMount() {
-    SwaggerUIBundle({
+    SwaggerUI({
       url: 'api_doc/swagger.yaml',
       'dom_id': '#swaggerContainer',
       deepLinking: true,
       persistAuthorization: true,
       presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIStandalonePreset
+        SwaggerUI.presets.apis,
+        SwaggerUI.SwaggerUIStandalonePreset
       ],
       plugins: [
-        SwaggerUIBundle.plugins.DownloadUrl
+        SwaggerUI.plugins.DownloadUrl
       ],
       layout: 'BaseLayout'
     });
-    // SwaggerUi({
-    //   dom_id: '#swaggerContainer',
-    //   url: 'http://petstore.swagger.io/v2/swagger.json',
-    //   presets: [presets.apis],
-    // });
   }
 
   render() {
@@ -39,4 +37,5 @@ class Swagger extends Component {
   }
 }
 
-export default Swagger;
+
+export default SwaggerPage;
