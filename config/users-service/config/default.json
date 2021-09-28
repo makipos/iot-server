@@ -1,5 +1,6 @@
 {
   "host": "localhost",
+  "server_address":"http://localhost:3028",
   "serviceName":"users-service",
   "port": 3030,
   "public": "../public/",
@@ -48,7 +49,7 @@
     "removePathFromCacheKey": false
   },
   "limit": {
-    "schema": 10
+    "schema": 100
   },
   "firebase": {
     "serviceAccountKey": "",
@@ -60,6 +61,10 @@
   "googleApi": {
     "serviceAccountKey": ""
   },
+  "maikaClientId":"",
+  "maikaClientSecret":"",
+  "maikaHomeGraphKey":"",
+  "maikaHomeGraphUrl":"https://staging.actions-api.iviet.com/v1/devices",
   "openweatherapiKey": "",
   "ipstackKey": "",
   "authentication": {
@@ -71,17 +76,17 @@
       "google",
       "facebook-token",
       "google-token",
-      "accountkit",
-      "accountkit-token"
+      "apple-idtoken"
     ],
     "path": "/users/authentication",
     "service": "users",
     "jwt": {
+      "header": { "typ": "JWT" },
       "audience": "",
       "subject": "",
       "issuer": "",
       "algorithm": "HS256",
-      "expiresIn": "30m",
+      "expiresIn": "24h",
       "serviceByType": {
         "user": {
           "entity": "user",
@@ -106,7 +111,7 @@
       "clientID":"",
       "clientSecret":""
     },
-    "accountkit-token":{
+    "apple-idtoken":{
       "clientID":"",
       "clientSecret":""
     }
