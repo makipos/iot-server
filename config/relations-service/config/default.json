@@ -35,8 +35,10 @@
      "defaultDuration": 86400,
      "parseNestedRoutes": false,
      "removePathFromCacheKey": false
-   },
-   "googleApikey":"",
+  },
+  "googleApikey":"",
+  "maikaHomeGraphKey":"",
+  "maikaHomeGraphUrl":"https://staging.actions-api.iviet.com/v1/devices",
   "authentication": {
     "secret": "",
     "strategies": [
