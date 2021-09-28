@@ -7,7 +7,7 @@ info:
     name: Tran Quoc Phuong
     email: phuongtq@makipos.com
 servers:
-  - url: http://smarthome.test.makipos.net:443
+  - url: https://smarthome.test.makipos.net:443
     description: Makipos IOT test server
   - url: https://smarthome.makipos.net:3029
     description: Makipos IOT production server
