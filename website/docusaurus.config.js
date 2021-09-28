@@ -24,7 +24,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/makipos/iot-server/tree/master',
+          // editUrl: 'https://github.com/makipos/iot-server/tree/master/website',
         },
         // blog: {
         //   showReadingTime: true,
