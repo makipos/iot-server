@@ -1,34 +1,37 @@
 {
   "host": "localhost",
-  "serviceName":"files-service",
+  "serviceName": "files-service",
   "port": 3030,
   "public": "../public/",
-  "files_folder":"/media/data/files",
+  "files_folder": "/media/data/files",
   "files_secure_folder": "/media/data/files_secure",
   "paginate": {
     "default": 50,
     "max": 100
   },
-  "log2Console":true,
-  "logLevel":"debug",
-  "logPath":"/media/data/",
-  "net_interface":"eth0",
+  "log2Console": true,
+  "logLevel": "debug",
+  "logPath": "/media/data/",
+  "net_interface": "eth0",
   "private_network": {
     "addr": "10.200.0.0",
-    "whiteList":[]
+    "whiteList": []
   },
   "traefik_gateway": {
     "addr": "http://traefik:3028"
   },
+  "mongodb": {
+    "addr":"mongodb://mongodb:27017/test"
+  },
   "redis": {
     "url": "redis://redis:6379"
   },
-  "redisCache" : {
-    "url" : "redis://redis-cache:6379",
-     "defaultDuration": 86400,
-     "parseNestedRoutes": false,
-     "removePathFromCacheKey": false
-   },
+  "redisCache": {
+    "url": "redis://redis-cache:6379",
+    "defaultDuration": 86400,
+    "parseNestedRoutes": false,
+    "removePathFromCacheKey": false
+  },
   "authentication": {
     "secret": "",
     "strategies": [
@@ -41,14 +44,14 @@
       "issuer": "",
       "algorithm": "HS256",
       "expiresIn": "30d",
-      "serviceByType":{
-        "user":{
+      "serviceByType": {
+        "user": {
           "entity": "user",
-          "service":"users"
+          "service": "users"
         },
-        "device":{
+        "device": {
           "entity": "device",
-          "service":"devices"
+          "service": "devices"
         }
       }
     }
