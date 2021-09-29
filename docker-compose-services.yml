@@ -18,6 +18,7 @@ services:
       - ${CONFIG_PATH}/users-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
+      - MKPS_authentication__secret=${MKP_authentication__secret}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -64,6 +65,7 @@ services:
       - ${CONFIG_PATH}/devices-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
+      - MKPS_authentication__secret=${MKP_authentication__secret}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -113,6 +115,7 @@ services:
       - ${CONFIG_PATH}/relations-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
+      - MKPS_authentication__secret=${MKP_authentication__secret}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -157,6 +160,7 @@ services:
       - ${CONFIG_PATH}/automatic-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
+      - MKPS_authentication__secret=${MKP_authentication__secret}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -203,6 +207,7 @@ services:
       - ${CONFIG_PATH}/update-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
+      - MKPS_authentication__secret=${MKP_authentication__secret}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -251,6 +256,7 @@ services:
       - ${CONFIG_PATH}/files-service/config:/usr/src/app/config
     environment:
       - NODE_ENV=productionpkg
+      - MKPS_authentication__secret=${MKP_authentication__secret}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
