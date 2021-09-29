@@ -14,12 +14,15 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       - NODE_ENV=production
-      - REACT_APP_SERVER_ADDR=http://localhost:3028
-      - REACT_APP_MQTT_SERVER_ADDR=ws://localhost:8083/mqtt
+      - REACT_APP_SERVER_ADDR=http://${SERVICE_DOMAIN}:3028
+      - REACT_APP_SERVER_ADDR_HTTP=http://${SERVICE_DOMAIN}:3028
+      - REACT_APP_MQTT_SERVER_ADDR=ws://${SERVICE_DOMAIN}:8083/mqtt
       - REACT_APP_googleAnalyticsTrackerId=
+      - REACT_APP_googleClientId=
+      - REACT_APP_facebookAppId=
     labels:
       - "traefik.port=80"
-      - "traefik.root.frontend.rule=Host:localhost"
+      - "traefik.root.frontend.rule=Host:${WEB_DOMAIN}"
       - "traefik.frontend.entryPoints=httpfront"
     deploy:
       replicas: 1
@@ -28,7 +31,7 @@ services:
           memory: 400M
       labels:
         - "traefik.port=80"
-        - "traefik.root.frontend.rule=Host:localhost"
+        - "traefik.root.frontend.rule=Host:${WEB_DOMAIN}"
         - "traefik.frontend.entryPoints=httpfront"
 
 

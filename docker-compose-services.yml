@@ -31,7 +31,7 @@ services:
       - "traefik.root.frontend.rule=PathPrefixStrip:/users-service"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
-      - "MKPS_server_address=http://localhost:3028"
+      - "MKPS_server_address=http://${SERVICE_DOMAIN}:3028"
     deploy:
       replicas: 2
       resources:
@@ -43,7 +43,7 @@ services:
         - "traefik.root.frontend.rule=PathPrefixStrip:/users-service"
         - "traefik.backend.healthcheck.path=/health"
         - "traefik.backend.loadbalancer.stickiness=true"
-        - "MKPS_server_address=http://localhost:3028"
+        - "MKPS_server_address=http://${SERVICE_DOMAIN}:3028"
     # depends_on:
     #   - redis
     #   - mongodb
@@ -78,7 +78,7 @@ services:
       - "traefik.root.frontend.rule=PathPrefixStrip:/devices-service"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
-      - "MKPS_server_address=http://localhost:3028"
+      - "MKPS_server_address=http://${SERVICE_DOMAIN}:3028"
     deploy:
       replicas: 2
       resources:
@@ -90,7 +90,7 @@ services:
         - "traefik.root.frontend.rule=PathPrefixStrip:/devices-service"
         - "traefik.backend.healthcheck.path=/health"
         - "traefik.backend.loadbalancer.stickiness=true"
-        - "MKPS_server_address=http://localhost:3028"
+        - "MKPS_server_address=http://${SERVICE_DOMAIN}:3028"
       # placement:
       #   constraints:
       #     - node.hostname == ${STORE_NODE}
