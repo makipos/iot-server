@@ -90,7 +90,7 @@ MKP_authentication__secret=
 
 ```shell
 ID             NAME                                    MODE         REPLICAS   IMAGE                            PORTS
-0ttjoiinfoda   makiposiot-emqtt_emqtt                  replicated   1/1        makipos/emqtt:1.2.5
+0ttjoiinfoda   makiposiot-emqtt_emqtt                  replicated   1/1        makipos/emqtt:1.3.0
 l4ynzxoyidmd   makiposiot-frontend_admin-makiposiot    replicated   1/1        makipos/admin-smarthome:latest
 dov3uxxcuwfj   makiposiot-mongodb_mongodb              replicated   1/1        mongo:4.0
 pi8gj9x5y70u   makiposiot-redis_redis                  replicated   1/1        redis:latest
@@ -136,7 +136,9 @@ Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào da
 ./scriptdeploy/undeploySSH.bash
 ```
 
-#### 13. Deploy trang web quản trị
+#### 13. Tunning system
+
+#### 14. Deploy trang web quản trị
 
 Mặc định cấu hình truy cập web quản trị là `localhost`
 
