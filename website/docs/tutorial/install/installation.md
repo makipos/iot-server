@@ -35,11 +35,6 @@ chmod -R +x scriptdeploy
 chmod +x install.fish
 ```
 
-Sửa đường dẫn mount thư mục cho docker trong 2 file `.envDeploy` và `.envFrontendDeploy` nếu bạn thay đổi đường dẫn trong [bước 2](#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình)
-```shell
-CONFIG_PATH=/opt/makiposiot/iot-server/config
-```
-
 #### 4. Cài đặt docker
 ```shell
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -73,37 +68,53 @@ chmod +x /usr/local/bin/docker-compose
 watch -n 1 docker service ls
 ```
 
-#### 9. Deploy các service####
+#### 9. Cấu hình ban đầu
+Sửa đường dẫn mount thư mục cho docker trong file `.envDeploy` nếu bạn thay đổi đường dẫn trong [bước 2](#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình)
+```shell
+CONFIG_PATH=/opt/makiposiot/iot-server/config
+```
+Thay đổi domain thành domain của bạn
+```shell
+SERVICE_DOMAIN=localhost
+WEB_DOMAIN=localhost
+```
+Thay đổi secretKey sử dụng cho JWT ([Bạn có thể sử dụng SHA 512-bit Key ngẫu nhiên tạo ở đây](http://keygen.io/))
+```shell
+MKP_authentication__secret=
+```
+
+#### 9. Deploy các service
 ```shell
 ./scriptdeploy/deploy.fish
 ```
 
 ```shell
-ID                  NAME                                    MODE                REPLICAS            IMAGE                             PORTS
-dl26wa8pdfo4        makiposiot-emqtt_emqtt                  replicated          1/1                 makipos/emqtt:1.2.3
-wegouhqjicbo        makiposiot-mongodb_mongodb              replicated          1/1                 mongo:4.0
-adtsmho42p8c        makiposiot-redis_redis                  replicated          1/1                 redis:alpine
-qlecvm774d0w        makiposiot-redis_redis-cache            replicated          1/1                 redis:alpine
-i8wmjwltymdm        makiposiot-services_automatic-service   replicated          2/2                 makipos/automatic-service:latest
-dms83rntop4b        makiposiot-services_devices-service     replicated          2/2                 makipos/devices-service:latest
-tv55cooabbd3        makiposiot-services_relations-service   replicated          1/1                 makipos/relations-service:latest
-6zwpq2kjuclq        makiposiot-services_update-service      replicated          1/1                 makipos/update-service:latest
-wx3vi7qup1ty        makiposiot-services_users-service       replicated          2/2                 makipos/users-service:latest
-tz4dmfaswejy        makiposiot-services_files-service       replicated          1/1                 makipos/files-service:latest
-hz4dmfxvwej4        makiposiot-ssh-server_ssh-server        replicated          1/1                 makipos/ssh-server:1.2.1          
-o4z35tzjby9g        makiposiot-traefik_traefik              replicated          1/1                 traefik:1.7
+ID             NAME                                    MODE         REPLICAS   IMAGE                            PORTS
+0ttjoiinfoda   makiposiot-emqtt_emqtt                  replicated   1/1        makipos/emqtt:1.2.5
+l4ynzxoyidmd   makiposiot-frontend_admin-makiposiot    replicated   1/1        makipos/admin-smarthome:latest
+dov3uxxcuwfj   makiposiot-mongodb_mongodb              replicated   1/1        mongo:4.0
+pi8gj9x5y70u   makiposiot-redis_redis                  replicated   1/1        redis:latest
+mzzf4iewmzvh   makiposiot-redis_redis-cache            replicated   1/1        redis:latest
+vszzg2fhjyi3   makiposiot-services_automatic-service   replicated   2/2        makipos/automatic-service:1
+tu97vc22v7fh   makiposiot-services_devices-service     replicated   2/2        makipos/devices-service:1
+8xx8ul8amvu3   makiposiot-services_files-service       replicated   1/1        makipos/files-service:1
+glw1s1iziddm   makiposiot-services_relations-service   replicated   2/2        makipos/relations-service:1
+9fai0op272r8   makiposiot-services_update-service      replicated   1/1        makipos/update-service:1
+dfn50lsm08wj   makiposiot-services_users-service       replicated   2/2        makipos/users-service:1
+3adm45etof05   makiposiot-ssh-server_ssh-server        replicated   1/1        makipos/ssh-server:1.3.0         *:2222->22/tcp
+wuag6rcjtcem   makiposiot-traefik_traefik              replicated   1/1        traefik:1.7
 
 ```
 
 #### 10. Nhập dữ liệu khởi tạo cho db
 
-Bạn có thể thay đổi mật khẩu khởi tạo của admin trong file `script/mongoshellcommand.js`
-`password` là mã hóa SHA256 của `plainPassword`
+Bạn thay đổi mật khẩu khởi tạo của admin trong file `script/mongoshellcommand.js`.
+Trường `password` là mã hóa SHA256 của `plainPassword`. ([sha256 encode online](https://emn178.github.io/online-tools/sha256.html))
 ```
 db.users.insert({
    "username" : "admin",
-   "password" : "3961160ecd2395473e3bda395b1f1329b98f08676a1a6ce1006d00b6ce838828",
-   "plainPassword":"MKP123456a@",
+   "password" : "",
+   "plainPassword":"",
    "name" : "admin",
    "roles" : [
        "admin"
@@ -123,18 +134,7 @@ Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào da
 
 Mặc định cấu hình truy cập web quản trị là `localhost`
 
-Sửa lại domain từ `localhost` thành domain bạn mong muốn trong file `config/traefik-frontend/traefik.toml` dòng
-```toml
-[frontends.admin-makiposiot.routes.route_1]
-rule = "Host:localhost"
-```
-Và file `docker-compose-frontend.yml`
-```yml
-- REACT_APP_SERVER_ADDR=http://localhost:3028
-- REACT_APP_MQTT_SERVER_ADDR=ws://localhost:8083/mqtt
-```
-
-Cuối cùng chạy lệnh deploy
+Chạy lệnh deploy
 ```shell
 ./scriptdeploy/deployFrontend.fish
 ```

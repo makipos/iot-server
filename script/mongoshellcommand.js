@@ -6,8 +6,8 @@ var documentArray = myCursor.toArray();
 if(documentArray.length === 0){
   db.users.insert({
      "username" : "admin",
-     "password" : "3961160ecd2395473e3bda395b1f1329b98f08676a1a6ce1006d00b6ce838828",
-     "plainPassword":"MKP123456a@",
+     "password" : "",
+     "plainPassword":"",
      "name" : "admin",
      "roles" : [
          "admin"
