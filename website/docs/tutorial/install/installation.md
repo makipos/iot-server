@@ -130,7 +130,13 @@ Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào da
 ./script/prepairdb.bash
 ```
 
-#### 12. Deploy trang web quản trị
+#### 12. Tắt service ssh để tránh truy cập trái phép vào mạng nội bộ
+
+```shell
+./scriptdeploy/undeploySSH.bash
+```
+
+#### 13. Deploy trang web quản trị
 
 Mặc định cấu hình truy cập web quản trị là `localhost`
 
