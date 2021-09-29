@@ -38,7 +38,7 @@ function Flexible() {
 
         <h3>Linh động</h3>
         <p>
-          <a href="/docs/architecture">Kiến trúc</a> microservice cùng với docker swarm cho phép hệ thống dễ dàng mở rộng đáp ứng chịu tải cao<br/>
+          <a href={useBaseUrl('/docs/overview/architecture')}>Kiến trúc</a> microservice cùng với docker swarm cho phép hệ thống dễ dàng mở rộng đáp ứng chịu tải cao<br/>
           Phát triển chức năng mới trong hệ thống dễ dàng
         </p>
       </div>
@@ -57,7 +57,7 @@ function EasyInstall() {
         <p>
           Quá trình cài đặt lên máy chủ được đơn giản hóa bằng các script được cung cấp sẵn, bao gồm cả thao tác khởi tạo database<br/>
           Cấu hình dễ dàng bằng docker compose và config file cho từng service<br/>
-          <a href="/iot-server/docs/installation">Hướng dẫn từng bước</a>
+          <a href={useBaseUrl('/docs/tutorial/install/installation')}>Hướng dẫn từng bước</a>
         </p>
 
       </div>

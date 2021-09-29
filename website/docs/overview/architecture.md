@@ -9,16 +9,14 @@ sidebar_label: "Tổng quan"
 
 Mô hình Microservice sử dụng docker swarm cho phép kiến trúc server hoạt động theo cluster, giúp khả năng mở rộng linh hoạt, đáp ứng nhu cầu chịu tải cao và mở rộng tính năng
 
-![](https://makihome.vn/wp-content/uploads/2020/07/service_network2.png "kiến trúc")
+![](/img/service_network2.png "kiến trúc")
 
 ## Firewall
 
 Cụm server đặt trong mạng nội bộ đứng sau firewall, chỉ cho phép dữ liệu tới các cổng dịch vụ cho phép
 1. 80, 443 : Cổng dịch vụ của web quản trị
-2. 22: Cổng kết nối ssh
-3. 3020: Cổng kết nối cho thiết bị sử dụng giao thức tcp socket
-4. 3028, 3029: Cổng dịch vụ api http
-5. 1883, 8083, 8883, 8084: Cổng dịch cho kết nối mqtt (mqtt, ws, mqttssl, wss)
+2. 3028, 3029: Cổng dịch vụ api http
+4. 1883, 8083, 8883, 8084: Cổng dịch cho kết nối mqtt (mqtt, ws, mqttssl, wss)
 
 ## Giao thức kết nối
 

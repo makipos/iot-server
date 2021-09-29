@@ -15,19 +15,24 @@ module.exports = {
 
   // But you can create a sidebar manually
   docs: {
-    'Kiến trúc': ['architecture'],
-    'Service': ['database', 'gateway', 'users_service', 'devices_service', 'relations_service', 'automatic_service', 'update_service', 'webmanager'],
-    'Bảo mật': ['network', 'mqtt', 'http']
+    'Kiến trúc': ['overview/architecture'],
+    'Service': [
+      'overview/service/database', 'overview/service/gateway',
+      'overview/service/users_service', 'overview/service/devices_service',
+      'overview/service/relations_service', 'overview/service/automatic_service',
+      'overview/service/update_service', 'overview/service/webmanager'
+    ],
+    'Bảo mật': ['overview/security/network', 'overview/security/mqtt', 'overview/security/http']
   },
   'docs-tutorial': {
-    'Cài đặt': ['installation', 'verify'],
+    'Cài đặt': ['tutorial/install/installation', 'tutorial/install/verify'],
     'Vận hành': [],
     'Kết nối': [
       {
         'type': 'category',
         'label': 'Cài đặt thiết bị IOT',
         'items': [
-          'wificonfig'
+          'tutorial/connect/wificonfig'
         ]
       }
     ]

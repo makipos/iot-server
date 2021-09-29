@@ -55,14 +55,16 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             label: 'Chức năng',
           },
           {
-            to: 'docs/architecture',
+            to: 'docs/overview/architecture',
             label: 'Kiến trúc',
-            position: 'left'
+            position: 'left',
+            activeBasePath: 'docs/overview'
           },
           {
-            to: 'docs/installation',
+            to: 'docs/tutorial/install/installation',
             label: 'Hướng dẫn',
-            position: 'left'
+            position: 'left',
+            activeBasePath: 'docs/tutorial'
           },
           {
             to: '/api',
