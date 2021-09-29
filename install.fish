@@ -12,5 +12,5 @@ else
   ./scriptdeploy/deploy.fish
   ./script/prepairdb.bash
 
-  ./scriptdeploy/deployFrontend.sh
+  ./scriptdeploy/deployFrontend.fish
 end
