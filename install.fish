@@ -6,11 +6,11 @@ if [ (count $argv) = 0 ]
 else
   apt-get update
   apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common sshpass fish sh bash
-  ./script/prepairDocker.sh $argv
-  ./script/prepair.sh
+  ./script/prepairDocker.fish $argv
+  ./script/prepair.bash
 
-  ./scriptdeploy/deploy.sh
-  ./script/prepairdb.sh
+  ./scriptdeploy/deploy.fish
+  ./script/prepairdb.bash
 
   ./scriptdeploy/deployFrontend.sh
 end
