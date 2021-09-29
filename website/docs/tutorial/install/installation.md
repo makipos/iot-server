@@ -83,7 +83,7 @@ Thay đổi secretKey sử dụng cho JWT ([Bạn có thể sử dụng SHA 512-
 MKP_authentication__secret=
 ```
 
-#### 9. Deploy các service
+#### 10. Deploy các service
 ```shell
 ./scriptdeploy/deploy.fish
 ```
@@ -106,7 +106,7 @@ wuag6rcjtcem   makiposiot-traefik_traefik              replicated   1/1        t
 
 ```
 
-#### 10. Nhập dữ liệu khởi tạo cho db
+#### 11. Nhập dữ liệu khởi tạo cho db
 
 Bạn thay đổi mật khẩu khởi tạo của admin trong file `script/mongoshellcommand.js`.
 Trường `password` là mã hóa SHA256 của `plainPassword`. ([sha256 encode online](https://emn178.github.io/online-tools/sha256.html))
@@ -130,7 +130,7 @@ Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào da
 ./script/prepairdb.bash
 ```
 
-#### 11. Deploy trang web quản trị
+#### 12. Deploy trang web quản trị
 
 Mặc định cấu hình truy cập web quản trị là `localhost`
 
