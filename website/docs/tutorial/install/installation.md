@@ -28,7 +28,7 @@ cd makiposiot
 
 #### 3. clone bộ cài đặt từ github
 ```shell
-git clone https://github.com/makipos/iot-server.git
+git clone --depth=1 https://github.com/makipos/iot-server.git
 cd iot-server
 chmod -R +x script
 chmod -R +x scriptdeploy
@@ -65,7 +65,7 @@ chmod +x /usr/local/bin/docker-compose
 
 #### 7. Khởi tạo thư mục chứa dữ liệu cho server
 ```shell
-./script/prepair.sh
+./script/prepair.bash
 ```
 
 #### 8. Kiểm tra quá trình cài đặt các service (chạy lệnh này ở 1 cửa sổ terminal khác)
@@ -75,7 +75,7 @@ watch -n 1 docker service ls
 
 #### 9. Deploy các service####
 ```shell
-./scriptdeploy/deploy.sh
+./scriptdeploy/deploy.fish
 ```
 
 ```shell
@@ -116,7 +116,7 @@ db.users.insert({
 Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào database
 
 ```shell
-./script/prepairdb.sh
+./script/prepairdb.bash
 ```
 
 #### 11. Deploy trang web quản trị
@@ -136,7 +136,7 @@ Và file `docker-compose-frontend.yml`
 
 Cuối cùng chạy lệnh deploy
 ```shell
-./scriptdeploy/deployFrontend.sh
+./scriptdeploy/deployFrontend.fish
 ```
 
 ## Nhập licensekey
