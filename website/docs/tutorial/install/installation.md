@@ -26,21 +26,21 @@ mkdir makiposiot
 cd makiposiot
 ```
 
-Sửa đường dẫn mount thư mục cho docker trong 2 file `.envDeploy` và `.envFrontendDeploy` nếu bạn thay đổi đường dẫn trong [bước 2](#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình)
-```shell
-CONFIG_PATH=/opt/makiposiot/iot-server/config
-```
-
 #### 3. clone bộ cài đặt từ github
 ```shell
 git clone https://github.com/makipos/iot-server.git
 cd iot-server
 chmod -R +x script
 chmod -R +x scriptdeploy
-chmod +x install.sh
+chmod +x install.fish
 ```
 
-#### 4. Cài đặt docker####
+Sửa đường dẫn mount thư mục cho docker trong 2 file `.envDeploy` và `.envFrontendDeploy` nếu bạn thay đổi đường dẫn trong [bước 2](#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình)
+```shell
+CONFIG_PATH=/opt/makiposiot/iot-server/config
+```
+
+#### 4. Cài đặt docker
 ```shell
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
