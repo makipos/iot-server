@@ -12,7 +12,7 @@ Hỗ trợ 3 phương thức xác thực, đăng nhập thông dụng.
 3. Apple
 4. Facebook
 
-## [Phân quyền](http.md)
+## [Phân quyền](overview/security/http.md)
 
 Mỗi người dùng trong hệ thống đều được xác định quyền hạn rõ ràng tới từng API.
 
