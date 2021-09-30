@@ -43,16 +43,22 @@
 - `addr`: dải địa chỉ trong mạng nội bộ của các service
 - `whiteList`: danh sách IP ngoại lệ ở ngoài mạng
 
-## emqtt
+## Giới hạn số lượng dữ liệu cho user
 
 ```
-"emqtt_server": {
-  "httpApi": "http://emqtt:8080/api/v2",
-  "httpClientApi": "http://emqtt:8080/api/v2/clients",
-  "httpAuth": "admin:public",
-  "addr": "mqtt://emqtt",
-  "username": "users-service",
-  "password": "mkp123456a@",
-  "shareGroup": "users-service"
+"limit": {
+  "schema": 100
 }
 ```
+- `schema` : giới hạn số lượng kịch bản có thể tạo của mỗi user  `users-service`
+- `rule`   : giới hạn số lượng luật tự động có thể tạo của mỗi user `automatic-service`
+
+## Firebase notify
+
+## Liên kết google assitant
+
+## Liên kết maika assistant
+
+## Open weather map api
+
+## Slack notify

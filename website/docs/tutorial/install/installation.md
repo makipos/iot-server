@@ -82,6 +82,10 @@ Thay đổi secretKey sử dụng cho JWT ([Bạn có thể sử dụng SHA 512-
 ```shell
 MKP_authentication__secret=
 ```
+Thay đổi mật khẩu truy cập mqtt broker cho các service
+```shell
+MKPS_SERVICE_PASS=REPLACE_ME
+```
 
 #### 10. Tunning system
 
