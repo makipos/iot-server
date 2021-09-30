@@ -83,7 +83,13 @@ Thay đổi secretKey sử dụng cho JWT ([Bạn có thể sử dụng SHA 512-
 MKP_authentication__secret=
 ```
 
-#### 10. Deploy các service
+#### 10. Tunning system
+
+1. Copy dữ liệu trong file `config/sysctl.conf` vào cuối file `/etc/sysctl.conf` của hệ điều hành
+2. Copy dữ liệu trong file `config/rc.local` vào file `/etc/rc.local` của hệ điều hành (ghi đè dòng `exit 0`)
+3. Chạy lệnh `sysctl -p` để reload lại cấu hình vừa cập nhật trong file hệ thống
+
+#### 11. Deploy các service
 ```shell
 ./scriptdeploy/deploy.fish
 ```
@@ -106,7 +112,7 @@ wuag6rcjtcem   makiposiot-traefik_traefik              replicated   1/1        t
 
 ```
 
-#### 11. Nhập dữ liệu khởi tạo cho db
+#### 12. Nhập dữ liệu khởi tạo cho db
 
 Bạn thay đổi mật khẩu khởi tạo của admin trong file `script/mongoshellcommand.js`.
 Trường `password` là mã hóa SHA256 của `plainPassword`. ([sha256 encode online](https://emn178.github.io/online-tools/sha256.html))
@@ -130,13 +136,11 @@ Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào da
 ./script/prepairdb.bash
 ```
 
-#### 12. Tắt service ssh để tránh truy cập trái phép vào mạng nội bộ
+#### 13. Tắt service ssh để tránh truy cập trái phép vào mạng nội bộ
 
 ```shell
 ./scriptdeploy/undeploySSH.bash
 ```
-
-#### 13. Tunning system
 
 #### 14. Deploy trang web quản trị
 
