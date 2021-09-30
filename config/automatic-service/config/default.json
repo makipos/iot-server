@@ -39,6 +39,10 @@
    "limit" : {
      "rule":32
    },
+   "slack":{
+    "token":"",
+    "conversationId":""
+  },
   "authentication": {
     "secret": "",
     "strategies": [

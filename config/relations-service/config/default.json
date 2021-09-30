@@ -36,6 +36,10 @@
      "parseNestedRoutes": false,
      "removePathFromCacheKey": false
   },
+  "slack":{
+    "token":"",
+    "conversationId":""
+  },
   "googleApikey":"",
   "maikaHomeGraphKey":"",
   "maikaHomeGraphUrl":"https://staging.actions-api.iviet.com/v1/devices",

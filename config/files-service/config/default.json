@@ -32,6 +32,10 @@
     "parseNestedRoutes": false,
     "removePathFromCacheKey": false
   },
+  "slack":{
+    "token":"",
+    "conversationId":""
+  },
   "authentication": {
     "secret": "",
     "strategies": [
