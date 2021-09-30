@@ -58,6 +58,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${CONFIG_PATH}/emqtt/certs:/opt/emqttd/etc/certs
     environment:
+      - MKPS_SERVICE_PASS=${MKPS_SERVICE_PASS}
       - EMQ_MQTT__ALLOW_ANONYMOUS=false
       - EMQ_MQTT__CACHE_ACL=false
       - EMQ_LISTENER__SSL__EXTERNAL__CACERTFILE=/opt/emqttd/etc/certs/cacert.pem

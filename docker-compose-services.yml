@@ -19,6 +19,7 @@ services:
     environment:
       - NODE_ENV=productionpkg
       - MKPS_authentication__secret=${MKP_authentication__secret}
+      - MKPS_emqtt_server__password=${MKPS_SERVICE_PASS}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -66,6 +67,7 @@ services:
     environment:
       - NODE_ENV=productionpkg
       - MKPS_authentication__secret=${MKP_authentication__secret}
+      - MKPS_emqtt_server__password=${MKPS_SERVICE_PASS}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -116,6 +118,7 @@ services:
     environment:
       - NODE_ENV=productionpkg
       - MKPS_authentication__secret=${MKP_authentication__secret}
+      - MKPS_emqtt_server__password=${MKPS_SERVICE_PASS}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -161,6 +164,7 @@ services:
     environment:
       - NODE_ENV=productionpkg
       - MKPS_authentication__secret=${MKP_authentication__secret}
+      - MKPS_emqtt_server__password=${MKPS_SERVICE_PASS}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -208,6 +212,7 @@ services:
     environment:
       - NODE_ENV=productionpkg
       - MKPS_authentication__secret=${MKP_authentication__secret}
+      - MKPS_emqtt_server__password=${MKPS_SERVICE_PASS}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
@@ -257,6 +262,7 @@ services:
     environment:
       - NODE_ENV=productionpkg
       - MKPS_authentication__secret=${MKP_authentication__secret}
+      - MKPS_emqtt_server__password=${MKPS_SERVICE_PASS}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
