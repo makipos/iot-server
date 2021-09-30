@@ -11,11 +11,11 @@ Quá trình cài cấu hình nhằm các mục đích:
 * Device name: MKP-DeviceId   VD: MKP-AIO000001084.
 * BLE GATT bao gồm 1 service chứa 2 character.
 
-| Tham số | Giá trị UUID | Ý nghĩa |
-| -------- | -------- | -------- |
-| GATT SERVICE UUID     | 0x12AB     |      |
-| GATT CHAR UUID WIFI LIST     | 0xAB01     | Lưu danh sách wifi quét được trong giá trị của character. Các SSID được ngăn cách bởi ký tự 0x06 . Mobile app lấy thông tin bằng thao tác Read   |
-| GATT CHAR UUID COM     | 0xAB02     |   Character cho phép giao tiếp giữa mobile app và gateway. Mobile app gửi lệnh bằng thao tác Write. Thiết bị gửi dữ liệu thông qua Notify. Mobile app phải đăng ký nhận Notify.   |
+| Tham số                  | Giá trị UUID | Ý nghĩa                                                                                                                                                                       |
+|--------------------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| GATT SERVICE UUID        | 0x12AB       |                                                                                                                                                                               |
+| GATT CHAR UUID WIFI LIST | 0xAB01       | Lưu danh sách wifi quét được trong giá trị của character. Các SSID được ngăn cách bởi ký tự 0x06 . Mobile app lấy thông tin bằng thao tác Read                                |
+| GATT CHAR UUID COM       | 0xAB02       | Character cho phép giao tiếp giữa mobile app và gateway. Mobile app gửi lệnh bằng thao tác Write. Thiết bị gửi dữ liệu thông qua Notify. Mobile app phải đăng ký nhận Notify. |
 
 Các lệnh dưới đây được truyền trong character 0xAB02 .
 
@@ -31,7 +31,7 @@ Vi dụ:
 _UWF:Wifiname<0x06>123456<0x04>
 ```
 
-Thiết bị gửi thông báo kết nối wifi thành công:  
+Thiết bị gửi thông báo kết nối wifi thành công:
 ```
 Wifi_OK
 ```
@@ -60,13 +60,13 @@ Vi dụ:
 _UID:123132abcd12ef<0x04>
 ```
 
-Thiết bị trả về:  
-| Kết quả | Ý nghĩa |
-|---------|---------|
-|User_OK|Thêm user thành công|
-|User_EXIST|Thiết bị đã thuộc user từ trước|
-|User_FALSE|Lỗi khác|
+Thiết bị trả về:
 
+| Kết quả    | Ý nghĩa                         |
+|------------|---------------------------------|
+| User_OK    | Thêm user thành công            |
+| User_EXIST | Thiết bị đã thuộc user từ trước |
+| User_FALSE | Lỗi khác                        |
 ## B4: Mobile app gửi lệnh kết thúc quá trình cài đặt
 Sau khi nhận được phản hồi từ B3
 Cấu trúc:
