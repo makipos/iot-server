@@ -6,7 +6,7 @@ title: "Cài đặt"
 
 Quá trình cài đặt sử dụng quyền root của hệ thống
 
-#### 1. Cài đặt công cụ
+### 1. Cài đặt công cụ
 
 ```shell
 apt-get update
@@ -18,7 +18,7 @@ Các lệnh này sử dụng fish shell, active fish shell bằng lệnh
 fish
 ```
 
-#### 2. Tạo thư mục chứa bộ cài đặt và cấu hình
+### 2. Tạo thư mục chứa bộ cài đặt và cấu hình
 
 ```shell
 cd /opt
@@ -26,7 +26,7 @@ mkdir makiposiot
 cd makiposiot
 ```
 
-#### 3. clone bộ cài đặt từ github
+### 3. clone bộ cài đặt từ github
 ```shell
 git clone --depth=1 https://github.com/makipos/iot-server.git
 cd iot-server
@@ -35,20 +35,20 @@ chmod -R +x scriptdeploy
 chmod +x install.fish
 ```
 
-#### 4. Cài đặt docker
+### 4. Cài đặt docker
 ```shell
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 ```
 
-#### 5. Khởi tạo docker swarm
+### 5. Khởi tạo docker swarm
 
 Thay thế `localhost` bằng ip của net interface bạn sử dụng cho mạng nội bộ giữa các máy chủ
 ```shell
 docker swarm init --advertise-addr localhost
 ```
 
-#### 6. Cài đặt `docker-compose`
+### 6. Cài đặt `docker-compose`
 
 ```shell
 set unames (uname -s)
@@ -58,17 +58,17 @@ curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compo
 chmod +x /usr/local/bin/docker-compose
 ```
 
-#### 7. Khởi tạo thư mục chứa dữ liệu cho server
+### 7. Khởi tạo thư mục chứa dữ liệu cho server
 ```shell
 ./script/prepair.bash
 ```
 
-#### 8. Kiểm tra quá trình cài đặt các service (chạy lệnh này ở 1 cửa sổ terminal khác)
+### 8. Kiểm tra quá trình cài đặt các service (chạy lệnh này ở 1 cửa sổ terminal khác)
 ```shell
 watch -n 1 docker service ls
 ```
 
-#### 9. Cấu hình ban đầu
+### 9. Cấu hình ban đầu
 Sửa đường dẫn mount thư mục cho docker trong file `.envDeploy` nếu bạn thay đổi đường dẫn trong [bước 2](#2-tạo-thư-mục-chứa-bộ-cài-đặt-và-cấu-hình)
 ```shell
 CONFIG_PATH=/opt/makiposiot/iot-server/config
@@ -87,13 +87,13 @@ Thay đổi mật khẩu truy cập mqtt broker cho các service
 MKPS_SERVICE_PASS=REPLACE_ME
 ```
 
-#### 10. Tunning system
+### 10. Tunning system
 
 1. Copy dữ liệu trong file `config/sysctl.conf` vào cuối file `/etc/sysctl.conf` của hệ điều hành
 2. Copy dữ liệu trong file `config/rc.local` vào file `/etc/rc.local` của hệ điều hành (ghi đè dòng `exit 0`)
 3. Chạy lệnh `sysctl -p` để reload lại cấu hình vừa cập nhật trong file hệ thống
 
-#### 11. Deploy các service
+### 11. Deploy các service
 ```shell
 ./scriptdeploy/deploy.fish
 ```
@@ -116,7 +116,7 @@ wuag6rcjtcem   makiposiot-traefik_traefik              replicated   1/1        t
 
 ```
 
-#### 12. Nhập dữ liệu khởi tạo cho db
+### 12. Nhập dữ liệu khởi tạo cho db
 
 Bạn thay đổi mật khẩu khởi tạo của admin trong file `script/mongoshellcommand.js`.
 Trường `password` là mã hóa SHA256 của `plainPassword`. ([sha256 encode online](https://emn178.github.io/online-tools/sha256.html))
@@ -140,13 +140,13 @@ Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào da
 ./script/prepairdb.bash
 ```
 
-#### 13. Tắt service ssh để tránh truy cập trái phép vào mạng nội bộ
+### 13. Tắt service ssh để tránh truy cập trái phép vào mạng nội bộ
 
 ```shell
 ./scriptdeploy/undeploySSH.bash
 ```
 
-#### 14. Deploy trang web quản trị
+### 14. Deploy trang web quản trị
 
 Mặc định cấu hình truy cập web quản trị là `localhost`
 
@@ -161,13 +161,13 @@ Liên hệ với chúng tôi : http://makihome.vn/
 
 Hoặc trực tiếp qua email : phuongtq@makipos.com
 
-#### 1. Đăng nhập
+### 1. Đăng nhập
 
 Sau khi cài đặt bạn đã có thể truy cập vào trang web quản trị
 
 Đăng nhập vào bằng tài khoản admin đã được khởi tạo trong db
 
-#### 2. Nhập licenseKey
+### 2. Nhập licenseKey
 
 Click vào tên tài khoản ở góc trên bên phải trang quản trị. Chọn `Change lincense key`
 
