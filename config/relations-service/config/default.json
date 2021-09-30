@@ -21,7 +21,7 @@
   "emqtt_server":{
     "addr": "mqtt://emqtt",
     "username":"relations-service",
-    "password" :"mkp123456a@",
+    "password" :"",
     "shareGroup":"relations-service"
   },
   "mongodb": {

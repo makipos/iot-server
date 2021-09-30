@@ -27,7 +27,7 @@
     "httpAuth":"admin:public",
     "addr": "mqtt://emqtt",
     "username":"devices-service",
-    "password" :"mkp123456a@",
+    "password" :"",
     "shareGroup":"devices-service"
   },
   "sms_server":{
