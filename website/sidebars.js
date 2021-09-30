@@ -69,6 +69,13 @@ module.exports = {
         ]
       }]
     },
+    {
+      type: 'category',
+      label: 'Vận hành',
+      collapsible: true,
+      collapsed: false,
+      items: []
+    },
   ]
 
 };
