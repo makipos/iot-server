@@ -52,7 +52,7 @@ module.exports = {
       label: 'Cấu hình',
       collapsible: true,
       collapsed: false,
-      items: ['tutorial/config/get_started']
+      items: ['tutorial/config/get_started', 'tutorial/config/domain', 'tutorial/config/ssl', 'tutorial/config/service']
     },
     {
       type: 'category',
