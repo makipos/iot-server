@@ -38,15 +38,15 @@ environment:
   - MKPS_paginate__max=1000
 ```
 
-Biến môi trường có ***cấu trúc*** tên cụ thể sẽ được ghi đè giá trị lên giá trị trong các file config.
+Biến môi trường có **cấu trúc** tên cụ thể sẽ được ghi đè giá trị lên giá trị trong các file config.
 
-Tên biến môi trường dành cho ghi đè config có cấu tiền tố `MKPS_`, theo sau là tên trường. Đối với nested Object, dấu `.` trong json Object sẽ được thể hiện bằng 2 dấu gạch dưới `__`
+Tên biến môi trường dành cho ghi đè config có tiền tố `MKPS_`, theo sau là tên trường. Đối với nested Object, dấu `.` trong json Object sẽ được thể hiện bằng 2 dấu gạch dưới `__`
 
 Ví dụ: nếu bạn muốn ghi đè cấu hình `paginate.default` trong json config file. Tên biến môi trường tương ứng sẽ là `MKPS_paginate__default`
 
 Các tham số cấu hình sẽ được tải lên khi service khởi chạy.
 
-***Một số cấu hình chung cho các service được chúng tôi đặt sẵn chung cho mọi service thông qua file `.envDeploy`. Các biến môi trường này đầu tiên sẽ được sử dụng cùng với file docker-compose để sinh ra file yml tạm `production-.yml`***
+**Một số cấu hình chung cho các service được chúng tôi đặt sẵn chung cho mọi service thông qua file `.envDeploy`. Các biến môi trường này đầu tiên sẽ được sử dụng cùng với file docker-compose để sinh ra file yml tạm `production-.yml`**
 
 ## Cấu hình service web
 
@@ -54,4 +54,4 @@ Một số cấu hình cho web service thông qua biến môi trường được
 
 ## Cấu hình các service khác
 
-Các service khác như [emqtt](https://docs.emqx.io/en/broker/v2.0/) [mongodb](https://hub.docker.com/_/mongo) [redis](https://hub.docker.com/_/redis) [traefik](https://doc.traefik.io/traefik/v1.7/) sử dụng cách cấu hình tương ứng theo từng service. Có thẻ tham khảo tại trang thông tin của từng service
+Các service khác như [emqtt](https://docs.emqx.io/en/broker/v2.0/), [mongodb](https://hub.docker.com/_/mongo), [redis](https://hub.docker.com/_/redis), [traefik](https://doc.traefik.io/traefik/v1.7/) sử dụng cách cấu hình tương ứng theo từng service. Có thẻ tham khảo tại trang thông tin của từng service
