@@ -37,6 +37,7 @@ module.exports = {
         'overview/security/network', 'overview/security/mqtt', 'overview/security/http'
       ]
     },
+    'overview/database_struct'
   ],
   'tutorial': [
     {
@@ -74,7 +75,7 @@ module.exports = {
       label: 'Vận hành',
       collapsible: true,
       collapsed: false,
-      items: []
+      items: ['tutorial/mantain/monitor', 'tutorial/mantain/logging', 'tutorial/mantain/database', 'tutorial/mantain/recover', 'tutorial/mantain/backup']
     },
   ]
 
