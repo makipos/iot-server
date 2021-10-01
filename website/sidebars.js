@@ -75,7 +75,7 @@ module.exports = {
       label: 'Vận hành',
       collapsible: true,
       collapsed: false,
-      items: ['tutorial/mantain/monitor', 'tutorial/mantain/logging', 'tutorial/mantain/database', 'tutorial/mantain/recover', 'tutorial/mantain/backup']
+      items: ['tutorial/mantain/monitor', 'tutorial/mantain/database', 'tutorial/mantain/security', 'tutorial/mantain/recover', 'tutorial/mantain/backup']
     },
   ]
 
