@@ -16,10 +16,6 @@ mongooseClient.Schema({
     accountkitId: {type: String, unique: true, index: true, sparse: true},
     appleId: {type: String, unique: true, index: true, sparse: true},
 
-    facebookToken: {type: String },
-    googleToken: {type: String },
-    accountkitToken: {type: String },
-
     googleAssistant: { type: Boolean, default: false },
     maikaAssistant: { type: Boolean, default: false },
 
@@ -210,7 +206,7 @@ mongooseClient.Schema({
 ```js
 Schema({
   _id : { type: Schema.Types.ObjectId, index: true, unique: true, required: true },
-  
+
   deviceId: { type: Schema.Types.ObjectId, required: true },
   productId: { type: String },
   manufacturerId: { type: Schema.Types.ObjectId },
