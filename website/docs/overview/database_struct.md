@@ -7,7 +7,7 @@
 ### Schema
 ```js
 mongooseClient.Schema({
-
+    _id : { type: Schema.Types.ObjectId, index: true, unique: true, required: true },
     username: {type: String, unique: true, required: true, index: true},
     manufacturerId: { type: Schema.Types.ObjectId, index: true, sparse: true }, //
 
@@ -46,119 +46,121 @@ mongooseClient.Schema({
 ### Schema
 ```js
 mongooseClient.Schema({
-    productId: {type: String, unique: true, index: true, required: true },
-    manufacturerId: { type: Schema.Types.ObjectId, index: true, sparse: true }, //
-    virtual: {type: Boolean, default: false},
-    roles: {type: Array, default: ['device']},
-    image: {type: String },
-    description: {type: String},
-    hardwareVersion: {type: String, default: '1'},
-    hardwareVerOfFirm: {type: String, default: '1'},
-    firmwareVersion: {type: Number, default: 1},
-    mcuFirmVer: {type: Number, default: 1},
+  _id : { type: Schema.Types.ObjectId, index: true, unique: true, required: true },
 
-    status: {type: String, default: 'OFFLINE', enum: ['OFFLINE', 'ONLINE'] },
-    statusByProtocols: { type: Schema.Types.Mixed, default: {} },
+  productId: {type: String, unique: true, index: true, required: true },
+  manufacturerId: { type: Schema.Types.ObjectId, index: true, sparse: true }, //
+  virtual: {type: Boolean, default: false},
+  roles: {type: Array, default: ['device']},
+  image: {type: String },
+  description: {type: String},
+  hardwareVersion: {type: String, default: '1'},
+  hardwareVerOfFirm: {type: String, default: '1'},
+  firmwareVersion: {type: Number, default: 1},
+  mcuFirmVer: {type: Number, default: 1},
 
-    activated: {type: Boolean, default: true},
-    systemStatus: {type: String, default: 'PLACEHOLDER', index: true, sparse: true}, // enum: ['PLACEHOLDER', 'PRODUCING', 'TESTING', 'USECASE_TESTING', 'PACKING', 'STORING', 'DISTRIBUTION', 'INUSED', 'INWILD', 'WARRANTY' ]
+  status: {type: String, default: 'OFFLINE', enum: ['OFFLINE', 'ONLINE'] },
+  statusByProtocols: { type: Schema.Types.Mixed, default: {} },
 
-    deviceTypeId: { type: Schema.Types.ObjectId, required: true, index: true },
+  activated: {type: Boolean, default: true},
+  systemStatus: {type: String, default: 'PLACEHOLDER', index: true, sparse: true}, // enum: ['PLACEHOLDER', 'PRODUCING', 'TESTING', 'USECASE_TESTING', 'PACKING', 'STORING', 'DISTRIBUTION', 'INUSED', 'INWILD', 'WARRANTY' ]
 
-    ipAddress: {type: String},
-    location: {type: geoSchema, index: '2dsphere'},
+  deviceTypeId: { type: Schema.Types.ObjectId, required: true, index: true },
 
-    propertiesValue: { type: Schema.Types.Mixed, default: {} },
+  ipAddress: {type: String},
+  location: {type: geoSchema, index: '2dsphere'},
 
-    warrantyActivationTime: { type: Date },
+  propertiesValue: { type: Schema.Types.Mixed, default: {} },
 
-    deviceTypeInfoOverride: {
-      properties: [{
-        name: {type: String, required: true },
-        unit: {type: String },
-        displayName: {type: String },
-        icon: {type: String },
-        description: {type: String},
-        propertyId: { type: Schema.Types.ObjectId }, // link to devices-properties-model
-        localId: {type: String },
-        code: {type: String},
-        unSupported: {type: Boolean},
-        systemOnly: {type: Boolean}, // this field indicate properties only use by system , not device
-        roles: [{
-          _id: false,
-          name: { type: String }, // ['admin'] ['manager'] // ['user'] ['guest']
-          forbidden: {type: Boolean, default: true},
-          permissions: {
-            writeable: {type: Boolean, default: true},
-            limit: { // only avaiable for systemOnly property
-              custom: {
-                range: [Schema.Types.Mixed]
-              }
+  warrantyActivationTime: { type: Date },
+
+  deviceTypeInfoOverride: {
+    properties: [{
+      name: {type: String, required: true },
+      unit: {type: String },
+      displayName: {type: String },
+      icon: {type: String },
+      description: {type: String},
+      propertyId: { type: Schema.Types.ObjectId }, // link to devices-properties-model
+      localId: {type: String },
+      code: {type: String},
+      unSupported: {type: Boolean},
+      systemOnly: {type: Boolean}, // this field indicate properties only use by system , not device
+      roles: [{
+        _id: false,
+        name: { type: String }, // ['admin'] ['manager'] // ['user'] ['guest']
+        forbidden: {type: Boolean, default: true},
+        permissions: {
+          writeable: {type: Boolean, default: true},
+          limit: { // only avaiable for systemOnly property
+            custom: {
+              range: [Schema.Types.Mixed]
             }
           }
-        }],
-        displayPriority: {type: Number, min: -2}, // -1: hide, 0 : no display , 1 is max, smaller is higher
-        propertyInfo: {
-          writeable: {type: Boolean},
-          methode: {type: Boolean},
-          params: [{
+        }
+      }],
+      displayPriority: {type: Number, min: -2}, // -1: hide, 0 : no display , 1 is max, smaller is higher
+      propertyInfo: {
+        writeable: {type: Boolean},
+        methode: {type: Boolean},
+        params: [{
+          _id: false,
+          name: {type: String },
+          displayName: {type: String },
+          description: {type: String},
+
+          type: {type: String, enum: [
+            'NUMBER', 'ARRAY_NUMBER', 'ARRAY_NUMBER_FIX',
+            'STRING', 'ARRAY_STRING', 'ARRAY_STRING_FIX',
+            'BOOLEAN', 'ARRAY_BOOLEAN', 'ARRAY_BOOLEAN_FIX',
+            'TIME', 'ARRAY_TIME', 'ARRAY_TIME_FIX',
+            'PHONE', 'ARRAY_PHONE', 'ARRAY_PHONE_FIX',
+            'ARRAY', 'DATE', 'COORDINATE', 'COLOR', 'IMAGE', 'MIX'
+          ] },
+          expr: {type: String }, // variable x
+          unit: {type: String },
+          defaultValue: Schema.Types.Mixed,
+
+          units: [{
             _id: false,
-            name: {type: String },
-            displayName: {type: String },
-            description: {type: String},
-
-            type: {type: String, enum: [
-              'NUMBER', 'ARRAY_NUMBER', 'ARRAY_NUMBER_FIX',
-              'STRING', 'ARRAY_STRING', 'ARRAY_STRING_FIX',
-              'BOOLEAN', 'ARRAY_BOOLEAN', 'ARRAY_BOOLEAN_FIX',
-              'TIME', 'ARRAY_TIME', 'ARRAY_TIME_FIX',
-              'PHONE', 'ARRAY_PHONE', 'ARRAY_PHONE_FIX',
-              'ARRAY', 'DATE', 'COORDINATE', 'COLOR', 'IMAGE', 'MIX'
-            ] },
             expr: {type: String }, // variable x
+            invExpr: {type: String }, // variable x
             unit: {type: String },
-            defaultValue: Schema.Types.Mixed,
-
-            units: [{
-              _id: false,
-              expr: {type: String }, // variable x
-              invExpr: {type: String }, // variable x
-              unit: {type: String },
-              icon: {type: String }
-            }],
-
-            range: [{
-              _id: false,
-              min: Schema.Types.Mixed,
-              max: Schema.Types.Mixed,
-              step: {type: Number},
-              name: {type: String },
-              value: Schema.Types.Mixed,
-              icon: {type: String }, color: {type: String },
-              valueSetting: Schema.Types.Mixed // {notify:{title:'Báo động'}}
-            }]
+            icon: {type: String }
           }],
 
-          controlPrototype: {
-            upValueMethodeId: {type: Schema.Types.ObjectId},
-            downValueMethodeId: { type: Schema.Types.ObjectId},
-            setValueMethodeId: {type: Schema.Types.ObjectId },
-          },
-        }
-      }]
-    }
+          range: [{
+            _id: false,
+            min: Schema.Types.Mixed,
+            max: Schema.Types.Mixed,
+            step: {type: Number},
+            name: {type: String },
+            value: Schema.Types.Mixed,
+            icon: {type: String }, color: {type: String },
+            valueSetting: Schema.Types.Mixed // {notify:{title:'Báo động'}}
+          }]
+        }],
 
-  }, {
-    timestamps: true,
-    minimize: false
-  })
+        controlPrototype: {
+          upValueMethodeId: {type: Schema.Types.ObjectId},
+          downValueMethodeId: { type: Schema.Types.ObjectId},
+          setValueMethodeId: {type: Schema.Types.ObjectId },
+        },
+      }
+    }]
+  }
+
+}, {
+  timestamps: true,
+  minimize: false
+})
 ```
 
 ```js
 const geoSchema = new Schema({
     _id: false,
     type: {
-      type: String, 
+      type: String,
       enum: ['Point'],
       default: 'Point'
     },
@@ -174,6 +176,8 @@ const geoSchema = new Schema({
 ### Schema
 ```js
 mongooseClient.Schema({
+  _id : { type: Schema.Types.ObjectId, index: true, unique: true, required: true },
+
   parentId: { type: Schema.Types.ObjectId, required: true},
   parentUsername: { type: String},
   parentType: { type: String, required: true},
@@ -205,6 +209,8 @@ mongooseClient.Schema({
 ### Schema
 ```js
 Schema({
+  _id : { type: Schema.Types.ObjectId, index: true, unique: true, required: true },
+  
   deviceId: { type: Schema.Types.ObjectId, required: true },
   productId: { type: String },
   manufacturerId: { type: Schema.Types.ObjectId },
@@ -222,6 +228,8 @@ Schema({
 ### Schema
 ```js
 Schema({
+  _id : { type: Schema.Types.ObjectId, index: true, unique: true, required: true },
+
   userId: { type: Schema.Types.ObjectId, required: true, index: true },
   username: { type: String },
   manufacturerId: { type: Schema.Types.ObjectId },
@@ -237,6 +245,8 @@ Schema({
 ### Schema
 ```js
 Schema({
+  _id : { type: Schema.Types.ObjectId, index: true, unique: true, required: true },
+
   name: { type: String, unique: true, required: true, index: true },
   permissions: [{
     url: { type: String },
