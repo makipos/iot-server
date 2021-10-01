@@ -3,6 +3,7 @@
 ---
 
 ## Phân trang
+`users-service` `devices-service` `relations-service` `automatic-service` `update-service` `files-service`
 
 Định nghĩa cấu hình phân trang các api tìm kiếm `find`
 ```
@@ -16,6 +17,7 @@
 - `max` : giới hạn trang lớn nhất người dùng có thể tùy chỉnh thông qua param `$limit` trong truy vấn
 
 ## Log
+`users-service` `devices-service` `relations-service` `automatic-service` `update-service` `files-service`
 
 ```
 "log2Console": true,
@@ -28,10 +30,13 @@
 - `logPath`: Folder chứa file log trong quá trình hoạt động (đường dẫn trong container)
 
 ## net_interface
+`users-service` `devices-service` `relations-service` `automatic-service` `update-service` `files-service`
 
 **Không sử dụng**. Chỉ thay đổi khi chạy trực tiếp trên máy
 
 ## private_network
+
+`users-service` `devices-service` `relations-service` `automatic-service` `update-service` `files-service`
 
 ```
 "private_network": {
@@ -54,11 +59,49 @@
 - `rule`   : giới hạn số lượng luật tự động có thể tạo của mỗi user `automatic-service`
 
 ## Firebase notify
+`users-service`
+
+```
+"firebase": {
+  "serviceAccountKey": "",
+  "databaseURL": ""
+}
+```
 
 ## Liên kết google assitant
+`users-service` `devices-service` `relations-service`
+
+```
+"googleApikey": "",
+"googleClientId": "",
+"googleClientSecret": "",
+```
 
 ## Liên kết maika assistant
+`users-service` `devices-service` `relations-service`
+
+```
+"maikaClientId":"",
+"maikaClientSecret":"",
+"maikaHomeGraphKey":"",
+"maikaHomeGraphUrl":"https://staging.actions-api.iviet.com/v1/devices",
+```
 
 ## Open weather map api
+`users-service`
+
+```
+"openweatherapiKey": "",
+```
 
 ## Slack notify
+`users-service` `devices-service` `relations-service` `automatic-service` `update-service` `files-service`
+
+Cấu hình slack notify để thông báo trạng thái hoạt động của service qua kênh slack. Thông báo lỗi, thông báo khởi động
+
+```
+"slack":{
+  "token":"",
+  "conversationId":""
+},
+```
