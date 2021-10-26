@@ -23,7 +23,7 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 5s
+      timeout: 3s
       retries: 2
       start_period: 5s
     labels:
@@ -71,7 +71,7 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 5s
+      timeout: 3s
       retries: 2
       start_period: 5s
     labels:
@@ -122,7 +122,7 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 5s
+      timeout: 3s
       retries: 2
       start_period: 5s
     labels:
@@ -168,7 +168,7 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 5s
+      timeout: 3s
       retries: 2
       start_period: 5s
     labels:
@@ -216,7 +216,7 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 5s
+      timeout: 3s
       retries: 2
       start_period: 5s
     labels:
@@ -266,7 +266,7 @@ services:
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
-      timeout: 5s
+      timeout: 3s
       retries: 2
       start_period: 5s
     labels:
