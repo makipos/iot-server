@@ -34,7 +34,7 @@
   },
   "redisCache": {
     "url": "redis://redis-cache:6379",
-    "defaultDuration": 86400,
+    "defaultDuration": 172800,
     "parseNestedRoutes": false,
     "removePathFromCacheKey": false
   },
