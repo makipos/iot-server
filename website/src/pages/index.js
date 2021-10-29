@@ -17,8 +17,13 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg margin-right--lg"
+            to="https://https://makipos.com//">
+            Makipos
+          </Link>
+          <Link
+            className="button button--secondary button--lg margin-right--lg"
             to="https://makihome.vn/">
-            Website
+            Makihome
           </Link>
           <Link
             className="button button--secondary button--lg"
