@@ -28,11 +28,20 @@ services:
       start_period: 5s
     labels:
       - "traefik.port=3030"
-      - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation"
+      - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation,/languages"
       - "traefik.root.frontend.rule=PathPrefixStrip:/users-service"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
       - "MKPS_server_address=http://${SERVICE_DOMAIN}:3028"
+
+      - "traefik.http.services.user.loadbalancer.server.port=3030"
+      - "traefik.http.routers.user.rule=PathPrefix(`/users`,`/commercial-validation`,`/mqtt/auth`,`/languages`)"
+      - "traefik.http.routers.userroot.rule=PathPrefix(`/users-service`)"
+      - "traefik.http.routers.userroot.middlewares=userstripprefix"
+      - "traefik.http.middlewares.userstripprefix.stripprefix.prefixes=/users-service"
+      - "traefik.http.routers.userroot.priority=1000"
+      - "traefik.http.services.user.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.user.loadbalancer.sticky.cookie=true"
     deploy:
       replicas: 2
       resources:
@@ -40,11 +49,21 @@ services:
           memory: 1000M
       labels:
         - "traefik.port=3030"
-        - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation"
+        - "traefik.user.frontend.rule=PathPrefix:/users,/commercial-validation,/languages"
         - "traefik.root.frontend.rule=PathPrefixStrip:/users-service"
         - "traefik.backend.healthcheck.path=/health"
         - "traefik.backend.loadbalancer.stickiness=true"
         - "MKPS_server_address=http://${SERVICE_DOMAIN}:3028"
+
+        - "traefik.http.services.user.loadbalancer.server.port=3030"
+        - "traefik.http.routers.user.rule=PathPrefix(`/users`,`/commercial-validation`,`/mqtt/auth`,`/languages`)"
+        - "traefik.http.routers.userroot.rule=PathPrefix(`/users-service`)"
+        - "traefik.http.routers.userroot.middlewares=userstripprefix"
+        - "traefik.http.middlewares.userstripprefix.stripprefix.prefixes=/users-service"
+        - "traefik.http.routers.userroot.priority=1000"
+        - "traefik.http.services.user.loadbalancer.healthcheck.path=/health"
+        - "traefik.http.services.user.loadbalancer.sticky.cookie=true"
+
     # depends_on:
     #   - redis
     #   - mongodb
@@ -81,6 +100,15 @@ services:
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
       - "MKPS_server_address=http://${SERVICE_DOMAIN}:3028"
+
+      - "traefik.http.services.device.loadbalancer.server.port=3030"
+      - "traefik.http.routers.device.rule=PathPrefix(`/devices`)"
+      - "traefik.http.routers.deviceroot.rule=PathPrefix(`/devices-service`)"
+      - "traefik.http.routers.deviceroot.middlewares=devicestripprefix"
+      - "traefik.http.middlewares.devicestripprefix.stripprefix.prefixes=/devices-service"
+      - "traefik.http.routers.deviceroot.priority=1000"
+      - "traefik.http.services.device.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.device.loadbalancer.sticky.cookie=true"
     deploy:
       replicas: 2
       resources:
@@ -93,6 +121,16 @@ services:
         - "traefik.backend.healthcheck.path=/health"
         - "traefik.backend.loadbalancer.stickiness=true"
         - "MKPS_server_address=http://${SERVICE_DOMAIN}:3028"
+
+        - "traefik.http.services.device.loadbalancer.server.port=3030"
+        - "traefik.http.routers.device.rule=PathPrefix(`/devices`)"
+        - "traefik.http.routers.deviceroot.rule=PathPrefix(`/devices-service`)"
+        - "traefik.http.routers.deviceroot.middlewares=devicestripprefix"
+        - "traefik.http.middlewares.devicestripprefix.stripprefix.prefixes=/devices-service"
+        - "traefik.http.routers.deviceroot.priority=1000"
+        - "traefik.http.services.device.loadbalancer.healthcheck.path=/health"
+        - "traefik.http.services.device.loadbalancer.sticky.cookie=true"
+
       # placement:
       #   constraints:
       #     - node.hostname == ${STORE_NODE}
@@ -131,6 +169,15 @@ services:
       - "traefik.root.frontend.rule=PathPrefixStrip:/relations-service"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
+
+      - "traefik.http.services.relation.loadbalancer.server.port=3030"
+      - "traefik.http.routers.relation.rule=PathPrefix(`/relations`)"
+      - "traefik.http.routers.relationroot.rule=PathPrefix(`/relations-service`)"
+      - "traefik.http.routers.relationroot.middlewares=relationstripprefix"
+      - "traefik.http.middlewares.relationstripprefix.stripprefix.prefixes=/relations-service"
+      - "traefik.http.routers.relationroot.priority=1000"
+      - "traefik.http.services.relation.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.relation.loadbalancer.sticky.cookie=true"
     deploy:
       replicas: 2
       resources:
@@ -142,6 +189,15 @@ services:
         - "traefik.root.frontend.rule=PathPrefixStrip:/relations-service"
         - "traefik.backend.healthcheck.path=/health"
         - "traefik.backend.loadbalancer.stickiness=true"
+
+        - "traefik.http.services.relation.loadbalancer.server.port=3030"
+        - "traefik.http.routers.relation.rule=PathPrefix(`/relations`)"
+        - "traefik.http.routers.relationroot.rule=PathPrefix(`/relations-service`)"
+        - "traefik.http.routers.relationroot.middlewares=relationstripprefix"
+        - "traefik.http.middlewares.relationstripprefix.stripprefix.prefixes=/relations-service"
+        - "traefik.http.routers.relationroot.priority=1000"
+        - "traefik.http.services.relation.loadbalancer.healthcheck.path=/health"
+        - "traefik.http.services.relation.loadbalancer.sticky.cookie=true"
     # depends_on:
     #   - users-service
     #   - devices-service
@@ -177,6 +233,15 @@ services:
       - "traefik.root.frontend.rule=PathPrefixStrip:/automatic-service"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
+
+      - "traefik.http.services.automatic.loadbalancer.server.port=3030"
+      - "traefik.http.routers.automatic.rule=PathPrefix(`/automatic`)"
+      - "traefik.http.routers.automaticroot.rule=PathPrefix(`/automatic-service`)"
+      - "traefik.http.routers.automaticroot.middlewares=automaticstripprefix"
+      - "traefik.http.middlewares.automaticstripprefix.stripprefix.prefixes=/automatic-service"
+      - "traefik.http.routers.automaticroot.priority=1000"
+      - "traefik.http.services.automatic.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.automatic.loadbalancer.sticky.cookie=true"
     deploy:
       replicas: 2
       resources:
@@ -188,6 +253,16 @@ services:
         - "traefik.root.frontend.rule=PathPrefixStrip:/automatic-service"
         - "traefik.backend.healthcheck.path=/health"
         - "traefik.backend.loadbalancer.stickiness=true"
+
+        - "traefik.http.services.automatic.loadbalancer.server.port=3030"
+        - "traefik.http.routers.automatic.rule=PathPrefix(`/automatic`)"
+        - "traefik.http.routers.automaticroot.rule=PathPrefix(`/automatic-service`)"
+        - "traefik.http.routers.automaticroot.middlewares=automaticstripprefix"
+        - "traefik.http.middlewares.automaticstripprefix.stripprefix.prefixes=/automatic-service"
+        - "traefik.http.routers.automaticroot.priority=1000"
+        - "traefik.http.services.automatic.loadbalancer.healthcheck.path=/health"
+        - "traefik.http.services.automatic.loadbalancer.sticky.cookie=true"
+
     # depends_on:
     #   - users-service
     #   - devices-service
@@ -225,6 +300,15 @@ services:
       - "traefik.root.frontend.rule=PathPrefixStrip:/update-service"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
+
+      - "traefik.http.services.update.loadbalancer.server.port=3030"
+      - "traefik.http.routers.update.rule=PathPrefix(`/update`)"
+      - "traefik.http.routers.updateroot.rule=PathPrefix(`/update-service`)"
+      - "traefik.http.routers.updateroot.middlewares=updatestripprefix"
+      - "traefik.http.middlewares.updatestripprefix.stripprefix.prefixes=/update-service"
+      - "traefik.http.routers.updateroot.priority=1000"
+      - "traefik.http.services.update.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.update.loadbalancer.sticky.cookie=true"
     deploy:
       replicas: 1
       resources:
@@ -236,6 +320,16 @@ services:
         - "traefik.root.frontend.rule=PathPrefixStrip:/update-service"
         - "traefik.backend.healthcheck.path=/health"
         - "traefik.backend.loadbalancer.stickiness=true"
+
+        - "traefik.http.services.update.loadbalancer.server.port=3030"
+        - "traefik.http.routers.update.rule=PathPrefix(`/update`)"
+        - "traefik.http.routers.updateroot.rule=PathPrefix(`/update-service`)"
+        - "traefik.http.routers.updateroot.middlewares=updatestripprefix"
+        - "traefik.http.middlewares.updatestripprefix.stripprefix.prefixes=/update-service"
+        - "traefik.http.routers.updateroot.priority=1000"
+        - "traefik.http.services.update.loadbalancer.healthcheck.path=/health"
+        - "traefik.http.services.update.loadbalancer.sticky.cookie=true"
+
       # placement:
       #   constraints:
       #     - node.hostname == ${STORE_NODE}
@@ -275,6 +369,15 @@ services:
       - "traefik.root.frontend.rule=PathPrefixStrip:/files-service"
       - "traefik.backend.healthcheck.path=/health"
       - "traefik.backend.loadbalancer.stickiness=true"
+
+      - "traefik.http.services.files.loadbalancer.server.port=3030"
+      - "traefik.http.routers.files.rule=PathPrefix(`/files`,`/devices-image-static`)"
+      - "traefik.http.routers.filesroot.rule=PathPrefix(`/files-service`)"
+      - "traefik.http.routers.filesroot.middlewares=filesstripprefix"
+      - "traefik.http.middlewares.filesstripprefix.stripprefix.prefixes=/files-service"
+      - "traefik.http.routers.filesroot.priority=1000"
+      - "traefik.http.services.files.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.files.loadbalancer.sticky.cookie=true"
     deploy:
       replicas: 1
       resources:
@@ -286,6 +389,16 @@ services:
         - "traefik.root.frontend.rule=PathPrefixStrip:/files-service"
         - "traefik.backend.healthcheck.path=/health"
         - "traefik.backend.loadbalancer.stickiness=true"
+
+        - "traefik.http.services.files.loadbalancer.server.port=3030"
+        - "traefik.http.routers.files.rule=PathPrefix(`/files`,`/devices-image-static`)"
+        - "traefik.http.routers.filesroot.rule=PathPrefix(`/files-service`)"
+        - "traefik.http.routers.filesroot.middlewares=filesstripprefix"
+        - "traefik.http.middlewares.filesstripprefix.stripprefix.prefixes=/files-service"
+        - "traefik.http.routers.filesroot.priority=1000"
+        - "traefik.http.services.files.loadbalancer.healthcheck.path=/health"
+        - "traefik.http.services.files.loadbalancer.sticky.cookie=true"
+        
       # placement:
       #   constraints:
       #     - node.hostname == ${STORE_NODE}
@@ -294,6 +407,61 @@ services:
     #   - devices-service
       # - redis
       # - mongodb
+
+  active-connection-service:
+    image: makipos/active-connection-service:${ACTIVE_CONNECTION_VERSION}
+    container_name: makiposiot-active-connection-service
+    restart: always
+    networks:
+      - vpc
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - ${CONFIG_PATH}/active-connection-service/config:/usr/src/app/config
+    environment:
+      - NODE_ENV=productionpkg
+      - MKPS_emqtt_server__password=${MKPS_SERVICE_PASS}
+    healthcheck:
+      test: curl -f http://localhost:3030/health || exit 1
+      interval: 30s
+      timeout: 3s
+      retries: 2
+      start_period: 5s
+    labels:
+      - "traefik.port=3030"
+      - "traefik.connection.frontend.rule=PathPrefix:/active-connection"
+      - "traefik.backend.healthcheck.path=/health"
+      - "traefik.backend.loadbalancer.stickiness=true"
+
+      - "traefik.http.services.active-connection.loadbalancer.server.port=3030"
+      - "traefik.http.routers.active-connection.rule=PathPrefix(`/active-connection`)"
+      - "traefik.http.routers.active-connectionroot.rule=PathPrefix(`/active-connection-service`)"
+      - "traefik.http.routers.active-connectionroot.middlewares=active-connectionstripprefix"
+      - "traefik.http.middlewares.active-connectionstripprefix.stripprefix.prefixes=/active-connection-service"
+      - "traefik.http.routers.active-connectionroot.priority=1000"
+      - "traefik.http.services.active-connection.loadbalancer.healthcheck.path=/health"
+      - "traefik.http.services.active-connection.loadbalancer.sticky.cookie=true"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 1024M
+      labels:
+        - "traefik.port=3030"
+        - "traefik.connection.frontend.rule=PathPrefix:/active-connection"
+        - "traefik.backend.healthcheck.path=/health"
+        - "traefik.backend.loadbalancer.stickiness=true"
+
+        - "traefik.http.services.active-connection.loadbalancer.server.port=3030"
+        - "traefik.http.routers.active-connection.rule=PathPrefix(`/active-connection`)"
+        - "traefik.http.routers.active-connectionroot.rule=PathPrefix(`/active-connection-service`)"
+        - "traefik.http.routers.active-connectionroot.middlewares=active-connectionstripprefix"
+        - "traefik.http.middlewares.active-connectionstripprefix.stripprefix.prefixes=/active-connection-service"
+        - "traefik.http.routers.active-connectionroot.priority=1000"
+        - "traefik.http.services.active-connection.loadbalancer.healthcheck.path=/health"
+        - "traefik.http.services.active-connection.loadbalancer.sticky.cookie=true"
+    depends_on:
+      - devices-service
 
 networks:
   vpc:
