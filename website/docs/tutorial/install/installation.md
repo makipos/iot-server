@@ -90,7 +90,8 @@ MKPS_SERVICE_PASS=REPLACE_ME
 ### 10. Tunning system
 
 1. Copy dữ liệu trong file `config/sysctl.conf` vào cuối file `/etc/sysctl.conf` của hệ điều hành
-2. Copy dữ liệu trong file `config/rc.local` vào file `/etc/rc.local` của hệ điều hành (ghi đè dòng `exit 0`)
+2. Copy dữ liệu trong file `config/rc.local` vào file `/etc/rc.local` của hệ điều hành (ghi đè dòng `exit 0`) . \
+  Đối với ubuntu 20 (systemd) Sử dụng hướng dẫn sau https://docs.mongodb.com/manual/tutorial/transparent-huge-pages/
 3. Chạy lệnh `sysctl -p` để reload lại cấu hình vừa cập nhật trong file hệ thống
 
 ### 11. Deploy các service
