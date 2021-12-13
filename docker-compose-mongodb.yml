@@ -2,7 +2,7 @@ version: '3.4'
 services:
 
   mongodb:
-    image: mongo:4.0
+    image: mongo:4.4
     container_name: makiposiot-mongodb-server
     restart: always
     networks:
