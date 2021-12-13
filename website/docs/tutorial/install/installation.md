@@ -119,6 +119,7 @@ wuag6rcjtcem   makiposiot-traefik_traefik              replicated   1/1        t
 
 ### 12. Nhập dữ liệu khởi tạo cho db
 
+Đợi serivce ssh và mongodb online \
 Bạn thay đổi mật khẩu khởi tạo của admin trong file `script/mongoshellcommand.js`.
 Trường `password` là mã hóa SHA256 của `plainPassword`. ([sha256 encode online](https://emn178.github.io/online-tools/sha256.html))
 ```
@@ -139,6 +140,12 @@ Chạy lệnh sau để insert dữ liệu tài khoản admin ban đầu vào da
 
 ```shell
 ./script/prepairdb.bash
+```
+
+Khởi động lại service `automatic-service`
+
+```shell
+docker service update --force makiposiot-services_automatic-service
 ```
 
 ### 13. Tắt service ssh để tránh truy cập trái phép vào mạng nội bộ
