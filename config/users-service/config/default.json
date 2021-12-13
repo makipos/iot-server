@@ -55,6 +55,11 @@
     "serviceAccountKey": "",
     "databaseURL": ""
   },
+  "fpt":{
+    "clientId":"",
+    "clientSecret":"",
+    "brandName":""
+  },
   "googleApikey": "",
   "googleClientId": "",
   "googleClientSecret": "",
@@ -67,10 +72,6 @@
   "maikaHomeGraphUrl":"https://staging.actions-api.iviet.com/v1/devices",
   "openweatherapiKey": "",
   "ipstackKey": "",
-  "slack":{
-    "token":"",
-    "conversationId":""
-  },
   "authentication": {
     "secret": "",
     "strategies": [
@@ -80,7 +81,8 @@
       "google",
       "facebook-token",
       "google-token",
-      "apple-idtoken"
+      "apple-idtoken",
+      "phone"
     ],
     "path": "/users/authentication",
     "service": "users",
@@ -106,6 +108,12 @@
       "entity": "user",
       "usernameField": "username",
       "passwordField": "password"
+    },
+    "phone":{
+      "entity": "user",
+      "addressField": "phoneNumber",
+      "otpField": "access_token",
+      "maxAttemptPer30Min": 5
     },
     "facebook-token":{
       "clientID":"",
