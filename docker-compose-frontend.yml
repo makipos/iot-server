@@ -24,6 +24,11 @@ services:
       - "traefik.port=80"
       - "traefik.root.frontend.rule=Host:${WEB_DOMAIN}"
       - "traefik.frontend.entryPoints=httpfront"
+
+      - "traefik.http.services.admin.loadbalancer.server.port=80"
+      - "traefik.http.routers.admin.entrypoints=httpfront,httpsfront"
+      - "traefik.http.routers.admin.rule=Host(`${WEB_DOMAIN}`)"
+      
     deploy:
       replicas: 1
       resources:
@@ -34,6 +39,9 @@ services:
         - "traefik.root.frontend.rule=Host:${WEB_DOMAIN}"
         - "traefik.frontend.entryPoints=httpfront"
 
+        - "traefik.http.services.admin.loadbalancer.server.port=80"
+        - "traefik.http.routers.admin.entrypoints=httpfront,httpsfront"
+        - "traefik.http.routers.admin.rule=Host(`${WEB_DOMAIN}`)"
 
 networks:
   makiposiot-frontend:

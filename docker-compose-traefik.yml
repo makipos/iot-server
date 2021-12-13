@@ -2,9 +2,8 @@ version: '3.4'
 services:
 
   traefik:
-    image: traefik:1.7
+    image: traefik:2.5
     container_name: makiposiot-traefik-server
-    command: --web --api --docker --docker.swarmmode
     restart: always
     sysctls:
       - net.core.somaxconn=32768
