@@ -1,6 +1,8 @@
 show dbs;
 use makiposiot;
 show collections;
+
+/////////// admin account
 var myCursor = db.users.find({"username" : "admin"});
 var documentArray = myCursor.toArray();
 if(documentArray.length === 0){
@@ -16,10 +18,13 @@ if(documentArray.length === 0){
      "googleAssistant" : false
    });
 }
+
+////////////////// role
+
 db.usersroles.deleteOne({"name" : "admin"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c794aa8334c194b1a656c"),
-    "updatedAt" : ISODate("2021-07-05T15:52:19.366+07:00"),
+    "updatedAt" : ISODate("2021-11-09T12:03:43.378+07:00"),
     "createdAt" : ISODate("2019-01-02T10:05:46.553+07:00"),
     "name" : "admin",
     "permissions" : [
@@ -165,6 +170,22 @@ db.usersroles.insert({
         },
         {
             "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : [],
+                "apiOptions" : {
+                    "allowResetPassword" : true
+                }
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("618a012f72b28d87748de7e6"),
+            "url" : "users",
+            "method" : "patch"
+        },
+        {
+            "limit" : {
                 "skipPostRestrict" : true,
                 "custom" : [],
                 "restrict" : [],
@@ -182,7 +203,7 @@ db.usersroles.insert({
 db.usersroles.deleteOne({"name" : "device"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c79a7a8334c194b1a6648"),
-    "updatedAt" : ISODate("2021-06-22T14:26:25.286+07:00"),
+    "updatedAt" : ISODate("2021-10-26T16:25:08.831+07:00"),
     "createdAt" : ISODate("2019-01-02T10:15:28.317+07:00"),
     "name" : "device",
     "permissions" : [
@@ -194,7 +215,8 @@ db.usersroles.insert({
                 "whiteList" : [
                     {
                         "idValue" : [
-                            "5ca310342afab500063c7c72"
+                            "5ca310342afab500063c7c72",
+                            "5fe45b3a76df1a80fc22574c"
                         ],
                         "entity" : "user",
                         "idField" : "deviceTypeId"
@@ -1273,3 +1295,1282 @@ db.usersroles.insert({
     ],
     "__v" : 0
 })
+db.usersroles.deleteOne({"name" : "adminPartner"});
+db.usersroles.insert({
+    "_id" : ObjectId("5c2c782ca8334c194b1a6234"),
+    "updatedAt" : ISODate("2021-11-18T23:05:00.944+07:00"),
+    "createdAt" : ISODate("2019-01-02T10:01:32.073+07:00"),
+    "name" : "adminPartner",
+    "permissions" : [
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : true,
+            "_id" : ObjectId("604724f63b1946900c948748"),
+            "url" : "all",
+            "method" : "update"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : true,
+            "_id" : ObjectId("604725140b2fc81939547bc5"),
+            "url" : "devices",
+            "method" : "remove"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : true,
+            "_id" : ObjectId("6051920e54346e0755af6b1e"),
+            "url" : "users",
+            "method" : "remove"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : true,
+            "_id" : ObjectId("619679ac7234a7717f7d1996"),
+            "url" : "devices",
+            "method" : "create"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : true,
+            "_id" : ObjectId("619679ac7234a7a36f7d1997"),
+            "url" : "devices-types",
+            "method" : "create"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : true,
+            "_id" : ObjectId("619679ac7234a757df7d1998"),
+            "url" : "devices-properties",
+            "method" : "create"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : true,
+                "custom" : [
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "manufacturerId"
+                        },
+                        "field" : "manufacturerId"
+                    },
+                    {
+                        "range" : [],
+                        "force" : {
+                            "clear" : true
+                        },
+                        "field" : "roles"
+                    }
+                ],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "whiteList" : [],
+                "blackList" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5c735419e3a1190006e07730"),
+            "method" : "all",
+            "url" : "devices"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "custom" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "whiteList" : [],
+                "blackList" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5c735419e3a1190006e0772f"),
+            "method" : "patch",
+            "url" : "devices-properties-update"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "custom" : [],
+                "restrict" : [],
+                "whiteList" : [],
+                "blackList" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5c735419e3a1190006e0772e"),
+            "method" : "find",
+            "url" : "devices-types"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "custom" : [],
+                "restrict" : [],
+                "whiteList" : [],
+                "blackList" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5c735419e3a1190006e0772d"),
+            "method" : "get",
+            "url" : "devices-types"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : [
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "manufacturerId"
+                        },
+                        "field" : "manufacturerId"
+                    }
+                ]
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5daaca4cb4a238a6e521b84d"),
+            "url" : "devices-types",
+            "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "custom" : [],
+                "restrict" : [],
+                "whiteList" : [],
+                "blackList" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5c735419e3a1190006e07728"),
+            "method" : "find",
+            "url" : "devices-properties"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "custom" : [],
+                "restrict" : [],
+                "whiteList" : [],
+                "blackList" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5c735419e3a1190006e07727"),
+            "method" : "get",
+            "url" : "devices-properties"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : [
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "manufacturerId"
+                        },
+                        "field" : "manufacturerId"
+                    }
+                ]
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5daacaabb4a2385b2b21b86d"),
+            "url" : "devices-properties",
+            "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : true,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5dbabb7a7277762954e70396"),
+            "url" : "devices-events",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "custom" : [
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "manufacturerId"
+                        },
+                        "field" : "manufacturerId"
+                    },
+                    {
+                        "range" : [
+                            "user",
+                            "adminPartner",
+                            "tester",
+                            "department",
+                            "cskh",
+                            "agent"
+                        ],
+                        "field" : "roles"
+                    }
+                ],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "whiteList" : [],
+                "blackList" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5c735419e3a1190006e07720"),
+            "method" : "all",
+            "url" : "users"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5d9ff1258ca24d000690ac22"),
+            "url" : "devices-qc",
+            "method" : "get"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5d9ff1258ca24d000690ac20"),
+            "url" : "devices-qc",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : [
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "_id"
+                        },
+                        "field" : "author"
+                    },
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "manufacturerId"
+                        },
+                        "field" : "manufacturerId"
+                    }
+                ]
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5da18fa180189a3b41e31681"),
+            "url" : "update-sln",
+            "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : [
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "_id"
+                        },
+                        "field" : "author"
+                    },
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "manufacturerId"
+                        },
+                        "field" : "manufacturerId"
+                    }
+                ]
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5da18fa180189a0716e31680"),
+            "url" : "update-sln-properties",
+            "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5f572b567d1aacee17ca268a"),
+            "url" : "users-clients",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5f572b567d1aac50a3ca268b"),
+            "url" : "users-clients",
+            "method" : "get"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "idValue" : {
+                            "_$in" : [
+                                "user",
+                                "adminPartner",
+                                "tester",
+                                "department",
+                                "cskh",
+                                "agent"
+                            ]
+                        },
+                        "ownerField" : "name"
+                    },
+                    {
+                        "idValue" : [
+                            "_id",
+                            "name",
+                            "permissions"
+                        ],
+                        "ownerField" : "$select"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5f7fdbe429c5063654aeccf2"),
+            "url" : "users-roles",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : [
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "_id"
+                        },
+                        "field" : "author"
+                    },
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "manufacturerId"
+                        },
+                        "field" : "manufacturerId"
+                    }
+                ]
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5f8d433068dbb479bb76cdb6"),
+            "url" : "update-device",
+            "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5f916f8fe9a225591097aa9f"),
+            "url" : "users-feedbacks",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "_id"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("605e8bac94966dc4f13e79a5"),
+            "url" : "devices-manufacturers",
+            "method" : "find"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "_id"
+                    },
+                    {
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "__id__"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("605e8c5b60f8864061ed6650"),
+            "url" : "devices-manufacturers",
+            "method" : "get"
+        }
+    ],
+    "__v" : 0
+})
+
+
+////////////////// automatic
+
+var myCursor = db.automaticplugins.find({"_id" : ObjectId("5ad95d2d58a16800066e1637")});
+var documentArray = myCursor.toArray();
+if(documentArray.length === 0){
+  db.automaticplugins.insert({
+    "_id" : ObjectId("5ad95d2d58a16800066e1637"),
+    "name" : "Thiết bị makipos",
+    "description" : "Plugin for makipos device",
+    "createdAt" : ISODate("2018-04-20T10:23:25.880+07:00"),
+    "updatedAt" : ISODate("2021-02-26T14:55:54.802+07:00"),
+    "__v" : 0,
+    "active" : true
+  });
+}
+
+db.automaticconditions.remove({})
+db.automaticconditions.insertMany([{
+    "_id" : ObjectId("5ad95d4958a16800066e1638"),
+    "protocol" : "REST",
+    "method" : "GET",
+    "dataFormat" : "application/json",
+    "name" : "Điều kiện giá trị",
+    "description" : "Trạng thái hoạt động, thông số của thiết bị",
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "url" : "http://automatic-service:3030/automatic-property-condition",
+    "params" : [
+        {
+            "field" : "HEADER",
+            "_id" : ObjectId("5ad95d4958a16800066e164a"),
+            "name" : "Authorization",
+            "displayName" : "",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5ad95d4958a16800066e1649"),
+            "name" : "deviceId",
+            "displayName" : "Id thiết bị",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5ad95d4958a16800066e1646"),
+            "name" : "localId",
+            "displayName" : "mã nội bộ",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5ad95d4958a16800066e1648"),
+            "name" : "propertyName",
+            "displayName" : "tên thuộc tính",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5ad95d4958a16800066e1647"),
+            "name" : "propertyCode",
+            "displayName" : "mã thuộc tính",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5ad95d4958a16800066e163b"),
+            "name" : "type",
+            "displayName" : "Giá trị",
+            "description" : "",
+            "type" : "STRING",
+            "range" : [
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5ad95d4958a16800066e163d"),
+                    "name" : "bằng",
+                    "value" : "=="
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5ad95d4958a16800066e163c"),
+                    "name" : "khác",
+                    "value" : "!="
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5ad95d4958a16800066e1645"),
+                    "name" : "trong khoảng",
+                    "value" : "ine"
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5ad95d4958a16800066e1644"),
+                    "name" : "ngoài khoảng",
+                    "value" : "out"
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5ad95d4958a16800066e1641"),
+                    "name" : "lớn hơn",
+                    "value" : ">"
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5ad95d4958a16800066e1640"),
+                    "name" : "lớn hơn hoặc bằng",
+                    "value" : ">="
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5ad95d4958a16800066e163f"),
+                    "name" : "nhỏ hơn",
+                    "value" : "<"
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5ad95d4958a16800066e163e"),
+                    "name" : "nhỏ hơn hoặc bằng",
+                    "value" : "<="
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5e65c0a27ccd67cd64ef1b7d"),
+                    "name" : "bất kỳ",
+                    "value" : "any"
+                }
+            ]
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5ad95d4958a16800066e163a"),
+            "name" : "minValue",
+            "displayName" : "gía trị (hoặc ngưỡng dưới)",
+            "description" : "",
+            "type" : "MIX",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5ad95d4958a16800066e1639"),
+            "name" : "maxValue",
+            "displayName" : "Ngưỡng trên",
+            "description" : "",
+            "type" : "MIX",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5ef98f28d3407517e504442a"),
+            "name" : "passive",
+            "displayName" : "Là điều kiện phụ ?",
+            "description" : "",
+            "type" : "BOOL",
+            "defaultValue" : false,
+            "range" : []
+        }
+    ],
+    "createdAt" : ISODate("2018-04-20T10:23:53.089+07:00"),
+    "updatedAt" : ISODate("2021-07-12T13:40:42.403+07:00"),
+    "__v" : 0,
+    "active" : true,
+    "displayName" : "Trạng thái thiết bị"
+},{
+    "_id" : ObjectId("5b0cbed913b7d400077e7947"),
+    "protocol" : "REST",
+    "method" : "GET",
+    "dataFormat" : "application/json",
+    "name" : "Trạng thái kết nối",
+    "description" : "Trạng thái kết nối, mất kết nối của thiết bị",
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "url" : "http://automatic-service:3030/automatic-status-device-condition",
+    "params" : [
+        {
+            "field" : "HEADER",
+            "_id" : ObjectId("5b0cbed913b7d400077e794d"),
+            "name" : "Authorization",
+            "displayName" : "",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5b0cbed913b7d400077e794c"),
+            "name" : "deviceId",
+            "displayName" : "Id thiết bị",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5b0cbed913b7d400077e7949"),
+            "name" : "status",
+            "displayName" : "trạng thái",
+            "description" : "",
+            "type" : "STRING",
+            "range" : [
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5b0cbed913b7d400077e794b"),
+                    "name" : "kết nối",
+                    "value" : "CONNECTED"
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5b0cbed913b7d400077e794a"),
+                    "name" : "mất kết nối",
+                    "value" : "DISCONNECTED"
+                }
+            ]
+        }
+    ],
+    "createdAt" : ISODate("2018-05-29T09:45:45.968+07:00"),
+    "updatedAt" : ISODate("2020-08-11T15:30:01.859+07:00"),
+    "__v" : 0,
+    "active" : true,
+    "displayName" : "Trạng thái kết nối (Online/Offline)"
+},{
+    "_id" : ObjectId("5b0cd0d113b7d400077e7955"),
+    "protocol" : "REST",
+    "method" : "GET",
+    "dataFormat" : "application/json",
+    "name" : "Cảnh báo nhắc lại",
+    "description" : "Hỗ trợ khả năng nhắc lại hành động theo chu kỳ khi thỏa mãn điều kiện",
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "url" : "http://automatic-service:3030/automatic-period-condition",
+    "params" : [
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5b0cd0d113b7d400077e7956"),
+            "name" : "repeatPeriod",
+            "displayName" : "chu ky lap lai thong bao",
+            "description" : "",
+            "type" : "NUMBER",
+            "range" : [],
+            "unit" : "*30s"
+        }
+    ],
+    "createdAt" : ISODate("2018-05-29T11:02:25.020+07:00"),
+    "updatedAt" : ISODate("2020-07-27T16:44:20.251+07:00"),
+    "__v" : 0,
+    "active" : false
+},{
+    "_id" : ObjectId("5d19836e825f700006279d9e"),
+    "protocol" : "REST",
+    "method" : "GET",
+    "dataFormat" : "JSON",
+    "name" : "Trạng thái kết nối mạng của điện thoại",
+    "description" : "Sự kiện dựa trên trạng thái kết nối mạng của điện thoại (CHỈ DÀNH CHO ANDROID)",
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "url" : "http://automatic-service:3030/automatic-user-client-connectivity-condition",
+    "params" : [
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5e8af939e0efbfc66d4163cc"),
+            "name" : "userId",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5d1984eca9d460000618d552"),
+            "name" : "clientId",
+            "displayName" : "mã thiết bị",
+            "description" : "Mã thiết bị (điện thoại) của người dùng",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5d1b3009fddb770008e53b74"),
+            "name" : "type",
+            "displayName" : "Loại",
+            "description" : " ",
+            "type" : "STRING",
+            "range" : [
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5d1b3009fddb770008e53b76"),
+                    "name" : "Kết nối mạng",
+                    "value" : "=="
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5d1b3009fddb770008e53b75"),
+                    "name" : "Kết nối mạng khác",
+                    "value" : "!="
+                }
+            ]
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5d1984eca9d460000618d54f"),
+            "name" : "connectivityType",
+            "displayName" : "Loại kết nối mạng",
+            "type" : "STRING",
+            "range" : [
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5d1984eca9d460000618d551"),
+                    "name" : "WIFI",
+                    "value" : "WIFI"
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5d1984eca9d460000618d550"),
+                    "name" : "MOBILE",
+                    "value" : "MOBILE"
+                }
+            ],
+            "description" : "  "
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5d1984eca9d460000618d54e"),
+            "name" : "connectivityName",
+            "displayName" : "Tên wifi (ssid)",
+            "type" : "STRING",
+            "range" : [],
+            "description" : "   "
+        }
+    ],
+    "createdAt" : ISODate("2019-07-01T10:52:14.719+07:00"),
+    "updatedAt" : ISODate("2021-07-26T16:19:06.419+07:00"),
+    "__v" : 0,
+    "active" : false,
+    "cannotTransfer" : true
+},{
+    "_id" : ObjectId("5e7c54ada507f25ad54c6d40"),
+    "active" : true,
+    "protocol" : "REST",
+    "method" : "GET",
+    "dataFormat" : "application/json",
+    "name" : "Delay",
+    "description" : "Trễ kích hoạt hành động",
+    "displayName" : "Trễ kích hoạt",
+    "url" : "http://automatic-service:3030/automatic-delay-condition",
+    "params" : [
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5e7c54ada507f249d24c6d41"),
+            "name" : "delayTime",
+            "displayName" : "Thời gian trễ",
+            "description" : "Thời gian trễ thực hiện hành động (theo đơn vị giây)",
+            "type" : "NUMBER",
+            "unit" : "s",
+            "range" : []
+        }
+    ],
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "createdAt" : ISODate("2020-03-26T14:07:25.519+07:00"),
+    "updatedAt" : ISODate("2020-07-22T15:52:16.807+07:00"),
+    "__v" : 0,
+    "orderAsk" : 100
+},{
+    "_id" : ObjectId("5f1ab57c4a189a19f5fc52d3"),
+    "active" : true,
+    "orderAsk" : 0,
+    "protocol" : "REST",
+    "method" : "GET",
+    "dataFormat" : "application/json",
+    "name" : "Time Condition",
+    "description" : "Điều kiện mốc thời gian (hẹn giờ) hoặc khoảng thời gian",
+    "displayName" : "Điều kiện thời gian",
+    "params" : [
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5f1ab57c4a189a62ccfc52d4"),
+            "name" : "timeRange",
+            "displayName" : "Khoảng thời gian",
+            "description" : "",
+            "type" : "BOOLEAN",
+            "range" : [],
+            "unit" : "s",
+            "configHint" : ""
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5f1ab57c4a189a4f48fc52d5"),
+            "name" : "inDay",
+            "displayName" : "Trong ngày",
+            "description" : "",
+            "type" : "BOOLEAN",
+            "range" : [],
+            "unit" : "s",
+            "configHint" : ""
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5f1ab57c4a189a4690fc52d6"),
+            "name" : "dayByWeek",
+            "displayName" : "Ngày trong tuần",
+            "description" : "",
+            "type" : "MIX",
+            "range" : [],
+            "unit" : "s",
+            "configHint" : ""
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5f1ab57c4a189ac42efc52d7"),
+            "name" : "startTime",
+            "displayName" : "Thời điểm đầu",
+            "description" : "",
+            "type" : "TIME",
+            "range" : [],
+            "unit" : "s",
+            "configHint" : ""
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5f1ab57c4a189a4b10fc52d8"),
+            "name" : "stopTime",
+            "displayName" : "Thời điểm cuối",
+            "description" : "",
+            "type" : "TIME",
+            "range" : [],
+            "unit" : "s",
+            "configHint" : ""
+        }
+    ],
+    "url" : "http://automatic-service:3030/automatic-time-condition",
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "__v" : 0,
+    "createdAt" : ISODate("2020-07-24T17:18:36.619+07:00"),
+    "updatedAt" : ISODate("2020-12-17T16:07:00.171+07:00")
+}])
+
+db.automaticactions.remove({})
+db.automaticactions.insertMany([{
+    "_id" : ObjectId("5ad95d6c58a16800066e164b"),
+    "protocol" : "REST",
+    "method" : "POST",
+    "dataFormat" : "application/json",
+    "name" : "Điều khiển thiết bị",
+    "description" : "Điều khiển thiết bị Makihome của bạn",
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "url" : "http://users-service:3030/users-control-devices",
+    "params" : [
+        {
+            "field" : "HEADER",
+            "_id" : ObjectId("5f98420293b0788f069a068e"),
+            "name" : "Authorization",
+            "displayName" : "",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5ad95d6c58a16800066e164d"),
+            "name" : "deviceId",
+            "displayName" : "Id thiết bị",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5ca58dfd42a1cc00061ca7cf"),
+            "name" : "localId",
+            "displayName" : "mã nội bộ",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5ca58dfd42a1cc00061ca7cd"),
+            "name" : "propertyCode",
+            "displayName" : "mã thuộc tính",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5ca58dfd42a1cc00061ca7ce"),
+            "name" : "propertyName",
+            "displayName" : "tên thuộc tính",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5d987a3656cf4600063db761"),
+            "name" : "value",
+            "displayName" : "giá trị",
+            "description" : "",
+            "type" : "MIX",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5d987a3656cf4600063db760"),
+            "name" : "expectValue",
+            "displayName" : "giá trị kỳ vọng",
+            "description" : "",
+            "type" : "MIX",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5ca58dfd42a1cc00061ca7c9"),
+            "name" : "reason",
+            "displayName" : "",
+            "description" : "",
+            "type" : "STRING",
+            "defaultValue" : "AUTOMATIC",
+            "range" : []
+        }
+    ],
+    "createdAt" : ISODate("2018-04-20T10:24:28.650+07:00"),
+    "updatedAt" : ISODate("2020-11-20T21:58:52.147+07:00"),
+    "__v" : 0,
+    "active" : true
+},{
+    "_id" : ObjectId("5b0cb93e13b7d400077e7941"),
+    "protocol" : "REST",
+    "method" : "POST",
+    "dataFormat" : "application/json",
+    "name" : "Thông báo notify",
+    "description" : "Gửi thông báo tới cho điện thoại",
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "url" : "http://users-service:3030/users-notifies",
+    "params" : [
+        {
+            "field" : "HEADER",
+            "_id" : ObjectId("5b0cb93e13b7d400077e7946"),
+            "name" : "Authorization",
+            "displayName" : "",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5b0cb93e13b7d400077e7945"),
+            "name" : "offApp",
+            "displayName" : "",
+            "defaultValue" : true,
+            "description" : "",
+            "type" : "BOOL",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5b0cb93e13b7d400077e7944"),
+            "name" : "userId",
+            "displayName" : "id người dùng",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5b0cb93e13b7d400077e7943"),
+            "name" : "title",
+            "displayName" : "Tựa đề",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5b0cb93e13b7d400077e7942"),
+            "name" : "message",
+            "displayName" : "Nội dung",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        }
+    ],
+    "createdAt" : ISODate("2018-05-29T09:21:50.431+07:00"),
+    "updatedAt" : ISODate("2021-12-03T16:31:13.913+07:00"),
+    "__v" : 0,
+    "active" : true,
+    "cannotTransfer" : false
+},{
+    "_id" : ObjectId("5d7a19c26ad58500077d99dc"),
+    "protocol" : "REST",
+    "method" : "POST",
+    "dataFormat" : "application/json",
+    "name" : "Kích hoạt kịch bản",
+    "description" : "Kích hoạt kịch bản",
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "url" : "http://users-service:3030/users-active-schemas",
+    "params" : [
+        {
+            "field" : "HEADER",
+            "_id" : ObjectId("5d7a19c26ad58500077d99df"),
+            "name" : "Authorization",
+            "displayName" : "",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5d7a19c26ad58500077d99de"),
+            "name" : "schemaId",
+            "displayName" : "Kịch bản",
+            "defaultValue" : true,
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5d7a19c26ad58500077d99dd"),
+            "name" : "schemaName",
+            "displayName" : "Tên kịch bản",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5d81d5f556cf4600063db72f"),
+            "name" : "reason",
+            "displayName" : "",
+            "description" : "",
+            "type" : "STRING",
+            "defaultValue" : "AUTOMATIC",
+            "range" : []
+        }
+    ],
+    "createdAt" : ISODate("2018-05-29T09:21:50.431+07:00"),
+    "updatedAt" : ISODate("2020-07-27T16:42:59.122+07:00"),
+    "__v" : 0,
+    "active" : true
+},{
+    "_id" : ObjectId("5e7c552a582077bf00e80ad9"),
+    "active" : true,
+    "protocol" : "REST",
+    "method" : "PATCH",
+    "dataFormat" : "application/json",
+    "name" : "Change rule state",
+    "displayName" : "Kích hoạt, hủy kích hoạt luật tự động",
+    "description" : "Kích hoạt, hủy kích hoạt luật tự động",
+    "url" : "http://automatic-service:3030/automatic-rules",
+    "params" : [
+        {
+            "field" : "",
+            "_id" : ObjectId("5e7c552a58207748dfe80adc"),
+            "name" : "Authorization",
+            "displayName" : "",
+            "description" : "",
+            "type" : "STRING",
+            "range" : []
+        },
+        {
+            "field" : "PARAM",
+            "_id" : ObjectId("5e7c552a58207783f0e80adb"),
+            "name" : "_id",
+            "displayName" : "Luật tự động",
+            "description" : "Chọn một luật tự động của bạn",
+            "type" : "STRING",
+            "range" : [],
+            "configHint" : "ruleId"
+        },
+        {
+            "field" : "DATA",
+            "_id" : ObjectId("5e7c552a5820772ddfe80ada"),
+            "name" : "active",
+            "displayName" : "Hành động",
+            "description" : "Chọn kích hoạt hoặc hủy kích hoạt luật tự động",
+            "type" : "BOOLEAN",
+            "range" : [
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5e7c8bb35820774a6fe80ae2"),
+                    "name" : "Kích hoạt",
+                    "value" : true
+                },
+                {
+                    "step" : 0,
+                    "_id" : ObjectId("5e7c8bb3582077cdb8e80ae1"),
+                    "name" : "Hủy kích hoạt",
+                    "value" : false
+                }
+            ],
+            "configHint" : ""
+        }
+    ],
+    "pluginId" : ObjectId("5ad95d2d58a16800066e1637"),
+    "createdAt" : ISODate("2020-03-26T14:09:30.257+07:00"),
+    "updatedAt" : ISODate("2021-01-04T16:32:09.827+07:00"),
+    "__v" : 0
+}])
