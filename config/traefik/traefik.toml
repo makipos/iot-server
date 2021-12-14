@@ -31,10 +31,9 @@
   [entryPoints.https]
   address = ":3029"
 
-[[tls.certificates]]
-  CertFile = "/etc/traefik/cert/server.crt"
-  KeyFile = "/etc/traefik/cert/server.key"
-
+[providers]
+  [providers.file]
+    filename = "/etc/traefik/certs.toml"
 
 ################################################################
 # Traefik logs configuration
