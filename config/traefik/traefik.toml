@@ -23,13 +23,15 @@
 # Default:
 [entryPoints]
   [entryPoints.httpfront]
-  address = ":80"
+    address = ":80"
   [entryPoints.httpsfront]
-  address = ":443"
+    address = ":443"
+    [entryPoints.httpsfront.http.tls]
   [entryPoints.http]
-  address = ":3028"
+    address = ":3028"
   [entryPoints.https]
-  address = ":3029"
+    address = ":3029"
+    [entryPoints.https.http.tls]
 
 [providers]
   [providers.file]
