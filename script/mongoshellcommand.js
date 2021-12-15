@@ -1295,6 +1295,156 @@ db.usersroles.insert({
     ],
     "__v" : 0
 })
+db.usersroles.deleteOne({"name" : "tester"});
+db.usersroles.insert({
+    "_id" : ObjectId("5caf06e85755d500068fc3eb"),
+    "name" : "tester",
+    "permissions" : [
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "_id" : ObjectId("5daa88ccd888912a3f7cf3ba"),
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5caf06e85755d500068fc3ed"),
+            "url" : "devices-qc",
+            "method" : "get"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "_id" : ObjectId("5daa88ccd88891ec097cf3b8"),
+                        "entity" : "user",
+                        "idField" : "manufacturerId",
+                        "ownerField" : "manufacturerId"
+                    }
+                ],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5caf06e85755d500068fc3ec"),
+            "url" : "devices-qc",
+            "method" : "find"
+        }
+    ],
+    "createdAt" : ISODate("2019-04-11T16:20:41.003+07:00"),
+    "updatedAt" : ISODate("2020-12-15T09:56:16.747+07:00"),
+    "__v" : 0
+})
+db.usersroles.deleteOne({"name" : "installationTechnician"});
+db.usersroles.insert({
+    "_id" : ObjectId("60f10a768ecabcffadbba0ee"),
+    "name" : "installationTechnician",
+    "permissions" : [],
+    "createdAt" : ISODate("2021-07-16T11:26:30.045+07:00"),
+    "updatedAt" : ISODate("2021-07-16T11:26:30.045+07:00"),
+    "__v" : 0
+})
+db.usersroles.deleteOne({"name" : "deviceCreator"});
+db.usersroles.insert({
+    "_id" : ObjectId("5ddf758e606260734e0187b1"),
+    "name" : "deviceCreator",
+    "permissions" : [
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5ddf75a513cd367a32864612"),
+            "url" : "devices",
+            "method" : "create"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("5f6b423b210d663a11400962"),
+            "url" : "devices-get-type",
+            "method" : "all"
+        }
+    ],
+    "createdAt" : ISODate("2019-11-28T14:21:50.654+07:00"),
+    "updatedAt" : ISODate("2020-09-23T19:40:27.704+07:00"),
+    "__v" : 0
+})
+db.usersroles.deleteOne({"name" : "updateDevice"});
+db.usersroles.insert({
+    "_id" : ObjectId("619b42e272b28d6e1ca353f2"),
+    "name" : "updateDevice",
+    "permissions" : [
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [
+                    {
+                        "entity" : "user",
+                        "idField" : "_id",
+                        "ownerField" : "author"
+                    }
+                ],
+                "custom" : [
+                    {
+                        "range" : [],
+                        "force" : {
+                            "entity" : "user",
+                            "idField" : "_id"
+                        },
+                        "field" : "author"
+                    }
+                ]
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("619b430972b28d4921a35413"),
+            "url" : "update-device",
+            "method" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : [],
+                "apiOptions" : {
+                    "allowCustomEventType" : true,
+                    "allowControlByManufacturerId" : true
+                }
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("619b43567234a705838320c1"),
+            "url" : "users-control-devices",
+            "method" : "create"
+        }
+    ],
+    "createdAt" : ISODate("2021-11-22T14:12:34.672+07:00"),
+    "updatedAt" : ISODate("2021-12-09T16:57:38.431+07:00"),
+    "__v" : 0
+})
 db.usersroles.deleteOne({"name" : "adminPartner"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c782ca8334c194b1a6234"),
