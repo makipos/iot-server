@@ -59,6 +59,13 @@
     "token":"",
     "conversationId":""
   },
+  "mail":{
+    "host":"",
+    "port":465,
+    "secure":true,
+    "user":"",
+    "pass":""
+  },
   "defaultPassword": "",
   "authentication": {
     "secret": "",

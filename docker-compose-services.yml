@@ -87,6 +87,7 @@ services:
       - MKPS_authentication__secret=${MKP_authentication__secret}
       - MKPS_emqtt_server__password=${MKPS_SERVICE_PASS}
       - MKPS_server_address=${SERVER_ADDRESS}
+      - MKPS_web_address=${WEB_ADDRESS}
     healthcheck:
       test: curl -f http://localhost:3030/health || exit 1
       interval: 30s
