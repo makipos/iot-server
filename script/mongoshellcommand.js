@@ -624,7 +624,7 @@ db.usersroles.insert({
 db.usersroles.deleteOne({"name" : "user"});
 db.usersroles.insert({
     "_id" : ObjectId("5c2c7982a8334c194b1a65fb"),
-    "updatedAt" : ISODate("2021-08-19T13:57:07.330+07:00"),
+    "updatedAt" : ISODate("2021-12-27T17:19:45.663+07:00"),
     "createdAt" : ISODate("2019-01-02T10:11:49.652+07:00"),
     "name" : "user",
     "permissions" : [
@@ -640,6 +640,58 @@ db.usersroles.insert({
             "_id" : ObjectId("5d5bc855aa885000061cd12d"),
             "method" : "update",
             "url" : "all"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("61c99341e766239d29f3edd9"),
+            "url" : "automatic-heavy-query",
+            "method" : "create"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("61c99341e766230e58f3edda"),
+            "url" : "devices-heavy-query",
+            "method" : "create"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("61c99341e76623be30f3eddb"),
+            "url" : "relations-heavy-query",
+            "method" : "create"
+        },
+        {
+            "limit" : {
+                "skipPostRestrict" : false,
+                "whiteList" : [],
+                "blackList" : [],
+                "restrict" : [],
+                "custom" : []
+            },
+            "forbidden" : false,
+            "_id" : ObjectId("61c99341e7662311b0f3eddc"),
+            "url" : "users-heavy-query",
+            "method" : "create"
         },
         {
             "limit" : {
