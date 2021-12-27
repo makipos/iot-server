@@ -1,6 +1,7 @@
 {
   "host": "localhost",
   "server_address":"http://localhost:3028",
+  "web_address":"http://localhost",
   "serviceName":"devices-service",
   "port": 3030,
   "public": "../public/",
