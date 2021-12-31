@@ -10,7 +10,7 @@ Hướng dẫn sử dụng chức năng [xác thực phân quyền](overview/sec
 
 ### Mỗi HTTP request sẽ bao gồm các thông tin
 - Headers : header của request (chứa mã token xác thực)
-- URL : `protocol`://`domain`:`port`/`path`[/`id`][?`params query`]
+- URL : `protocol`://`domain`:`port`/`path`\[/`id`]\[?`params query`]
 - Method : Rest API tuân theo cấu trúc sử dụng HTTP method như sau
   - GET có `id` : Lấy thông tin của một bản ghi cụ thể
   - GET không `id` : Lấy thông tin của tất cả các bản ghi thỏa mãn `params query`
