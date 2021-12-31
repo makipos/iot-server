@@ -6,11 +6,12 @@ Service bao gồm 1 nhóm các service (endpoint) nhỏ hơn chịu trách nhi�
 
 ## Đăng nhập
 
-Hỗ trợ 3 phương thức xác thực, đăng nhập thông dụng.
+Hỗ trợ 4 phương thức xác thực, đăng nhập thông dụng.
 1. Username, mật khẩu
 2. Google
 3. Apple
 4. Facebook
+5. OTP
 
 ## [Phân quyền](overview/security/http.md)
 
