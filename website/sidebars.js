@@ -72,6 +72,13 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Chức năng',
+      collapsible: true,
+      collapsed: false,
+      items: ['tutorial/function/roles']
+    },
+    {
+      type: 'category',
       label: 'Vận hành',
       collapsible: true,
       collapsed: false,

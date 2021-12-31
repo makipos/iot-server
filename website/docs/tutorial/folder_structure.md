@@ -21,6 +21,7 @@ title: Cấu trúc thư mục
 │   ├── update-service        -- file config cho service
 │   ├── users-service         -- file config cho service
 │   └── *****-service         -- file config cho các service khác nếu bổ sung
+├── .envDeploy                -- Các biến môi trường sử dụng trong các file `docker-compose`
 ├── docker-compose-emqtt.yml
 ├── docker-compose-frontend.yml
 ├── docker-compose-mongodb.yml
