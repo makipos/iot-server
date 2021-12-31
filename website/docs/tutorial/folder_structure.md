@@ -19,7 +19,8 @@ title: Cấu trúc thư mục
 │   ├── tcp-gateway           -- file config cho service
 │   ├── traefik               -- file cert và config cho traefik gateway service
 │   ├── update-service        -- file config cho service
-│   └── users-service         -- file config cho service
+│   ├── users-service         -- file config cho service
+│   └── *****-service         -- file config cho các service khác nếu bổ sung
 ├── docker-compose-emqtt.yml
 ├── docker-compose-frontend.yml
 ├── docker-compose-mongodb.yml
@@ -39,10 +40,10 @@ title: Cấu trúc thư mục
 │   ├── createNetwork.fish      -- script khởi tạo virtual network cho các docker service
 │   ├── deployEmqtt.fish
 │   ├── deploy.fish             -- script deploy tổng hợp
-│   ├── deployFrontend.fish
+│   ├── deployFrontend.fish     -- script deploy webadmin
 │   ├── deployMongodb.fish
 │   ├── deployRedis.fish
-│   ├── deployServices.fish
+│   ├── deployServices.fish     -- script deploy service
 │   ├── deploySSH.fish
 │   ├── deployTraefik.fish
 │   ├── uncreateNetwork.fish    -- script xóa virtual network
@@ -51,9 +52,9 @@ title: Cấu trúc thư mục
 │   ├── undeployMongodb.fish
 │   ├── undeployRedis.fish
 │   ├── undeployServices.fish
-│   ├── undeploySSH.fish
+│   ├── undeploySSH.fish        -- script xóa SSH service
 │   └── undeployTraefik.fish
-└── website                         -- folder website hướng dẫn
+└── website                     -- folder website hướng dẫn
 ```
 
 ***Các folder trong thư mục `config` được mount vào service tương ứng. Cấu hình này được thiết lập trong `docker-compose` file tương ứng***

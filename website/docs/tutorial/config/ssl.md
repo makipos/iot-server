@@ -19,7 +19,24 @@ Cấu hình này được xác định trong file `docker-compose-emqtt.yml`
 
 ## service api ssl
 
-Cấu hình SSL cho API service (https)
+Cấu hình SSL cho API service (https) \
+Quá trình cấu hình này phụ thuộc vào traefik service
+
+### traefik 2
+
+Copy file `server.crt` và `server.key` vào trong thư mục `config/traefik/cert`\
+2 file này được chỉnh định bởi `certs.toml`. \
+`certs.toml` được sử dụng như `file provider` đối với traefik 2 (chỉ định trong `traefik.toml`)
+```
+[providers]
+  [providers.file]
+    filename = "/etc/traefik/certs.toml"
+```
+
+Chi tiết xem tại [doc.traefik.io](https://doc.traefik.io/traefik/https/overview/)
+
+
+### traefik 1.7 (dedicated)
 
 Copy file `server_pro.crt` và `server_pro.key` vào trong thư mục `config/traefik/cert`
 
