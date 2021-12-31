@@ -92,7 +92,7 @@ Lưu ý các từ viết đậm này sẽ được sử dụng phía dưới
 
 - `name` : Tên của role
 - `permissions` : là mảng chứa danh sách thông tin phân quyền cho từng API endpoint
-  - `url` : là **PATH** (tên endpoint, service) xác định endpoint, service mà luật này tác động, "all" nếu tác động lên tất cả endpoint
+  - `url` : là [**PATH**](#thông-tin-của-1-cuộc-gọi-được-xác-định-như-sau) (tên endpoint, service) xác định endpoint, service mà luật này tác động, "all" nếu tác động lên tất cả endpoint
   - `method` : xác định http method mà luật này tác động
     - find : tương ứng với GET không `id`
     - get : tương ứng với GET có `id`
