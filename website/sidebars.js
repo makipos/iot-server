@@ -77,6 +77,7 @@ module.exports = {
       collapsed: false,
       items: ['tutorial/function/roles']
     },
+    'tutorial/test',
     {
       type: 'category',
       label: 'Vận hành',
