@@ -72,6 +72,11 @@
   "maikaHomeGraphUrl":"https://staging.actions-api.iviet.com/v1/devices",
   "openweatherapiKey": "",
   "ipstackKey": "",
+  "slack":{
+    "token":"",
+    "conversationId":""
+  },
+  "message_greeting": "Chào mừng bạn đến với thế giới internet vạn vật thông minh",
   "authentication": {
     "secret": "",
     "strategies": [

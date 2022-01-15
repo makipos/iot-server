@@ -43,6 +43,8 @@
   "googleApikey":"",
   "maikaHomeGraphKey":"",
   "maikaHomeGraphUrl":"https://staging.actions-api.iviet.com/v1/devices",
+  "message_add_relation":"Thiết bị {{1}} đã thuộc về  {{2}} (Thêm bởi {{3}})",
+  "message_del_relation":"Quyền sở hữu thiết bị {{1}} của bạn đã thu hồi {{2}}",
   "authentication": {
     "secret": "",
     "strategies": [
