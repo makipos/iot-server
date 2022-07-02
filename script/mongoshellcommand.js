@@ -847,7 +847,7 @@ db.usersroles.insert({
                         "ownerField" : "relationsInfo.parentId"
                     },
                     {
-                        "ownerField" : "$populate",
+                        "ownerField" : "\$populate",
                         "idValue" : {
                             "foreignField" : "childrenId",
                             "localField" : "_id",
@@ -988,7 +988,7 @@ db.usersroles.insert({
                 "restrict" : [
                     {
                         "idValue" : {
-                            "_$nin" : [
+                            "_\$nin" : [
                                 "agent"
                             ]
                         },
@@ -1010,7 +1010,7 @@ db.usersroles.insert({
                 "restrict" : [
                     {
                         "idValue" : {
-                            "_$nin" : [
+                            "_\$nin" : [
                                 "agent"
                             ]
                         },
@@ -1946,7 +1946,7 @@ db.usersroles.insert({
                 "restrict" : [
                     {
                         "idValue" : {
-                            "_$in" : [
+                            ["_\$in"] : [
                                 "user",
                                 "adminPartner",
                                 "tester",
@@ -1963,7 +1963,7 @@ db.usersroles.insert({
                             "name",
                             "permissions"
                         ],
-                        "ownerField" : "$select"
+                        "ownerField" : "\$select"
                     }
                 ],
                 "custom" : []
