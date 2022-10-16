@@ -19,6 +19,11 @@
     "whiteList":[]
   },
   "nokeep_status":86400000,
+  "clear_history": {
+    "interval": "",
+    "delete_range_per_time": 259200000,
+    "keep_range": 31536000000
+  },
   "traefik_gateway": {
     "addr": "http://traefik:3028"
   },
